@@ -7,7 +7,7 @@ import {
     LoginAndRegister,
     Login,
     Register,
-} from './navBar.styled';
+} from './navBar.styles';
 
 const NavBar: React.FC = () => {
     return (

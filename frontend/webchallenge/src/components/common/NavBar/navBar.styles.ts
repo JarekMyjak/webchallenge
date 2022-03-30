@@ -17,6 +17,7 @@ export const Logo = styled.div`
     font-size: 26px;
     height: 72px;
     margin-left: 90px;
+    user-select: none;
 `;
 
 export const Nav = styled.nav`
@@ -52,10 +53,10 @@ export const Login = styled.button`
     width: 95px;
     height: 35px;
     background-color: white;
-    border: 2px solid #5d5fef;
+    border: 2px solid ${colors.iris};
     border-radius: 6px;
     font-weight: bold;
-    color: #5d5fef;
+    color: ${colors.iris};
     cursor: pointer;
     margin: 0 10px;
     font-size: 13px;
@@ -65,15 +66,15 @@ export const Login = styled.button`
     justify-content: center;
     transition: 0.1s;
     :hover {
-        background-color: #5d5fef;
+        background-color: ${colors.iris};
         color: white;
     }
 `;
 export const Register = styled(Login)`
-    background-color: #5d5fef;
+    background-color: ${colors.iris};
     color: white;
     :hover {
         background-color: white;
-        color: #5d5fef;
+        color: ${colors.iris};
     }
 `;

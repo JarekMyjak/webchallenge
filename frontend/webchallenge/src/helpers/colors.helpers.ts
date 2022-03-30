@@ -3,6 +3,7 @@ export const colors = {
     navBarBackground: '#000000',
 
     orange: '#EB8702',
+    iris: '#5d5fef',
 };
 
 export default colors;
