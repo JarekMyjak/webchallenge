@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from '../../helpers/colors.helpers';
+import HowItWorksSection from './HowItWorksSection/HowItWorksSection';
 import SliderSection from './SliderSection/SliderSection';
 import TechnologiesSection from './TechnologiesSection/TechnologiesSection';
 
@@ -9,6 +10,7 @@ const Landing: React.FC = () => {
         <Container>
             <SliderSection />
             <TechnologiesSection />
+            <HowItWorksSection />
         </Container>
     );
 };
