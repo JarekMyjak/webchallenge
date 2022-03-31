@@ -32,7 +32,7 @@ const SliderSection: React.FC = () => {
                 </Content>
             </LeftSide>
             <RightSide>
-                <ImageBackground src='https://www.telepolis.pl/images/2020/01/kapitan-bomba.jpg'></ImageBackground>
+                <ImageBackground src="./src/graphic/photo/Top_slider_graphic.jpg"></ImageBackground>
             </RightSide>
         </Wrapper>
     );

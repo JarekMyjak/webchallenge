@@ -42,9 +42,9 @@ export const Comments = styled.div`
 `;
 
 export const Comment = styled.div`
-    height: 150px;
-    width: 850px;
+    height: 120px;
+    width: 680px;
     background-color: #f2f2f2;
-    margin-bottom: 65px;
+    margin-bottom: 52px;
     border-radius: 100px 1px 1px 100px;
 `;

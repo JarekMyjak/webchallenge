@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import colors from '../../../helpers/colors.helpers';
 
 export const Wrapper = styled.section`
-    height: 800px;
+    height: 760px;
     background-color: ${colors.backgroundPrimary};
     display: flex;
     align-items: center;
@@ -12,7 +12,7 @@ export const Wrapper = styled.section`
 `;
 
 export const Content = styled.div`
-    width: 1024px;
+    width: 820px;
     color: white;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@ export const Title = styled.div`
     font-size: 36px;
     font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 `;
 
 export const ProgressContainer = styled.div`
@@ -46,7 +46,7 @@ interface IText {
 }
 
 export const Text = styled.span<IText>`
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     color: ${props => (props.isActive ? 'white' : '#C4C4C4')};
 `;
@@ -60,12 +60,12 @@ export const ProgressBar = styled.div`
 export const CurrentBar = styled.div`
     height: 5px;
     background-color: ${colors.orange};
-    width: 200px;
+    width: 198px;
 `;
 
 export const ImageContainer = styled.div`
-    height: 512px;
-    width: 1024px;
+    height: 410px;
+    width: 820px;
     background-color: ${colors.orange};
     box-shadow: 0px 4px 4px #000000;
     margin-bottom: 40px;
@@ -78,7 +78,7 @@ export const Image = styled.img`
 export const Description = styled.div`
     box-sizing: border-box;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     text-align: center;

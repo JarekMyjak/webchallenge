@@ -14,15 +14,16 @@ export const Wrapper = styled.section`
 export const TextContent = styled.div``;
 
 export const Title = styled.div`
-    font-size: 48px;
+    font-size: 36px;
     font-weight: Bold;
     width: 850px;
 `;
 
 export const DownText = styled.div`
-    font-size: 24px;
-    font-weight: 500;
-    width: 630px;
+    font-size: 18px;
+    font-weight: 400;
+    width: 550px;
+    color: ${colors.secondaryText};
 `;
 
 export const Icons = styled.div`

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import colors from '../../../helpers/colors.helpers';
 
 export const Wrapper = styled.section`
-    height: 900px;
+    height: 840px;
     background-color: #454545;
     display: flex;
     border-bottom: 1px solid ${colors.borderPrimary};

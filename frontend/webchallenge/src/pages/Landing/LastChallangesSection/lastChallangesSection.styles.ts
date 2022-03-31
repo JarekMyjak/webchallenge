@@ -7,7 +7,7 @@ export const Wrapper = styled.section`
     align-items: center;
     justify-content: center;
     color: ${colors.primaryText};
-    padding: 50px 0 80px 0;
+    padding: 40px 0 60px 0;
     border-bottom: 1px solid ${colors.borderPrimary};
 `;
 
@@ -29,7 +29,7 @@ export const Description = styled.div`
     font-weight: 400;
     font-size: 18px;
     color: ${colors.secondaryText};
-    margin-bottom: 30px;
+    margin-bottom: 45px;
 `;
 
 export const Cards = styled.div`
@@ -49,7 +49,7 @@ export const Card = styled.div`
 
 export const MoreChallanges = styled.div`
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     width: 230px;
     display: flex;
@@ -61,6 +61,7 @@ export const MoreChallanges = styled.div`
 export const Bar = styled.div`
     height: 5px;
     background-color: ${colors.orange};
-    width: 200px;
+    width: 180px;
     margin-top: 10px;
+    border-radius: 2px;
 `;

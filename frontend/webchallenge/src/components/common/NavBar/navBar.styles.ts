@@ -4,7 +4,7 @@ import colors from '../../../helpers/colors.helpers';
 export const Wrapper = styled.div`
     background-color: ${colors.navBarBackground};
     width: 100vw;
-    height: 72px;
+    height: 57.6px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: white;
     display: flex;
@@ -15,7 +15,7 @@ export const Logo = styled.div`
     display: flex;
     align-items: center;
     font-size: 26px;
-    height: 72px;
+    height: 57.6px;
     margin-left: 90px;
     user-select: none;
 `;
@@ -23,12 +23,12 @@ export const Logo = styled.div`
 export const Nav = styled.nav`
     display: flex;
     align-items: center;
-    height: 72px;
+    height: 57.6px;
     margin-right: 90px;
 `;
 
 export const NavButton = styled.button`
-    font-size: 17px;
+    font-size: 14px;
     font-weight: bold;
     padding: 0 35px;
     height: 72px;
@@ -43,7 +43,7 @@ export const NavButton = styled.button`
 `;
 
 export const LoginAndRegister = styled.div`
-    height: 72px;
+    height: 57.6px;
     display: flex;
     align-items: center;
     margin-left: 50px;
