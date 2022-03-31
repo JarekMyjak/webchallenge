@@ -4,6 +4,9 @@ export const colors = {
 
     orange: '#EB8702',
     iris: '#5d5fef',
+
+    primaryText: '#FFFFFF',
+    secondaryText: '#D0D0D0',
 };
 
 export default colors;

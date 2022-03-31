@@ -5,7 +5,6 @@ export const Wrapper = styled.section`
     height: 800px;
     background-color: ${colors.backgroundPrimary};
     display: flex;
-    border-bottom: 1px solid white;
     align-items: center;
     justify-content: center;
     padding: 10px 0 30px 0;

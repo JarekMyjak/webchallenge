@@ -7,7 +7,7 @@ export const Wrapper = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #c4c4c4;
 `;
 
 export const TextContent = styled.div``;

@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import colors from '../../helpers/colors.helpers';
 import HowItWorksSection from './HowItWorksSection/HowItWorksSection';
+import LastChallangesSection from './LastChallangesSection/LastChallangesSection';
+import OpinionSection from './OpinionSection/OpinionSection';
 import SliderSection from './SliderSection/SliderSection';
 import TechnologiesSection from './TechnologiesSection/TechnologiesSection';
 
@@ -11,6 +12,8 @@ const Landing: React.FC = () => {
             <SliderSection />
             <TechnologiesSection />
             <HowItWorksSection />
+            <LastChallangesSection />
+            <OpinionSection />
         </Container>
     );
 };
