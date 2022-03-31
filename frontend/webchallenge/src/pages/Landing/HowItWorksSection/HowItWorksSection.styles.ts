@@ -8,6 +8,7 @@ export const Wrapper = styled.section`
     align-items: center;
     justify-content: center;
     padding: 10px 0 30px 0;
+    border-bottom: 1px solid ${colors.borderPrimary};
 `;
 
 export const Content = styled.div`

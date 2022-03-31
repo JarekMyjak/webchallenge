@@ -5,7 +5,7 @@ export const Wrapper = styled.section`
     height: 900px;
     background-color: #454545;
     display: flex;
-    border-bottom: 1px solid #c4c4c4;
+    border-bottom: 1px solid ${colors.borderPrimary};
 `;
 
 export const LeftSide = styled.div`
