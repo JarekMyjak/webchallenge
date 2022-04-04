@@ -8,6 +8,13 @@ import {
     TextContent,
 } from './technologiesSection.styles';
 
+import reactIcon from '../../../assets/icons/react.svg';
+import sassIcon from '../../../assets/icons/sass.svg';
+import tsIcon from '../../../assets/icons/typescript-96.svg';
+import jsIcon from '../../../assets/icons/javascript-96.svg';
+import htmlIcon from '../../../assets/icons/html5.svg';
+import cssIcon from '../../../assets/icons/css3.svg';
+
 const TechnologiesSection: React.FC = () => {
     return (
         <Wrapper>
@@ -19,12 +26,12 @@ const TechnologiesSection: React.FC = () => {
                 </DownText>
             </TextContent>
             <Icons>
-                <Icon />
-                <Icon />
-                <Icon />
-                <Icon />
-                <Icon />
-                <Icon />
+                <Icon src={htmlIcon} />
+                <Icon src={jsIcon} />
+                <Icon src={sassIcon} />
+                <Icon src={cssIcon} />
+                <Icon src={tsIcon} />
+                <Icon src={reactIcon} />
             </Icons>
         </Wrapper>
     );

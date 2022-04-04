@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import colors from '../../../helpers/colors.helpers';
 
 export const Wrapper = styled.section`
-    height: 840px;
+    height: calc(100vh - 57.6px); // 57.6px -> navbar height
     background-color: #454545;
     display: flex;
     border-bottom: 1px solid ${colors.borderPrimary};
 `;
 
 export const LeftSide = styled.div`
-    min-width: 900px;
+    min-width: 750px;
     height: 100%;
     box-sizing: border-box;
     display: flex;
@@ -18,7 +18,9 @@ export const LeftSide = styled.div`
     justify-content: center;
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+    margin-left: 150px;
+`;
 
 export const TextContent = styled.div`
     width: 650px;
@@ -58,9 +60,12 @@ export const CreateAccButton = styled.button`
 
 export const RightSide = styled.div`
     flex-grow: 1;
+    clip-path: polygon(280px 0, 100% 0, 100% 100%, 0% 100%);
+    /* clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%); */
 `;
 
 export const ImageBackground = styled.img`
     height: 100%;
     object-fit: contain;
+    filter: blur(2px);
 `;
