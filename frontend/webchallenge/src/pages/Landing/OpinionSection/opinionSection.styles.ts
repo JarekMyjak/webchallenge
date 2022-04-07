@@ -34,17 +34,9 @@ export const Description = styled.div`
     text-align: center;
 `;
 
-export const Comments = styled.div`
+export const Opinions = styled.div`
     width: 1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
-`;
-
-export const Comment = styled.div`
-    height: 120px;
-    width: 680px;
-    background-color: #f2f2f2;
-    margin-bottom: 52px;
-    border-radius: 100px 1px 1px 100px;
 `;
