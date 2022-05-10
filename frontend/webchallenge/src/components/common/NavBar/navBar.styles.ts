@@ -53,13 +53,11 @@ export const LoginAndRegister = styled.div`
 `;
 
 export const Login = styled.button`
-    width: 95px;
-    height: 35px;
-    background-color: white;
+    width: 180px;
+    height: 36px;
     border: 2px solid ${colors.iris};
-    border-radius: 6px;
+    border-radius: 25px;
     font-weight: bold;
-    color: ${colors.iris};
     cursor: pointer;
     margin: 0 10px;
     font-size: 13px;
@@ -68,16 +66,14 @@ export const Login = styled.button`
     align-items: center;
     justify-content: center;
     transition: 0.1s;
-    :hover {
-        background-color: ${colors.iris};
-        color: white;
-    }
-`;
-export const Register = styled(Login)`
     background-color: ${colors.iris};
     color: white;
     :hover {
-        background-color: white;
-        color: ${colors.iris};
     }
+`;
+
+export const LoginLogo = styled.img`
+    width: 25px;
+    height: 25px;
+    margin-left: 8px;
 `;

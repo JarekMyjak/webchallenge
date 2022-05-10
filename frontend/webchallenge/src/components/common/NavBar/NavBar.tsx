@@ -6,7 +6,7 @@ import {
     NavButton,
     LoginAndRegister,
     Login,
-    Register,
+    LoginLogo,
 } from './navBar.styles';
 
 const NavBar: React.FC = () => {
@@ -19,8 +19,11 @@ const NavBar: React.FC = () => {
                 <NavButton>Challanges</NavButton>
                 <NavButton>Premium</NavButton>
                 <LoginAndRegister>
-                    <Login>Log in</Login>
-                    <Register>Register</Register>
+                    <Login>
+                        Login with Github
+                        {/* TEMP SRC */}
+                        <LoginLogo src='https://cdn-icons-png.flaticon.com/512/25/25231.png' />
+                    </Login>
                 </LoginAndRegister>
             </Nav>
         </Wrapper>
