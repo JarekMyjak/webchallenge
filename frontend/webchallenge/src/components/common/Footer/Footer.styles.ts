@@ -4,6 +4,7 @@ import colors from '../../../helpers/colors.helpers';
 export const Wrapper = styled.footer``;
 
 export const Container = styled.div`
+    border-top: 1px solid ${colors.backgroundSecondary};
     padding: 50px 100px 50px 50px;
     color: white;
     display: flex;

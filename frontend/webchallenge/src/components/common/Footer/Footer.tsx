@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
                         <LogoContainer>WebChallange</LogoContainer>
                         <Description>
                             In a standard user experience, it seems like people
-                            don’t pay much attention to the elements “below the
+                            don't pay much attention to the elements “below the
                             fold”, everything happens at the top of the website,
                             fortunately, users have learned to look for Footers,
                             and their use has become a well known and
