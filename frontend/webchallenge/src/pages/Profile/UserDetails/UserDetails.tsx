@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import TitleBar from '../../../components/TitleBar';
 import colors from '../../../helpers/colors.helpers';
 import AboutUser from './AboutUser';
 import ChallangeData from './ChallangeData';
@@ -10,13 +11,10 @@ const UserDetails: React.FC = () => {
     return (
         <Container>
             <UserData />
-            <ProfileBar>
-                <ProfileImg />
-                <div>
-                    <ProfileTextWrapper>Profile details</ProfileTextWrapper>
-                    <Bar />
-                </div>
-            </ProfileBar>
+            <TitleBar
+                src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/1024px-Windows_Settings_app_icon.png'
+                text='Profile Details'
+            />
             <AboutUser />
             <UserContact />
             <ChallangeData />
@@ -34,25 +32,5 @@ const Container = styled.div`
     padding: 0 80px;
     display: flex;
     flex-direction: column;
-`;
-
-const ProfileBar = styled.div`
-    display: flex;
-`;
-
-const ProfileImg = styled.img`
-    width: 35px;
-    height: 35px;
-    margin-right: 15px;
-`;
-
-const ProfileTextWrapper = styled.div`
-    font-size: 17px;
-    font-weight: 700;
-`;
-
-const Bar = styled.div`
-    height: 3px;
-    width: 100%;
-    background-color: ${colors.orange};
+    box-sizing: border-box;
 `;

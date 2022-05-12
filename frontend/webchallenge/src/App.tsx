@@ -42,15 +42,16 @@ const Container = styled.div`
 
 const ContentWrapper = styled.div`
     display: flex;
-    min-height: 10000px;
+    /* min-height: 10000px; */
     /* height: 50px; */
     /* height: 200vh; */
 `;
 
 const Content = styled.div`
-    /* display: flex;
-    height: 1000px;
+    display: flex;
+    width: 100%;
+    /* height: 1000px; */
     flex-direction: column;
     align-items: center;
-    justify-content: center; */
+    justify-content: center;
 `;
