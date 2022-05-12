@@ -15,5 +15,4 @@ export default Profile;
 
 const Container = styled.div`
     background-color: ${colors.backgroundPrimary};
-    min-height: 100vh;
 `;
