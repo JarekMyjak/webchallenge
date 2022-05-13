@@ -12,7 +12,7 @@ const Leftbar: React.FC = () => {
 export default Leftbar;
 
 const Container = styled.div`
-    width: 100px;
+    width: 70px;
     height: 100vh;
     background-color: #000000;
     position: sticky;

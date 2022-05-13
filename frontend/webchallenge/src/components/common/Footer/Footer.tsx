@@ -24,6 +24,14 @@ import {
     Wrapper,
 } from './Footer.styles';
 
+import phone from '../../../assets/icons/phone.png';
+import mail from '../../../assets/icons/mail.png';
+import pin from '../../../assets/icons/pin.png';
+import linkedin from '../../../assets/icons/linkedin.png';
+import github from '../../../assets/icons/github.png';
+import fb from '../../../assets/icons/fb.png';
+import twitter from '../../../assets/icons/twitter.png';
+
 const Footer: React.FC = () => {
     return (
         <Wrapper>
@@ -45,6 +53,7 @@ const Footer: React.FC = () => {
                         <Title>Menu</Title>
                         <MenuList>
                             <li>Contact</li>
+                            <li>Resources</li>
                             <li>
                                 Community
                                 <NestedMenuList>
@@ -59,34 +68,36 @@ const Footer: React.FC = () => {
                     <Contact>
                         <Title>Get in touch</Title>
                         <ContactOption>
-                            <Icon />
+                            <Icon src={phone}/>
                             748 323 506
                         </ContactOption>
                         <ContactOption>
-                            <Icon />
+                            <Icon src={mail}/>
                             web@challange.com
                         </ContactOption>
                         <ContactOption>
-                            <Icon />
+                            <Icon src={pin}/>
                             Mrągowska 14/2 31-234, Cracov Poland
                         </ContactOption>
                     </Contact>
                 </LeftSide>
                 <RightSide>
-                    <Newsletter>Newsletter</Newsletter>
-                    <MailForm>
-                        <MailInput type='mail' />
-                        <SignButton>Sign up</SignButton>
-                    </MailForm>
-                    <Socials>
-                        <Social />
-                        <Social />
-                        <Social />
-                        <Social />
-                    </Socials>
+                    <Newsletter>
+                        <Title>Newsletter</Title>
+                        <MailForm>
+                            <MailInput type='mail' placeholder='Your mail...'/>
+                            <SignButton>Sign up</SignButton>
+                        </MailForm>
+                        <Socials>
+                            <Social src={linkedin}/>
+                            <Social src={github}/>                   
+                            <Social src={fb}/>
+                            <Social src={twitter}/>
+                        </Socials>
+                    </Newsletter>
                 </RightSide>
             </Container>
-            <FooterEnd>© WEBPROJECT, Inc. 2022. Code with us </FooterEnd>
+            <FooterEnd>© WEBCHALLENGE, Inc. 2022. Code with us </FooterEnd>
         </Wrapper>
     );
 };

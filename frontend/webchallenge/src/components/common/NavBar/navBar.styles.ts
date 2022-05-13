@@ -17,9 +17,9 @@ export const Wrapper = styled.div`
 export const Logo = styled.div`
     display: flex;
     align-items: center;
-    font-size: 26px;
+    font-size: 24px;
     height: 57.6px;
-    margin-left: 90px;
+    margin-left: 100px;
     user-select: none;
 `;
 
@@ -34,14 +34,18 @@ export const NavButton = styled.button`
     font-size: 14px;
     font-weight: bold;
     padding: 0 35px;
-    height: 72px;
+    height: 57.6px;
     background-color: transparent;
     border: none;
     cursor: pointer;
     transition: 0.1s;
     color: #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     :hover {
         background-color: ${colors.orange};
+        color: ${colors.navBarBackground};
     }
 `;
 
@@ -49,7 +53,7 @@ export const LoginAndRegister = styled.div`
     height: 57.6px;
     display: flex;
     align-items: center;
-    margin-left: 50px;
+    margin-left: 10px;
 `;
 
 export const Login = styled.button`
@@ -60,7 +64,7 @@ export const Login = styled.button`
     font-weight: bold;
     cursor: pointer;
     margin: 0 10px;
-    font-size: 13px;
+    font-size: 12px;
     box-sizing: border-box;
     display: flex;
     align-items: center;

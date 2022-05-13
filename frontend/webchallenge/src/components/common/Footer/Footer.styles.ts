@@ -27,8 +27,7 @@ export const Description = styled.span`
     width: 300px;
     color: #c4c4c4;
     font-size: 16px;
-    font-weight: 600;
-    text-indent: 10px;
+    font-weight: 400;
 `;
 
 export const FooterEnd = styled.div`
@@ -42,16 +41,16 @@ export const FooterEnd = styled.div`
 `;
 
 export const Menu = styled.div`
-    width: 200px;
-    font-size: 18px;
-    font-weight: 500;
+    width: 100px;
+    font-size: 16px;
+    font-weight: 600;
 `;
 
 export const Title = styled.div`
-    width: 100px;
-    border-bottom: 4px solid ${colors.orange};
+    width: 55px;
+    border-bottom: 3px solid ${colors.orange};
     font-weight: 600;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     text-transform: uppercase;
 `;
 
@@ -60,7 +59,6 @@ export const MenuList = styled.ul`
     padding-left: 0;
     li {
         padding: 5px 0;
-        text-decoration: underline;
     }
 `;
 
@@ -68,30 +66,32 @@ export const NestedMenuList = styled(MenuList)`
     padding-left: 25px;
     li {
         text-decoration: initial !important;
+        font-weight: 400;
     }
 `;
 
 export const Contact = styled.div`
     width: 200px;
+    
     ${Title} {
-        width: 150px;
+        width: 115px;
     }
 `;
 
-export const Icon = styled.div`
+export const Icon = styled.img`
     min-width: 25px;
     max-width: 25px;
     height: 25px;
-    background-color: green;
     margin-right: 20px;
 `;
 
 export const ContactOption = styled.div`
-    font-size: 18px;
-    font-weight: 400;
-    margin: 5px 0;
-    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 13px 0;
+    width: 180px;
     display: flex;
+    padding-top: 10px;
 `;
 
 export const LeftSide = styled.div`
@@ -103,31 +103,33 @@ export const LeftSide = styled.div`
 export const RightSide = styled.div``;
 
 export const Newsletter = styled.div`
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 27px;
-    margin-bottom: 20px;
+    
+    ${Title} {
+        width: 105px;
+        
+    }
 `;
 
 export const MailForm = styled.form`
+    margin-top: 30px;
     display: flex;
     align-items: center;
 `;
 
 export const MailInput = styled.input`
     box-sizing: border-box;
-    height: 55px;
+    height: 36px;
     width: 240px;
     outline: none;
     padding: 0 20px;
-    font-size: 20px;
+    font-size: 16px;
     margin-right: 10px;
     border: none;
 `;
 
 export const SignButton = styled.button`
     box-sizing: border-box;
-    height: 55px;
+    height: 36px;
     width: 100px;
     background-color: ${colors.iris};
     border: none;
@@ -143,9 +145,8 @@ export const Socials = styled.div`
     display: flex;
 `;
 
-export const Social = styled.div`
-    width: 40px;
-    height: 40px;
-    background-color: green;
-    margin: 30px 20px 0 0;
+export const Social = styled.img`
+    width: 30px;
+    height: 30px;
+    margin: 20px 20px 0 0;
 `;
