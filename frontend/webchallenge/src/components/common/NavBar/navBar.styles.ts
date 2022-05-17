@@ -4,7 +4,7 @@ import colors from '../../../helpers/colors.helpers';
 export const Wrapper = styled.div`
     background-color: ${colors.navBarBackground};
     width: 100vw;
-    height: 57.6px;
+    height: 57px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: white;
     display: flex;
@@ -18,7 +18,7 @@ export const Logo = styled.div`
     display: flex;
     align-items: center;
     font-size: 24px;
-    height: 57.6px;
+    height: 57px;
     margin-left: 100px;
     user-select: none;
 `;
@@ -26,7 +26,7 @@ export const Logo = styled.div`
 export const Nav = styled.nav`
     display: flex;
     align-items: center;
-    height: 57.6px;
+    height: 57px;
     margin-right: 90px;
 `;
 
@@ -34,7 +34,7 @@ export const NavButton = styled.button`
     font-size: 14px;
     font-weight: bold;
     padding: 0 35px;
-    height: 57.6px;
+    height: 57px;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -50,7 +50,7 @@ export const NavButton = styled.button`
 `;
 
 export const LoginAndRegister = styled.div`
-    height: 57.6px;
+    height: 57px;
     display: flex;
     align-items: center;
     margin-left: 10px;
@@ -80,4 +80,50 @@ export const LoginLogo = styled.img`
     width: 25px;
     height: 25px;
     margin-left: 8px;
+`;
+
+/// LOGGED
+
+export const LoggedLogo = styled.div`
+    width: 70px;
+    height: 57px;
+    background-color: ${colors.orange};
+    margin-right: 30px;
+`;
+
+export const LogoAndLocalization = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const SmallLogoText = styled.span`
+    font-size: 15px;
+    font-weight: 700;
+`;
+
+export const Localization = styled.span`
+    text-transform: capitalize;
+    font-size: 14px;
+`;
+
+export const AnnouncesAndUser = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const TempAnnounce = styled.img`
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    margin: 0 20px;
+`;
+
+export const UserAvatar = styled.img`
+    width: 40px;
+    height: 40px;
+    background-color: ${colors.backgroundSecondary};
+    border-radius: 5px;
+    object-fit: cover;
 `;
