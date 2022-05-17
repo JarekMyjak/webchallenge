@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import colors from '../../../helpers/colors.helpers';
+import {Wrapper, Description, DescTitle, DescText} from './AboutUser.styles';
 
 const AboutUser: React.FC = () => {
     return (
@@ -20,26 +19,3 @@ const AboutUser: React.FC = () => {
 };
 
 export default AboutUser;
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 170px;
-`;
-
-const Description = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 16px 0;
-`;
-
-const DescTitle = styled.span`
-    font-size: 17px;
-    font-weight: 500;
-    margin-bottom: 10px;
-`;
-
-const DescText = styled.span`
-    font-size: 17px;
-    font-weight: 400;
-`;

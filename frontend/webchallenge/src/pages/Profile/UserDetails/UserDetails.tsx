@@ -1,11 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import TitleBar from '../../../components/TitleBar';
-import colors from '../../../helpers/colors.helpers';
 import AboutUser from './AboutUser';
 import ChallangeData from './ChallangeData';
 import UserContact from './UserContact';
 import UserData from './UserData';
+import {Container} from './UserDetails.styles';
 
 const UserDetails: React.FC = () => {
     return (
@@ -23,14 +22,3 @@ const UserDetails: React.FC = () => {
 };
 
 export default UserDetails;
-
-const Container = styled.div`
-    width: 800px;
-    height: 750px;
-    background-color: ${colors.backgroundSecondary};
-    color: white;
-    padding: 0 80px;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-`;
