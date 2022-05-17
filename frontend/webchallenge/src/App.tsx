@@ -7,6 +7,7 @@ import NavBar from './components/common/NavBar/NavBar';
 import colors from './helpers/colors.helpers';
 import Landing from './pages/Landing/Landing';
 import Profile from './pages/Profile/Profile';
+import Settings from './pages/Settings/Settings';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -21,6 +22,7 @@ const App: React.FC = () => {
                     <Routes>
                         <Route path='/' element={<Landing />}></Route>
                         <Route path='/profile' element={<Profile />}></Route>
+                        <Route path='/settings' element={<Settings />}></Route>
                         <Route
                             path='*'
                             element={<>NOTING HERE ZULUL</>}
