@@ -28,6 +28,7 @@ export default Profile;
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+    padding: 70px 0;
 `;
 
 const FirstSection = styled.div`

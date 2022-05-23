@@ -1,6 +1,14 @@
 import React from 'react';
 import TitleBar from '../../../components/TitleBar';
-import {Wrapper, TopBar, Filters, Filter} from './Activities.styles';
+import {
+    Wrapper,
+    TopBar,
+    Filters,
+    Filter,
+    UserActivities,
+    Space,
+} from './Activities.styles';
+import Activity from './Activity';
 
 const Activities: React.FC = () => {
     return (
@@ -14,6 +22,15 @@ const Activities: React.FC = () => {
                     <Filter>Filter By</Filter>
                 </Filters>
             </TopBar>
+            <UserActivities>
+                <Activity type='commented' date='21th March 2022' />
+                <Space />
+                <Activity type='newChallange' date='21th March 2022' />
+                <Space />
+                <Activity type='completed' date='21th March 2022' />
+                <Space />
+                <Activity type='commented' date='21th March 2022' />
+            </UserActivities>
         </Wrapper>
     );
 };
