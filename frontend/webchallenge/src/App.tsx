@@ -5,6 +5,7 @@ import Footer from './components/common/Footer/Footer';
 import Leftbar from './components/common/Leftbar/Leftbar';
 import NavBar from './components/common/NavBar/NavBar';
 import colors from './helpers/colors.helpers';
+import Challanges from './pages/Challanges/Challanges';
 import Landing from './pages/Landing/Landing';
 import Profile from './pages/Profile/Profile';
 import Settings from './pages/Settings/Settings';
@@ -23,6 +24,10 @@ const App: React.FC = () => {
                         <Route path='/' element={<Landing />}></Route>
                         <Route path='/profile' element={<Profile />}></Route>
                         <Route path='/settings' element={<Settings />}></Route>
+                        <Route
+                            path='/challanges'
+                            element={<Challanges />}
+                        ></Route>
                         <Route
                             path='*'
                             element={<>NOTING HERE ZULUL</>}
