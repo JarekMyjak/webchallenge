@@ -36,4 +36,5 @@ export const ChallangeList = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    row-gap: 60px;
 `;

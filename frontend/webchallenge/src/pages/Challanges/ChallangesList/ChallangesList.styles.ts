@@ -19,7 +19,10 @@ export const TitleAndOptions = styled.div`
 export const List = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    row-gap: 60px;
+    column-gap: 75px;
+    /* justify-content: space-between; */
+    //Experimental column-gap instead of justify-content
 `;
 
 export const Options = styled.div`

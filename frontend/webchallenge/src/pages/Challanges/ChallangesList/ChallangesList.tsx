@@ -1,8 +1,6 @@
 import React from 'react';
 import TitleBar from '../../../components/TitleBar';
-import ChallangeCard, {
-    techs,
-} from '../../Landing/LastChallangesSection/ChallangeCard';
+import ChallangeCard, {techs} from '../../../components/ChallangeCard';
 import {
     Container,
     TitleAndOptions,

@@ -1,11 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import TitleBar from '../../../components/TitleBar';
-import colors from '../../../helpers/colors.helpers';
 //TEMP
-import ChallangeCard, {
-    techs,
-} from '../../Landing/LastChallangesSection/ChallangeCard';
+import ChallangeCard, {techs} from '../../../components/ChallangeCard';
 import {
     ChallangeList,
     Filter,
@@ -28,7 +24,6 @@ const Challanges: React.FC = () => {
                 </Filters>
             </TopBar>
             <ChallangeList>
-                {/* TEMP CHALLANGE CARD */}
                 <ChallangeCard
                     exp='advanced'
                     technologies={[techs.html, techs.css, techs.react]}

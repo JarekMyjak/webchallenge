@@ -1,5 +1,5 @@
 import React from 'react';
-import ChallangeCard, {techs} from './ChallangeCard';
+import ChallangeCard, {techs} from '../../../components/ChallangeCard';
 import {
     Wrapper,
     Content,
