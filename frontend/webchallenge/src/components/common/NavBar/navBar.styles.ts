@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import colors from '../../../helpers/colors.helpers';
+import {Link} from 'react-router-dom';
 
 export const Wrapper = styled.div`
     background-color: ${colors.navBarBackground};
@@ -126,4 +127,8 @@ export const UserAvatar = styled.img`
     background-color: ${colors.backgroundSecondary};
     border-radius: 5px;
     object-fit: cover;
+`;
+
+export const CustomLink = styled(Link)`
+    text-decoration: none;
 `;

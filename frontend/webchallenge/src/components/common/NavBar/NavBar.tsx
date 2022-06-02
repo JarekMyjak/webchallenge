@@ -14,6 +14,7 @@ import {
     AnnouncesAndUser,
     TempAnnounce,
     UserAvatar,
+    CustomLink,
 } from './navBar.styles';
 import {useLocation} from 'react-router-dom';
 import github from '../../../assets/icons/github.svg';
@@ -38,7 +39,9 @@ const NavBar: React.FC = () => {
                     <NavButton>Contact</NavButton>
                     <NavButton>Resources</NavButton>
                     <NavButton>Community</NavButton>
-                    <NavButton>Challanges</NavButton>
+                    <CustomLink to='/challanges'>
+                        <NavButton>Challanges</NavButton>
+                    </CustomLink>
                     <NavButton>Premium</NavButton>
                     <AnnouncesAndUser>
                         <TempAnnounce src='https://i.imgur.com/JN9OLX6.png' />

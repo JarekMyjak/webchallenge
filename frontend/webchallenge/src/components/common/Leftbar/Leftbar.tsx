@@ -1,10 +1,13 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
+import colors from '../../../helpers/colors.helpers';
+import BarLinks from './BarLinks';
 
 const Leftbar: React.FC = () => {
     return (
         <Container>
-            <Test>xD</Test>
+            <BarLinks />
         </Container>
     );
 };
@@ -20,9 +23,5 @@ const Container = styled.div`
     position: sticky;
     align-self: flex-start;
     top: 0;
-    padding-top: 57px;
-`;
-
-const Test = styled.div`
-    color: white;
+    padding-top: calc(57px + 60px); //57 - topbar height
 `;
