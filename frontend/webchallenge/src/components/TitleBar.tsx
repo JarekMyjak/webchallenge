@@ -39,7 +39,7 @@ const ProfileTextWrapper = styled.div`
 `;
 
 const Bar = styled.div`
-    height: 4px;
+    height: 3px;
     width: 100%;
     background-color: ${colors.orange};
 `;
