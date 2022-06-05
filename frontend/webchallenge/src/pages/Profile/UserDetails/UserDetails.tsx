@@ -11,7 +11,7 @@ const UserDetails: React.FC = () => {
         <Container>
             <UserData />
             <TitleBar
-                src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/1024px-Windows_Settings_app_icon.png'
+                imageSrc='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/1024px-Windows_Settings_app_icon.png'
                 text='Profile Details'
             />
             <AboutUser />

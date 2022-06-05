@@ -15,7 +15,7 @@ const BarLinks: React.FC = () => {
                         <Icon src='https://i.imgur.com/JOEfrjk.png' />
                     </LinkButton>
                 </CustomLink>
-                <CustomLink to='/profile'>
+                <CustomLink to='/settings'>
                     <LinkButton>
                         <Icon src='https://i.imgur.com/p1QC4T1.png' />
                     </LinkButton>

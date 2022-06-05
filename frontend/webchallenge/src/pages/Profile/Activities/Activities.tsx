@@ -15,7 +15,7 @@ const Activities: React.FC = () => {
         <Wrapper>
             <TopBar>
                 <TitleBar
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/1024px-Windows_Settings_app_icon.png'
+                    imageSrc='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/1024px-Windows_Settings_app_icon.png'
                     text='Your activities'
                 />
                 <Filters>

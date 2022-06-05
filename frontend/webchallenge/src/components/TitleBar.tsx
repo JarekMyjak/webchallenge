@@ -3,14 +3,16 @@ import styled from 'styled-components';
 import colors from '../helpers/colors.helpers';
 
 interface ITitleBar {
-    src: string;
+    imageSrc?: string;
     text: string;
 }
 
 const TitleBar: React.FC<ITitleBar> = props => {
     return (
         <ProfileBar>
-            <ProfileImg src={props.src} />
+            {props?.imageSrc !== undefined && (
+                <ProfileImg src={props.imageSrc} />
+            )}
             <div>
                 <ProfileTextWrapper>{props.text}</ProfileTextWrapper>
                 <Bar />
