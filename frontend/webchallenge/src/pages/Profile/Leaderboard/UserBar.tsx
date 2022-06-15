@@ -1,6 +1,5 @@
 import React from 'react';
-import {Wrapper} from './Leaderboard.styles';
-import {Rank, User, UserImg, Score} from './UserBar.styles';
+import {Wrapper, Rank, User, UserImg, Score} from './UserBar.styles';
 
 interface IUserBar {
     avatarSrc: string;
