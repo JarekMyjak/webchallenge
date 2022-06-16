@@ -29,7 +29,7 @@ const ProfileBar = styled.div`
 
 const ProfileImg = styled.img`
     width: 35px;
-    height: 30px;
+    height: 32px;
     margin-right: 10px;
 `;
 

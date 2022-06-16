@@ -29,7 +29,7 @@ interface IHeader {
 export const Header = styled.div<IHeader>`
     font-size: 10px;
     font-weight: 700;
-    text-align: center;
+    margin-left: 9px;
     ${props => `
     width:${props.width}px;
     `}

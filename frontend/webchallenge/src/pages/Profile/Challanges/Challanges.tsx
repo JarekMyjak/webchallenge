@@ -15,7 +15,7 @@ const Challanges: React.FC = () => {
         <Wrapper>
             <TopBar>
                 <TitleBar
-                    imageSrc='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/1024px-Windows_Settings_app_icon.png'
+                    imageSrc='./src/assets/icons/bookmark.png'
                     text='Your challanges'
                 />
                 <Filters>

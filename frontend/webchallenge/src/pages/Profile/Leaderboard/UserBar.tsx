@@ -15,7 +15,7 @@ const UserBar: React.FC<IUserBar> = props => {
                 <UserImg src={props.avatarSrc} />
                 {props.name}
             </User>
-            <Score>{props.points} Points</Score>
+            <Score>{props.points}</Score>
         </Wrapper>
     );
 };

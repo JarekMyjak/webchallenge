@@ -7,28 +7,33 @@ const Leaderboard: React.FC = () => {
     return (
         <Wrapper>
             <TitleBar
-                imageSrc='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/1024px-Windows_Settings_app_icon.png'
+                imageSrc='./src/assets/icons/prize.png'
                 text='Leaderboard'
             />
             <Board>
                 <Headers>
                     <Header width={40}>Rank</Header>
-                    <Header width={200}>User</Header>
-                    <Header width={110}>Score</Header>
+                    <Header width={220}>User</Header>
+                    <Header width={70}>Score</Header>
                 </Headers>
                 <UserBar
                     avatarSrc='https://www.wykop.pl/cdn/c3201142/comment_3q2kbaZ0x9Sf0ctp0I01euXDRRiCCGTd.jpg'
-                    points={2137}
+                    points={21}
                     name='Matthew Makula'
                 />
                 <UserBar
                     avatarSrc='https://www.wykop.pl/cdn/c3201142/comment_3q2kbaZ0x9Sf0ctp0I01euXDRRiCCGTd.jpg'
-                    points={2137}
+                    points={20}
                     name='Matthew Makula'
                 />
                 <UserBar
                     avatarSrc='https://www.wykop.pl/cdn/c3201142/comment_3q2kbaZ0x9Sf0ctp0I01euXDRRiCCGTd.jpg'
-                    points={2137}
+                    points={19}
+                    name='You'
+                />
+                <UserBar
+                    avatarSrc='https://www.wykop.pl/cdn/c3201142/comment_3q2kbaZ0x9Sf0ctp0I01euXDRRiCCGTd.jpg'
+                    points={7}
                     name='Matthew Makula'
                 />
             </Board>

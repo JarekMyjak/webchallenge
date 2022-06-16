@@ -20,8 +20,8 @@ export const Rank = styled.div`
 `;
 
 export const UserImg = styled.img`
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 25px;
     object-fit: cover;
     margin: 0 15px 0 10px;

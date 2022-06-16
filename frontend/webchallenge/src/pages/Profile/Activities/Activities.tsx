@@ -15,7 +15,7 @@ const Activities: React.FC = () => {
         <Wrapper>
             <TopBar>
                 <TitleBar
-                    imageSrc='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/1024px-Windows_Settings_app_icon.png'
+                    imageSrc='./src/assets/icons/todo.png'
                     text='Your activities'
                 />
                 <Filters>
@@ -23,13 +23,13 @@ const Activities: React.FC = () => {
                 </Filters>
             </TopBar>
             <UserActivities>
-                <Activity type='commented' date='21th March 2022' />
+                <Activity type='commented' date='1st March 2022' />
                 <Space />
-                <Activity type='newChallange' date='21th March 2022' />
+                <Activity type='newChallange' date='20th February 2022' />
                 <Space />
-                <Activity type='completed' date='21th March 2022' />
+                <Activity type='completed' date='17th February 2022' />
                 <Space />
-                <Activity type='commented' date='21th March 2022' />
+                <Activity type='commented' date='1st January 2022' />
             </UserActivities>
         </Wrapper>
     );

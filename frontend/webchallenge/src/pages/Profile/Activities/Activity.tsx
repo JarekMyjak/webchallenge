@@ -45,13 +45,13 @@ const Activity: React.FC<IActivity> = props => {
     const selectIcon = () => {
         switch (props.type) {
             case 'newChallange':
-                return 'https://i.imgur.com/XMjPJGE.png';
+                return './src/assets/icons/plus.png';
             case 'completed':
-                return 'https://i.imgur.com/XMjPJGE.png';
+                return './src/assets/icons/check.png';
             case 'commented':
-                return 'https://i.imgur.com/XMjPJGE.png';
+                return './src/assets/icons/chat.png';
             default:
-                return 'https://i.imgur.com/XMjPJGE.png';
+                return '';
         }
     };
 
