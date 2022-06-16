@@ -15,12 +15,12 @@ export const Title = styled.div`
 export const Contact = styled.div`
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 9px;
 `;
 
 export const ConctactImg = styled.img`
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     margin-right: 15px;
 `;
 

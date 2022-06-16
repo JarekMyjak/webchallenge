@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Avatar = styled.img`
-    width: 150px;
+    width: 170px;
     height: 170px;
     border-radius: 40px;
     object-fit: cover;
@@ -54,9 +54,9 @@ export const SocialText = styled.span`
 `;
 
 export const SocialImg = styled.img`
-    width: 30px;
-    height: 30px;
-    margin-right: 15px;
+    width: 35px;
+    height: 35px;
+    margin-right: 12px;
 `;
 
 export const MyWebiste = styled(Socials)`

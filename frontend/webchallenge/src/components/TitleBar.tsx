@@ -29,12 +29,12 @@ const ProfileBar = styled.div`
 
 const ProfileImg = styled.img`
     width: 35px;
-    height: 35px;
+    height: 30px;
     margin-right: 10px;
 `;
 
 const ProfileTextWrapper = styled.div`
-    font-size: 17px;
+    font-size: 20px;
     font-weight: 700;
 `;
 

@@ -10,6 +10,7 @@ export const Wrapper = styled.section`
 
 export const LeftSide = styled.div`
     min-width: 750px;
+    
     height: 100%;
     box-sizing: border-box;
     display: flex;

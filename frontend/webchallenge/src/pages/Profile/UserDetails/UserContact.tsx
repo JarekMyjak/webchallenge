@@ -12,15 +12,15 @@ const UserContact: React.FC = () => {
         <Wrapper>
             <Title>Contact</Title>
             <Contact>
-                <ConctactImg></ConctactImg>
+                <ConctactImg src='./src/assets/icons/mail.png'></ConctactImg>
                 <ContactText>williamButtler@69.xd</ContactText>
             </Contact>
             <Contact>
-                <ConctactImg></ConctactImg>
+                <ConctactImg src='./src/assets/icons/phone.png'></ConctactImg>
                 <ContactText> NumerDoTwojejStarej </ContactText>
             </Contact>
             <Contact>
-                <ConctactImg></ConctactImg>
+                <ConctactImg src='./src/assets/icons/pin.png'></ConctactImg>
                 <ContactText>New York</ContactText>
             </Contact>
         </Wrapper>
