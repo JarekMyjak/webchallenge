@@ -1,6 +1,7 @@
 import React from 'react';
-import {Route, Routes, useLocation} from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import AuthHandler from './auth/AuthHandler';
 import Footer from './components/common/Footer/Footer';
 import Leftbar from './components/common/Leftbar/Leftbar';
 import NavBar from './components/common/NavBar/NavBar';
@@ -13,6 +14,7 @@ import Settings from './pages/Settings/Settings';
 
 const App: React.FC = () => {
     const location = useLocation();
+    // const set = useUser(store => store.setUser)
 
     return (
         <Container>
@@ -23,6 +25,7 @@ const App: React.FC = () => {
                 <Content>
                     <Routes>
                         <Route path='/' element={<Landing />}></Route>
+                        <Route path='/authhandler' element={<AuthHandler />}></Route>
                         <Route path='/profile' element={<Profile />}></Route>
                         <Route path='/settings' element={<Settings />}></Route>
                         <Route

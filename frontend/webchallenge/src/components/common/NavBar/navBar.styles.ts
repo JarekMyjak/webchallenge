@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import colors from '../../../helpers/colors.helpers';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
     background-color: ${colors.navBarBackground};
@@ -57,7 +57,7 @@ export const LoginAndRegister = styled.div`
     margin-left: 10px;
 `;
 
-export const Login = styled.button`
+export const LoginLink = styled("a")`
     width: 180px;
     height: 36px;
     border: 2px solid ${colors.iris};
@@ -73,7 +73,9 @@ export const Login = styled.button`
     transition: 0.1s;
     background-color: ${colors.iris};
     color: white;
-    :hover {
+    text-decoration: none;
+    &:hover, &:focus, &:focus-visible {
+        background-color: ${colors.irisDark};
     }
 `;
 

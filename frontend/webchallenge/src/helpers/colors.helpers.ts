@@ -7,6 +7,7 @@ export const colors = {
 
     orange: '#EB8702',
     iris: '#5d5fef',
+    irisDark: '#4a4cbf',
 
     primaryText: '#FFFFFF',
     secondaryText: '#D0D0D0',

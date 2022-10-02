@@ -29,9 +29,7 @@ mongoose.connection.on('open', info => {
 });
 
 app.get('/', (req, res) => {
-	res.send(`<h1>hello user ${req.user}<h1>
-        <script>${console.log(req)}</script>
-    `);
+	res.send(`<h1>hello user ${req.user}<h1>`);
 });
 
 app.use('/', routes)

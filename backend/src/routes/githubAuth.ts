@@ -1,10 +1,17 @@
 import { Router } from 'express';
 import passport from 'passport';
+import generateAccessToken from '../services/token';
 
 const router = Router();
-type extendedRequest = Request & {
-    user: {generateJWT: () => {}}
+// type extendedRequest = Request & {
+//     user: {generateJWT: () => {}}
+// }
+
+function generateUserToken(req, res) {
+    const accessToken = generateAccessToken(req.user.id);
+    res.redirect(`http://localhost:3000/authhandler?jwt=${accessToken}`);
 }
+
 router.get(
   '/github',
   passport.authenticate('github', {
@@ -20,12 +27,7 @@ router.get(
     failureRedirect: '/',
     session: false,
   }),
-  (req, res) => {
-    console.log('asdas  ')
-    const token = req.user.generateJWT();
-    res.cookie('x-auth-cookie', token);
-    res.redirect("/");
-  },
+  generateUserToken
 );
 
 export default router;

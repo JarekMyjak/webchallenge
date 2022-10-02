@@ -20,7 +20,7 @@ const githubLogin = new GithubStrategy(
   async (accessToken, refreshToken, profile, done) => {
     try {
       const oldUser = await User.findOne({ email: profile.emails[0].value });
-        console.log(oldUser);
+        console.log("profile: ",profile);
       if (oldUser) {
         return done(null, oldUser);
       }
@@ -34,8 +34,8 @@ const githubLogin = new GithubStrategy(
         githubId: profile.id,
         username: `user${profile.id}`,
         email: profile.emails[0].value,
-        name: profile.displayName,
-        avatar: profile.picture,
+        name: profile.username,
+        avatar: profile.photos[0].value,
       }).save();
       done(null, newUser);
     } catch (err) {

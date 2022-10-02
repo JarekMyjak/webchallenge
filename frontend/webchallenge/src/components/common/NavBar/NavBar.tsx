@@ -5,7 +5,6 @@ import {
     Nav,
     NavButton,
     LoginAndRegister,
-    Login,
     LoginLogo,
     LoggedLogo,
     LogoAndLocalization,
@@ -15,16 +14,19 @@ import {
     TempAnnounce,
     UserAvatar,
     CustomLink,
+    LoginLink,
 } from './navBar.styles';
 import {useLocation} from 'react-router-dom';
 import github from '../../../assets/icons/github.svg';
+import { useUser } from '../../../auth/useAuth';
 
 const NavBar: React.FC = () => {
     const location = useLocation();
     //TEMP Verbiable
-    const logged = true;
+    const user = useUser(state => state.user)
+    const logged = false;
 
-    if (logged)
+    if (user)
         return (
             <Wrapper>
                 <LogoAndLocalization>
@@ -43,7 +45,9 @@ const NavBar: React.FC = () => {
                         <NavButton>Challanges</NavButton>
                     </CustomLink>
                     <NavButton>Premium</NavButton>
+                    {/* <NavButton onClick={() => login()}>test</NavButton> */}
                     <AnnouncesAndUser>
+                        {user.name.toString()}
                         <TempAnnounce src='https://i.imgur.com/JN9OLX6.png' />
                         <UserAvatar src='https://i.ytimg.com/vi/UPfjKirM-wg/maxresdefault.jpg' />
                     </AnnouncesAndUser>
@@ -61,10 +65,10 @@ const NavBar: React.FC = () => {
                     <NavButton>Challanges</NavButton>
                     <NavButton>Premium</NavButton>
                     <LoginAndRegister>
-                        <Login>
+                        <LoginLink href={"http://localhost:3030/auth/github"}>
                             Login with Github
                             <LoginLogo src={github} />
-                        </Login>
+                        </LoginLink>
                     </LoginAndRegister>
                 </Nav>
             </Wrapper>

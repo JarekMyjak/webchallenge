@@ -3,6 +3,7 @@ import { getChallenge, postChallenge } from '../controllers/challenges.controlle
 import { sanitizeChallenge } from '../schemas/challenge.schema';
 import localAuthRoutes from './localAuth';
 import githubAuthRoutes from './githubAuth';
+import apiRoutes from './api';
 // import apiRoutes from './api';
 const router = express.Router();
 
@@ -22,7 +23,7 @@ router.post('/test', function (req, res) {
 
 router.use('/auth', localAuthRoutes);
 router.use('/auth', githubAuthRoutes);
-// router.use('/api', apiRoutes);
+router.use('/api', apiRoutes);
 // fallback 404
 router.use('/api', (req, res) => res.status(404).json('No route for this path'));
 

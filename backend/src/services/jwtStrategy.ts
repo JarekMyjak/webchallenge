@@ -8,13 +8,15 @@ const secretOrKey = isProduction ? process.env.JWT_SECRET_PROD : process.env.JWT
 
 const jwtLogin = new JwtStrategy(
   {
-    jwtFromRequest: ExtractJwt.fromHeader('x-auth-token'),
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey,
   },
   async (payload, done) => {
     try {
-      const user = await User.findById(payload.id);
+      const user = await User.findById(payload.sub);
+      console.log("payload", payload);
 
+        console.log("asdasdasdasdsadsadsa", user);
       if (user) {
         done(null, user);
       } else {
