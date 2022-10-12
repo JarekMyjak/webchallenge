@@ -13,11 +13,11 @@ const UserContact: React.FC = () => {
             <Title>Contact</Title>
             <Contact>
                 <ConctactImg src='./src/assets/icons/mail.png'></ConctactImg>
-                <ContactText>williamButtler@69.xd</ContactText>
+                <ContactText>johnpaul@gmail.com</ContactText>
             </Contact>
             <Contact>
                 <ConctactImg src='./src/assets/icons/phone.png'></ConctactImg>
-                <ContactText> NumerDoTwojejStarej </ContactText>
+                <ContactText> 989 588 763 </ContactText>
             </Contact>
             <Contact>
                 <ConctactImg src='./src/assets/icons/pin.png'></ConctactImg>

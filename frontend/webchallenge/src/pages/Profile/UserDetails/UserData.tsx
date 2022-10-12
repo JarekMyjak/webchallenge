@@ -19,11 +19,11 @@ import {
 const UserData: React.FC = () => {
     return (
         <Wrapper>
-            <Avatar src='https://www.captechu.edu/sites/default/files/William-Butler-500.jpg' />
+            <Avatar src='./src/assets/images/landing/First_avatar_comment.jpeg' />
             <UserInfo>
                 <NameWrapper>
-                    <Username>Student Piwo</Username>
-                    <Nickname>@HarnasEnjoyer69_pl</Nickname>
+                    <Username>John Paul</Username>
+                    <Nickname>@Freaks_US</Nickname>
                 </NameWrapper>
                 <LinkSection>
                     <Socials>
