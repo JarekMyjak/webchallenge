@@ -18,7 +18,7 @@ import {
 } from './navBar.styles';
 import {useLocation} from 'react-router-dom';
 import github from '../../../assets/icons/github.svg';
-import { useUser } from '../../../auth/useAuth';
+import { useUser } from '../../../api/useAuth';
 
 const NavBar: React.FC = () => {
     const location = useLocation();
@@ -47,9 +47,9 @@ const NavBar: React.FC = () => {
                     <NavButton>Premium</NavButton>
                     {/* <NavButton onClick={() => login()}>test</NavButton> */}
                     <AnnouncesAndUser>
-                        {user.name.toString()}
+                        {user.name}
                         <TempAnnounce src='https://i.imgur.com/JN9OLX6.png' />
-                        <UserAvatar src='https://i.ytimg.com/vi/UPfjKirM-wg/maxresdefault.jpg' />
+                        <UserAvatar src={user.avatar} />
                     </AnnouncesAndUser>
                 </Nav>
             </Wrapper>

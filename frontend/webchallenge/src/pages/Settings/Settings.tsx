@@ -1,4 +1,5 @@
 import React from 'react';
+import { useUser } from '../../api/useAuth';
 import TitleBar from '../../components/TitleBar';
 import {
     Container,
@@ -20,6 +21,8 @@ import {
 } from './Settings.styles';
 
 const Settings: React.FC = () => {
+    const user = useUser(state => state.user)
+
     return (
         <Container>
             <CustomForm>
@@ -80,7 +83,7 @@ const Settings: React.FC = () => {
                 </LeftSide>
                 <RightSide>
                     <AvatarContainer>
-                        <CurrentAvatar src='https://gameplay.pl/galeria/ilustracja/136_97242099.jpg' />
+                        <CurrentAvatar src={user?.avatar} />
                         <AvatarButton>
                             EDIT
                             <ButtonIcon src='https://i.imgur.com/0pPnVKV.png' />

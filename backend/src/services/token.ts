@@ -12,7 +12,7 @@ const secret = isProduction ? process.env.JWT_SECRET_PROD : process.env.JWT_SECR
 // Generate an Access Token for the given User ID
 function generateAccessToken(userId) {
   // How long will the token be valid for
-  const expiresIn = '1 hour';
+  const expiresIn = '12 hour';
   // Which service issued the token
 //   const issuer = config.get('authentication.token.issuer');
   // Which service is the token intended for

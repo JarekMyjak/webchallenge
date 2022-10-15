@@ -1,14 +1,23 @@
 import React, { useEffect } from 'react';
 import {Navigate, redirect, useParams, useSearchParams} from 'react-router-dom';
+import { get } from './apiMethods';
 import { useUser } from './useAuth';
+
+
 
 const AuthHandler = () => {
     let [searchParams, setSearchParams] = useSearchParams();
     const jwt = searchParams.get("jwt");
-    console.log(searchParams.get("jwt"))
-    // useUser.getState().setUser(jwt)
+    const setToken = useUser().setToken;
     const setUser = useUser().setUser;
-    setUser(jwt);
+    if (jwt) {
+        setToken(jwt);
+        get('/me').then((response)=>{
+            console.log(response.data);
+
+            setUser(response.data);
+        })
+    }
 
     // redirect("/");
     return (<Navigate replace to="/" />)

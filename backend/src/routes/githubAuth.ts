@@ -3,9 +3,6 @@ import passport from 'passport';
 import generateAccessToken from '../services/token';
 
 const router = Router();
-// type extendedRequest = Request & {
-//     user: {generateJWT: () => {}}
-// }
 
 function generateUserToken(req, res) {
     const accessToken = generateAccessToken(req.user.id);

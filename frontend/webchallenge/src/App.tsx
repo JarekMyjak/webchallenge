@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import AuthHandler from './auth/AuthHandler';
+import AuthHandler from './api/AuthHandler';
 import Footer from './components/common/Footer/Footer';
 import Leftbar from './components/common/Leftbar/Leftbar';
 import NavBar from './components/common/NavBar/NavBar';
