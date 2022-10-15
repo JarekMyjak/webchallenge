@@ -11,6 +11,8 @@ import Challanges from './pages/Challanges/Challanges';
 import Landing from './pages/Landing/Landing';
 import Profile from './pages/Profile/Profile';
 import Settings from './pages/Settings/Settings';
+import AdminPanel from './pages/AdminPanel/AdminPanel';
+import ManageChallenges from './pages/AdminPanel/ManageChallenges/ManageChallenges';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -25,6 +27,11 @@ const App: React.FC = () => {
                 <Content>
                     <Routes>
                         <Route path='/' element={<Landing />}></Route>
+
+                        {/*Sprawdź to bo jest roboczo wrzucone*/}
+                        <Route path='/adminPanel' element={<AdminPanel />}></Route>
+                        <Route path='/manageChallenges' element={<ManageChallenges />}></Route>
+                        
                         <Route path='/authhandler' element={<AuthHandler />}></Route>
                         <Route path='/profile' element={<Profile />}></Route>
                         <Route path='/settings' element={<Settings />}></Route>
@@ -45,6 +52,8 @@ const App: React.FC = () => {
             </ContentWrapper>
             <Footer />
         </Container>
+
+        
     );
 };
 
@@ -70,3 +79,5 @@ const Content = styled.div`
     align-items: center;
     justify-content: center;
 `;
+
+

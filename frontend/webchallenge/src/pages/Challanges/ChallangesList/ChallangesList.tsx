@@ -13,7 +13,7 @@ const ChallangesList: React.FC = () => {
         <Container>
             <TitleAndOptions>
                 <TitleBar
-                    imageSrc='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/1024px-Windows_Settings_app_icon.png'
+                    imageSrc='./src/assets/icons/bookmark.png'
                     text='All challanges'
                 />
                 <Options>TODO</Options>
