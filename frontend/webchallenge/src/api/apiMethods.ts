@@ -3,7 +3,7 @@ import { AxiosRequestConfig } from 'axios';
 import { useUser } from './useAuth';
 
 export const useGet = (endpoint: string) => {
-    const token = useUser().token;
+    const token = useUser.getState().token;
     const config: AxiosRequestConfig = {
         headers: { Authorization: `Bearer ${token}` }
     }
@@ -11,7 +11,8 @@ export const useGet = (endpoint: string) => {
 }
 
 export const usePost = (endpoint: string, payload: any) => {
-    const token = useUser().token;
+    const token = useUser.getState().token;
+
     const config: AxiosRequestConfig = {
         headers: { Authorization: `Bearer ${token}` }
     }

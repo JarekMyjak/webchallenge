@@ -16,7 +16,7 @@ import {
     CustomLink,
     LoginLink,
 } from './navBar.styles';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import github from '../../../assets/icons/github.svg';
 import { useUser } from '../../../api/useAuth';
 import { useGet, usePost } from '../../../api/apiMethods';
@@ -28,23 +28,15 @@ const NavBar: React.FC = () => {
     const user = useUser(state => state.user)
     const logged = false;
 
-    const postres = usePost("/api/challenges",{});
-        console.log(postres)
-    
-        const res = useGet("/api/challenges");
+    useEffect(() => {
+        const res = (async () => {
+            // return await usePost("/api/challenges", {});
+            return await useGet("/api/challenges");
+        })()
         console.log(res)
-    // const addChallenge = async () => {
-    //     const postres = await usePost("/api/challenges",{});
-    //     console.log(postres)
-    
-    //     const res = await useGet("/api/challenges");
-    //     console.log(res)
-    // }
+    }, [])
 
-    // useEffect(() => {
-    //   addChallenge()
-    // }, [])
-    
+
 
     if (user)
         return (
