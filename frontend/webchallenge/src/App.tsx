@@ -29,8 +29,8 @@ const App: React.FC = () => {
                         <Route path='/' element={<Landing />}></Route>
 
                         {/*Sprawdź to bo jest roboczo wrzucone*/}
-                        <Route path='/adminPanel' element={<AdminPanel />}></Route>
-                        <Route path='/manageChallenges' element={<ManageChallenges />}></Route>
+                        <Route path='/adminpanel' element={<AdminPanel />}></Route>
+                        <Route path='/managephallenges' element={<ManageChallenges />}></Route>
                         
                         <Route path='/authhandler' element={<AuthHandler />}></Route>
                         <Route path='/profile' element={<Profile />}></Route>
