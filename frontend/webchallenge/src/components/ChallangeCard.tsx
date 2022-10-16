@@ -66,7 +66,7 @@ const ChallangeCard: React.FC<IChallangeCard> = props => {
                         <p>technologies</p>
                         <TechContainer>
                             {props.technologies.map(el => (
-                                <span className={el}>{el}</span>
+                                <span key={el} className={el}>{el}</span>
                             ))}
                         </TechContainer>
                     </Technologies>

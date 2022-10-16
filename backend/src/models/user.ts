@@ -68,19 +68,6 @@ userSchema.methods.toJSON = function () {
 const isProduction = process.env.NODE_ENV === 'production';
 const secretOrKey = isProduction ? process.env.JWT_SECRET_PROD : process.env.JWT_SECRET_DEV;
 
-// userSchema.methods.generateJWT = function () {
-//     const token = jwt.sign(
-//         {
-//             expiresIn: '12h',
-//             id: this._id,
-//             provider: this.provider,
-//             email: this.email,
-//         },
-//         secretOrKey,
-//     );
-//     return token;
-// };
-
 const User = mongoose.model('User', userSchema);
 
 export default User;

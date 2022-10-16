@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import {Navigate, redirect, useParams, useSearchParams} from 'react-router-dom';
-import { get } from './apiMethods';
+import { useGet } from './apiMethods';
 import { useUser } from './useAuth';
-
-
 
 const AuthHandler = () => {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -12,9 +10,7 @@ const AuthHandler = () => {
     const setUser = useUser().setUser;
     if (jwt) {
         setToken(jwt);
-        get('/me').then((response)=>{
-            console.log(response.data);
-
+        useGet('/api/users/me').then((response)=>{
             setUser(response.data);
         })
     }
