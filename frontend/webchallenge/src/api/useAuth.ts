@@ -1,7 +1,7 @@
 import create from 'zustand';
 import axios from 'axios'
 import { unstable_batchedUpdates } from 'react-dom';
-import { persist } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 
 interface user {
     name: string,
@@ -16,10 +16,17 @@ interface userState {
     setToken: (token: string) => void
 }
 
-export const useUser = create<userState>(set => ({
-    user: undefined,
-    setUser: (user) => set({ user }),
-    token: undefined,
-    setToken: (token) => set({ token }),
-}))
+export const useUser = create<userState>()(
+    devtools(
+        persist(
+            (set) => ({
+                user: undefined,
+                setUser: (user: user) => set({ user }),
+                token: undefined,
+                setToken: (token: string) => set({ token }),
+            }),
+            {
+                name: 'auth-state'
+            }
+        )))
 
