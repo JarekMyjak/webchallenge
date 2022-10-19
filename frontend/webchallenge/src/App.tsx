@@ -30,7 +30,7 @@ const App: React.FC = () => {
 
                         {/*Sprawdź to bo jest roboczo wrzucone*/}
                         <Route path='/adminpanel' element={<AdminPanel />}></Route>
-                        <Route path='/managephallenges' element={<ManageChallenges />}></Route>
+                        <Route path='/managechallenges' element={<ManageChallenges />}></Route>
                         
                         <Route path='/authhandler' element={<AuthHandler />}></Route>
                         <Route path='/profile' element={<Profile />}></Route>

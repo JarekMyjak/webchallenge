@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import routes from './routes/routes';
 import passport from 'passport';
 import cors from 'cors';
-
+import multer from 'multer';
 
 const env = process.env;
 
@@ -18,9 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(passport.initialize());
 require('./services/jwtStrategy');
-// require('./services/facebookStrategy');
 require('./services/githubStrategy');
-// require('./services/localStrategy');
 
 async function mongoSetup() {
 	await mongoose.connect(mongoConnectionString);

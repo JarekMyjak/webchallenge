@@ -19,7 +19,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import github from '../../../assets/icons/github.svg';
 import { useUser } from '../../../api/useAuth';
-import { useGet, usePost } from '../../../api/apiMethods';
+import { apiGet, apiPost } from '../../../api/apiMethods';
 
 // const add = addChallenge();
 const NavBar: React.FC = () => {
@@ -27,15 +27,6 @@ const NavBar: React.FC = () => {
     //TEMP Verbiable
     const user = useUser(state => state.user)
     const logged = false;
-
-    useEffect(() => {
-        const res = (async () => {
-            // return await usePost("/api/challenges", {});
-            return await useGet("/api/challenges");
-        })()
-        console.log(res)
-    }, [])
-
 
 
     if (user)

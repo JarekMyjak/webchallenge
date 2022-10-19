@@ -1,29 +1,31 @@
 import { Router } from 'express';
+import { upload } from '../../middleware/multer';
 
 import requireAdmin from '../../middleware/requireAdmin';
 import Challenge, { challengeType } from '../../models/challenge';
 
-
 const router = Router();
 
-router.post('/', requireAdmin, async (req, res) => {
+router.post('/', requireAdmin, upload.any(), async (req, res) => {
+
+    const urlArr = req.files.map(file => file.url)
+    
     const newChallenge = await new Challenge({
-        title: "test",
-        description: "**Test**",
-        imageUrls: [],
-        blobUrl: "url"
+        title: req.body.title,
+        description: req.body.description,
+        imageUrls: urlArr.slice(1),
+        blobUrl: urlArr[0]
     }).save();
-    console.log(newChallenge.toJSON());
-    res.send({ challenge: newChallenge.toJSON })
+
+    res.send({ challenge: newChallenge.toJSON() })
 
 });
 
 router.get('/', async (req, res) => {
     const challenges = await Challenge.find().sort({ createdAt: 'desc' });
     const resChallenges = challenges.map((c) => c.toJSON())
-    console.log(resChallenges);
 
-    res.send({ challenges: resChallenges })
+    res.send(resChallenges)
 });
 
 export default router;
