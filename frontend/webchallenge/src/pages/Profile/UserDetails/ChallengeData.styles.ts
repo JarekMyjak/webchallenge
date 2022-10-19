@@ -32,7 +32,7 @@ export const Progress = styled.div`
     }
 `;
 
-export const AllChallanges = styled(Progress)`
+export const AllChallenges = styled(Progress)`
     ${Text} {
         color: ${colors.orange};
     }

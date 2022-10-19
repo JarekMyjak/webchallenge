@@ -1,7 +1,7 @@
 import React from 'react';
 import TitleBar from '../../../components/TitleBar';
 import AboutUser from './AboutUser';
-import ChallangeData from './ChallangeData';
+import ChallengeData from './ChallengeData';
 import UserContact from './UserContact';
 import UserData from './UserData';
 import {Container} from './UserDetails.styles';
@@ -16,7 +16,7 @@ const UserDetails: React.FC = () => {
             />
             <AboutUser />
             <UserContact />
-            <ChallangeData />
+            <ChallengeData />
         </Container>
     );
 };

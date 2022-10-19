@@ -10,14 +10,14 @@ import {
 } from './Activity.styles';
 
 interface IActivity {
-    type: 'newChallange' | 'completed' | 'commented';
+    type: 'newChallenge' | 'completed' | 'commented';
     date: string;
 }
 
 const Activity: React.FC<IActivity> = props => {
     const selectText = () => {
         switch (props.type) {
-            case 'newChallange':
+            case 'newChallenge':
                 return (
                     <>
                         You have just started a <b>new challenge</b>.{' '}
@@ -28,7 +28,7 @@ const Activity: React.FC<IActivity> = props => {
                 return (
                     <>
                         You've <b>completed </b>the challenge, congratulations.{' '}
-                        <Forward>See more challanges...</Forward>
+                        <Forward>See more challenges...</Forward>
                     </>
                 );
             case 'commented':
@@ -44,7 +44,7 @@ const Activity: React.FC<IActivity> = props => {
     };
     const selectIcon = () => {
         switch (props.type) {
-            case 'newChallange':
+            case 'newChallenge':
                 return './src/assets/icons/plus.png';
             case 'completed':
                 return './src/assets/icons/check.png';

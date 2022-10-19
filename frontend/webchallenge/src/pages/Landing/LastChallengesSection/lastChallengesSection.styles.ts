@@ -39,7 +39,7 @@ export const Cards = styled.div`
     margin-bottom: 80px;
 `;
 
-export const MoreChallanges = styled.div`
+export const MoreChallenges = styled.div`
     text-transform: uppercase;
     font-size: 16px;
     font-weight: bold;

@@ -6,7 +6,7 @@ import {
     ImageWrapper,
     ButtonsWrapper,
     ButtonView,
-    ChallangeData,
+    ChallengeData,
     Info,
     TitleBar,
     Title,
@@ -60,7 +60,7 @@ const TopSection: React.FC<ITopSection> = props => {
                     <ButtonView>Active states</ButtonView>
                 </ButtonsWrapper>
             </ImageAndButtons>
-            <ChallangeData>
+            <ChallengeData>
                 <Info>
                     <TitleBar>
                         <Title>WeatherApp</Title>
@@ -91,8 +91,8 @@ const TopSection: React.FC<ITopSection> = props => {
                         </Expirience>
                     </TechnologiesAndExperience>
                 </Info>
-                <StartButton>Active challange</StartButton>
-            </ChallangeData>
+                <StartButton>Active challenge</StartButton>
+            </ChallengeData>
         </Wrapper>
     );
 };

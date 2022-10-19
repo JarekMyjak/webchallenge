@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import HowItWorksSection from './HowItWorksSection/HowItWorksSection';
-import LastChallangesSection from './LastChallangesSection/LastChallangesSection';
+import LastChallengesSection from './LastChallengesSection/LastChallengesSection';
 import OpinionSection from './OpinionSection/OpinionSection';
 import SliderSection from './SliderSection/SliderSection';
 import TechnologiesSection from './TechnologiesSection/TechnologiesSection';
@@ -12,7 +12,7 @@ const Landing: React.FC = () => {
             <SliderSection />
             <TechnologiesSection />
             <HowItWorksSection />
-            <LastChallangesSection />
+            <LastChallengesSection />
             <OpinionSection />
         </Container>
     );

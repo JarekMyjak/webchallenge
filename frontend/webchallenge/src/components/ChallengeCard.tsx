@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Top,
     Status,
-    ChallangeImg,
+    ChallengeImg,
     Bottom,
     Info,
     Technologies,
@@ -12,7 +12,7 @@ import {
     Description,
     Title,
     Text,
-} from './challangeCard.styles';
+} from './challengeCard.styles';
 
 export const enum techs {
     html = 'HTML',
@@ -23,7 +23,7 @@ export const enum techs {
     api = 'API',
 }
 
-interface IChallangeCard {
+interface IChallengeCard {
     exp: 'begginer' | 'intermediate' | 'advanced';
     technologies: techs[];
     premium: boolean;
@@ -32,7 +32,7 @@ interface IChallangeCard {
     image: string;
 }
 
-const ChallangeCard: React.FC<IChallangeCard> = props => {
+const ChallengeCard: React.FC<IChallengeCard> = props => {
     const experienceSwitch = () => {
         switch (props.exp) {
             case 'begginer':
@@ -52,9 +52,9 @@ const ChallangeCard: React.FC<IChallangeCard> = props => {
                 <Status isPremium={props.premium}>
                     {props.premium ? 'P' : 'F'}
                 </Status>
-                <ChallangeImg>
+                <ChallengeImg>
                     <img src={props.image} />
-                </ChallangeImg>
+                </ChallengeImg>
             </Top>
             <Bottom>
                 <Description>
@@ -80,4 +80,4 @@ const ChallangeCard: React.FC<IChallangeCard> = props => {
     );
 };
 
-export default ChallangeCard;
+export default ChallengeCard;

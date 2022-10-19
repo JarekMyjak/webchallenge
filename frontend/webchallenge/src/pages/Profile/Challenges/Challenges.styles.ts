@@ -32,7 +32,7 @@ export const Filter = styled.div`
     margin-left: 10px;
 `;
 
-export const ChallangeList = styled.div`
+export const ChallengeList = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

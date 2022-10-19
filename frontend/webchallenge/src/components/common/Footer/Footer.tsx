@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
             <Container>
                 <LeftSide>
                     <AboutUs>
-                        <LogoContainer>WebChallange</LogoContainer>
+                        <LogoContainer>WebChallenge</LogoContainer>
                         <Description>
                             In a standard user experience, it seems like people
                             don't pay much attention to the elements “below the
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
                                     <li>Solutions</li>
                                 </NestedMenuList>
                             </li>
-                            <li>Challanges</li>
+                            <li>Challenges</li>
                             <li>Premium</li>
                         </MenuList>
                     </Menu>
@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
                         </ContactOption>
                         <ContactOption>
                             <Icon src={mail}/>
-                            web@challange.com
+                            web@challenge.com
                         </ContactOption>
                         <ContactOption>
                             <Icon src={pin}/>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import colors from '../../helpers/colors.helpers';
 import TopSection from './TopSection';
 
-const Challange: React.FC = () => {
+const Challenge: React.FC = () => {
     return (
         <Wrapper>
             <TopSection />
@@ -11,7 +11,7 @@ const Challange: React.FC = () => {
     );
 };
 
-export default Challange;
+export default Challenge;
 
 const Wrapper = styled.div`
     width: 1250px;

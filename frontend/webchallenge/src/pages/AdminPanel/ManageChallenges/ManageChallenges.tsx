@@ -44,12 +44,6 @@ const ManageChallenges: React.FC = () => {
             <button onClick={() => {
                 submit(title, description, pictures, file)
             }}>submit</button>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-
         </Container>
     );
 }

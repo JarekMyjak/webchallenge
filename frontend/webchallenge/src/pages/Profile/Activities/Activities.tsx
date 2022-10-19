@@ -25,7 +25,7 @@ const Activities: React.FC = () => {
             <UserActivities>
                 <Activity type='commented' date='1st March 2022' />
                 <Space />
-                <Activity type='newChallange' date='20th February 2022' />
+                <Activity type='newChallenge' date='20th February 2022' />
                 <Space />
                 <Activity type='completed' date='17th February 2022' />
                 <Space />

@@ -6,13 +6,13 @@ import Footer from './components/common/Footer/Footer';
 import Leftbar from './components/common/Leftbar/Leftbar';
 import NavBar from './components/common/NavBar/NavBar';
 import colors from './helpers/colors.helpers';
-import Challange from './pages/Challange/Challange';
-import Challanges from './pages/Challanges/Challanges';
+import Challenges from './pages/Challenges/Challenges';
 import Landing from './pages/Landing/Landing';
 import Profile from './pages/Profile/Profile';
 import Settings from './pages/Settings/Settings';
 import AdminPanel from './pages/AdminPanel/AdminPanel';
 import ManageChallenges from './pages/AdminPanel/ManageChallenges/ManageChallenges';
+import Challenge from './pages/Challenge/Challenge';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -36,12 +36,12 @@ const App: React.FC = () => {
                         <Route path='/profile' element={<Profile />}></Route>
                         <Route path='/settings' element={<Settings />}></Route>
                         <Route
-                            path='/challange'
-                            element={<Challange />}
+                            path='/challenge'
+                            element={<Challenge />}
                         ></Route>
                         <Route
-                            path='/challanges'
-                            element={<Challanges />}
+                            path='/challenges'
+                            element={<Challenges />}
                         ></Route>
                         <Route
                             path='*'

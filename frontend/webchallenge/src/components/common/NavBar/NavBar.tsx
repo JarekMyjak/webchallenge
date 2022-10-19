@@ -34,7 +34,7 @@ const NavBar: React.FC = () => {
             <Wrapper>
                 <LogoAndLocalization>
                     <LoggedLogo></LoggedLogo>
-                    <SmallLogoText>WebChallange</SmallLogoText>
+                    <SmallLogoText>WebChallenge</SmallLogoText>
                     &nbsp; &gt; &nbsp;
                     <Localization>
                         {location.pathname.replace('/', '')}
@@ -44,8 +44,8 @@ const NavBar: React.FC = () => {
                     <NavButton>Contact</NavButton>
                     <NavButton>Resources</NavButton>
                     <NavButton>Community</NavButton>
-                    <CustomLink to='/challanges'>
-                        <NavButton>Challanges</NavButton>
+                    <CustomLink to='/challenges'>
+                        <NavButton>Challenges</NavButton>
                     </CustomLink>
                     <NavButton>Premium</NavButton>
                     {/* <NavButton onClick={() => login()}>test</NavButton> */}
@@ -60,12 +60,12 @@ const NavBar: React.FC = () => {
     else
         return (
             <Wrapper>
-                <Logo>WebChallange</Logo>
+                <Logo>WebChallenge</Logo>
                 <Nav>
                     <NavButton>Contact</NavButton>
                     <NavButton>Resources</NavButton>
                     <NavButton>Community</NavButton>
-                    <NavButton>Challanges</NavButton>
+                    <NavButton>Challenges</NavButton>
                     <NavButton>Premium</NavButton>
                     <LoginAndRegister>
                         <LoginLink href={"http://localhost:3030/auth/github"}>

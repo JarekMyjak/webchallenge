@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import TitleBar from '../../../components/TitleBar';
-import ChallangeCard, { techs } from '../../../components/ChallangeCard';
+import ChallengeCard, { techs } from '../../../components/ChallengeCard';
 import {
     Container,
     TitleAndOptions,
     Options,
     List,
-} from './ChallangesList.styles';
+} from './ChallengesList.styles';
 import { Challenge, getChallenges } from '../../../api/apiChallenges';
 
-const ChallangesList: React.FC = () => {
+const ChallengesList: React.FC = () => {
 
     const [challenges, setChallenges] = useState<Challenge[]>([])
 
@@ -24,13 +24,13 @@ const ChallangesList: React.FC = () => {
             <TitleAndOptions>
                 <TitleBar
                     imageSrc='./src/assets/icons/bookmark.png'
-                    text='All challanges'
+                    text='All challenges'
                 />
                 <Options>TODO</Options>
             </TitleAndOptions>
             <List>
                 {challenges.map(c =>
-                    <ChallangeCard
+                    <ChallengeCard
                         exp='advanced'
                         technologies={[techs.html, techs.css, techs.react]}
                         premium={true}
@@ -39,7 +39,7 @@ const ChallangesList: React.FC = () => {
                         image={c.imageUrls[0]}
                     />
                 )}
-                <ChallangeCard
+                <ChallengeCard
                     exp='advanced'
                     technologies={[techs.html, techs.css, techs.react]}
                     premium={true}
@@ -49,7 +49,7 @@ const ChallangesList: React.FC = () => {
                         some form, by injected humour, or randomised'
                     image='./src/assets/images/landing/First_card.jpg'
                 />
-                <ChallangeCard
+                <ChallengeCard
                     exp='advanced'
                     technologies={[techs.html, techs.css, techs.react]}
                     premium={true}
@@ -59,7 +59,7 @@ const ChallangesList: React.FC = () => {
                         some form, by injected humour, or randomised'
                     image='./src/assets/images/landing/First_card.jpg'
                 />
-                <ChallangeCard
+                <ChallengeCard
                     exp='advanced'
                     technologies={[techs.html, techs.css, techs.react]}
                     premium={true}
@@ -69,7 +69,7 @@ const ChallangesList: React.FC = () => {
                         some form, by injected humour, or randomised'
                     image='./src/assets/images/landing/First_card.jpg'
                 />
-                <ChallangeCard
+                <ChallengeCard
                     exp='advanced'
                     technologies={[techs.html, techs.css, techs.react]}
                     premium={true}
@@ -79,7 +79,7 @@ const ChallangesList: React.FC = () => {
                         some form, by injected humour, or randomised'
                     image='./src/assets/images/landing/First_card.jpg'
                 />
-                <ChallangeCard
+                <ChallengeCard
                     exp='advanced'
                     technologies={[techs.html, techs.css, techs.react]}
                     premium={true}
@@ -94,4 +94,4 @@ const ChallangesList: React.FC = () => {
     );
 };
 
-export default ChallangesList;
+export default ChallengesList;

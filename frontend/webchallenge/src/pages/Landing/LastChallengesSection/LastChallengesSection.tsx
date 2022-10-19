@@ -1,26 +1,26 @@
 import React from 'react';
-import ChallangeCard, {techs} from '../../../components/ChallangeCard';
+import ChallengeCard, {techs} from '../../../components/ChallengeCard';
 import {
     Wrapper,
     Content,
     Title,
     Description,
     Cards,
-    MoreChallanges,
+    MoreChallenges,
     Bar,
-} from './lastChallangesSection.styles';
+} from './lastChallengesSection.styles';
 
 const LastCardsSection: React.FC = () => {
     return (
         <Wrapper>
             <Content>
-                <Title>Latest added challanges</Title>
+                <Title>Latest added challenges</Title>
                 <Description>
                     Lorem Ipsum has been the industry's standard dummy text ever
                     since the
                 </Description>
                 <Cards>
-                    <ChallangeCard
+                    <ChallengeCard
                         exp='advanced'
                         technologies={[techs.html, techs.css, techs.react]}
                         premium={true}
@@ -30,7 +30,7 @@ const LastCardsSection: React.FC = () => {
                         some form, by injected humour, or randomised'
                         image='./src/assets/images/landing/First_card.jpg'
                     />
-                    <ChallangeCard
+                    <ChallengeCard
                         exp='begginer'
                         technologies={[
                             techs.html,
@@ -45,7 +45,7 @@ const LastCardsSection: React.FC = () => {
                          hidden in the middle of text.'
                         image='./src/assets/images/landing/Second_card.jpg'
                     />
-                    <ChallangeCard
+                    <ChallengeCard
                         exp='intermediate'
                         technologies={[techs.html, techs.css, techs.ts]}
                         premium={true}
@@ -56,10 +56,10 @@ const LastCardsSection: React.FC = () => {
                         image='./src/assets/images/landing/Third_card.jpg'
                     />
                 </Cards>
-                <MoreChallanges>
-                    View more challanges
+                <MoreChallenges>
+                    View more challenges
                     <Bar />
-                </MoreChallanges>
+                </MoreChallenges>
             </Content>
         </Wrapper>
     );

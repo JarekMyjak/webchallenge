@@ -55,7 +55,7 @@ export const ButtonView = styled.div<IButtonView>`
         `background-color: ${colors.iris}; filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); font-weight: 700;`};
 `;
 
-export const ChallangeData = styled.div`
+export const ChallengeData = styled.div`
     flex-grow: 1;
     box-sizing: border-box;
     padding-left: 25px;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import colors from '../../helpers/colors.helpers';
 import Activities from './Activities/Activities';
-import Challanges from './Challanges/Challanges';
+import Challenges from './Challenges/Challenges';
 import Leaderboard from './Leaderboard/Leaderboard';
 import Premium from './Premium/Premium';
 import UserDetails from './UserDetails/UserDetails';
@@ -17,7 +17,7 @@ const Profile: React.FC = () => {
                     <Leaderboard />
                 </RightPanels>
             </FirstSection>
-            <Challanges />
+            <Challenges />
             <Activities />
         </Container>
     );

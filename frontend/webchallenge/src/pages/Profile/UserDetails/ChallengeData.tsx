@@ -4,12 +4,12 @@ import {
     Progress,
     Counter,
     Bar,
-    AllChallanges,
+    AllChallenges,
     Completed,
     Text,
-} from './ChallangeData.styles';
+} from './ChallengeData.styles';
 
-const ChallangeData: React.FC = () => {
+const ChallengeData: React.FC = () => {
     return (
         <Wrapper>
             <Progress>
@@ -17,10 +17,10 @@ const ChallangeData: React.FC = () => {
                 <Text>In progress</Text>
             </Progress>
             <Bar />
-            <AllChallanges>
+            <AllChallenges>
                 <Counter>10</Counter>
                 <Text>Your all challenges</Text>
-            </AllChallanges>
+            </AllChallenges>
             <Bar />
             <Completed>
                 <Counter>5</Counter>
@@ -30,4 +30,4 @@ const ChallangeData: React.FC = () => {
     );
 };
 
-export default ChallangeData;
+export default ChallengeData;

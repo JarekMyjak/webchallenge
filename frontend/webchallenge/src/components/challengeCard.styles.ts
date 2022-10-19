@@ -38,7 +38,7 @@ export const Status = styled.div<IPremium>`
     margin-bottom: 10px;
 `;
 
-export const ChallangeImg = styled.div`
+export const ChallengeImg = styled.div`
     height: 225px;
     width: 100%;
     border-radius: 10px 10px 1px 1px;

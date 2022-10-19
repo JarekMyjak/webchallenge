@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import ChallangesList from './ChallangesList/ChallangesList';
+import ChallengesList from './ChallengesList/ChallengesList';
 import Tips from './Tips/Tips';
 
-const Challanges: React.FC = () => {
+const Challenges: React.FC = () => {
     return (
         <Container>
             <Tips />
-            <ChallangesList />
+            <ChallengesList />
         </Container>
     );
 };
 
-export default Challanges;
+export default Challenges;
 
 const Container = styled.div`
     width: 1250px;
