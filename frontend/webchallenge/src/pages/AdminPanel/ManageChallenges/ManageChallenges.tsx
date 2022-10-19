@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { apiPost } from '../../../api/apiMethods';
+import { apiGet, apiPost } from '../../../api/apiMethods';
 import colors from '../../../helpers/colors.helpers';
 import {
     Container
@@ -23,9 +23,10 @@ const submit = (title: string, description: string, pictures: FileList, file: Fi
 
 const ManageChallenges: React.FC = () => {
     const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("")
-    const [file, setFile] = useState<FileList | null>(null)
-    const [pictures, setPictures] = useState<FileList | null>(null)
+    const [description, setDescription] = useState("");
+    const [file, setFile] = useState<FileList | null>(null);
+    const [pictures, setPictures] = useState<FileList | null>(null);
+    
     return (
         <Container>
             Tutaj miejsce na wrzucanie paczek <br />
@@ -43,6 +44,12 @@ const ManageChallenges: React.FC = () => {
             <button onClick={() => {
                 submit(title, description, pictures, file)
             }}>submit</button>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
         </Container>
     );
 }
