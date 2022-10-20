@@ -20,6 +20,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '18.x'
+          
+      - name: change directory to backend
+        run: |
+          cd backend
 
       - name: npm install, build, and test
         run: |
