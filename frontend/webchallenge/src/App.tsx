@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import {Route, Routes, useLocation} from 'react-router-dom';
 import styled from 'styled-components';
 import AuthHandler from './api/AuthHandler';
 import Footer from './components/common/Footer/Footer';
@@ -13,6 +13,7 @@ import AdminPanel from './pages/AdminPanel/AdminPanel';
 import ManageChallenges from './pages/AdminPanel/ManageChallenges/ManageChallenges';
 import Challenge from './pages/Challenge/Challenge';
 import Challenges from './pages/Challenges/Challenges';
+import Premium from './pages/Premium/Premium';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -22,19 +23,27 @@ const App: React.FC = () => {
         <Container>
             <NavBar />
             <ContentWrapper>
-                {location.pathname !== '/' && <Leftbar />}
+                {!['/', '/adminpanel', '/adminpanel/managechallenges'].includes(
+                    location.pathname
+                ) && <Leftbar />}
 
                 <Content>
                     <Routes>
                         <Route path='/' element={<Landing />}></Route>
 
-                        {/*Sprawdź to bo jest roboczo wrzucone*/}
-                        <Route path='/adminpanel' element={<AdminPanel />}></Route>
-                        <Route path='/managechallenges' element={<ManageChallenges />}></Route>
-
-                        <Route path='/authhandler' element={<AuthHandler />}></Route>
+                        <Route path='adminpanel' element={<AdminPanel />}>
+                            <Route
+                                path='managechallenges'
+                                element={<ManageChallenges />}
+                            />
+                        </Route>
+                        <Route
+                            path='/authhandler'
+                            element={<AuthHandler />}
+                        ></Route>
                         <Route path='/profile' element={<Profile />}></Route>
                         <Route path='/settings' element={<Settings />}></Route>
+                        <Route path='/premium' element={<Premium />}></Route>
                         <Route
                             path='/challenge'
                             element={<Challenge />}
@@ -52,8 +61,6 @@ const App: React.FC = () => {
             </ContentWrapper>
             <Footer />
         </Container>
-
-
     );
 };
 
@@ -79,5 +86,3 @@ const Content = styled.div`
     align-items: center;
     justify-content: center;
 `;
-
-
