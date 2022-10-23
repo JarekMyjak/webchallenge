@@ -6,13 +6,13 @@ import User from '../models/user';
 
 const serverUrl = process.env.NODE_ENV === 'production' ? process.env.SERVER_URL_PROD : process.env.SERVER_URL_DEV;
 const env = process.env;
-const GITHUB_CLIENT_ID = env.GITHUB_CLIENT_ID;
-const GITHUB_CLIENT_SECRET = env.GITHUB_CLIENT_SECRET;
+const GithubClientId = env.AUTH_GITHUB_CLIENT_ID;
+const GithubClientSecret = env.AUTH_GITHUB_CLIENT_SECRET;
 
 const githubLogin = new GithubStrategy(
   {
-    clientID: GITHUB_CLIENT_ID,
-	clientSecret: GITHUB_CLIENT_SECRET,
+    clientID: GithubClientId,
+	clientSecret: GithubClientSecret,
 	callbackURL: "http://localhost:3030/auth/github/callback",
     scope: ['user:email'],
   },
