@@ -40,7 +40,6 @@ const userSchema = new Schema(
         avatar: String,
         role: { type: String, default: 'USER' },
         bio: String,
-        // github
         githubId: {
             type: String,
             unique: true,
