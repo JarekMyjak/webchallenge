@@ -1,9 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import colors from '../../../helpers/colors.helpers';
 import ExpandMenu from './ExpandMenu';
 import bookmark from '../../../assets/icons/bookmark.png';
-import {Container, Title, NavPanel} from './NavigationPanel.styles';
+import {Container, Title, NavPanel} from './navigationPanel.styles';
 
 export interface IMenuOptions {
     title: string;
@@ -13,7 +11,7 @@ export interface IMenuOptions {
 const ChallangesMenuOptions: IMenuOptions[] = [
     {
         title: 'Add Challenge',
-        linkTo: 'managechallenges',
+        linkTo: 'addchallenges',
     },
 ];
 

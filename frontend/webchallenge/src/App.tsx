@@ -10,7 +10,7 @@ import Landing from './pages/Landing/Landing';
 import Profile from './pages/Profile/Profile';
 import Settings from './pages/Settings/Settings';
 import AdminPanel from './pages/AdminPanel/AdminPanel';
-import ManageChallenges from './pages/AdminPanel/ManageChallenges/ManageChallenges';
+import AddChallenges from './pages/AdminPanel/ManageChallenges/AddChallenges';
 import Challenge from './pages/Challenge/Challenge';
 import Challenges from './pages/Challenges/Challenges';
 
@@ -22,7 +22,7 @@ const App: React.FC = () => {
         <Container>
             <NavBar />
             <ContentWrapper>
-                {!['/', '/adminpanel', '/adminpanel/managechallenges'].includes(
+                {!['/', '/adminpanel', '/adminpanel/addchallenges'].includes(
                     location.pathname
                 ) && <Leftbar />}
 
@@ -32,8 +32,8 @@ const App: React.FC = () => {
 
                         <Route path='adminpanel' element={<AdminPanel />}>
                             <Route
-                                path='managechallenges'
-                                element={<ManageChallenges />}
+                                path='addchallenges'
+                                element={<AddChallenges />}
                             />
                         </Route>
                         <Route

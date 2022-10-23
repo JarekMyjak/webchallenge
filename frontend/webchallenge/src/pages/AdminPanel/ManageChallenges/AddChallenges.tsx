@@ -1,7 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import styled from 'styled-components';
+import React, {useState} from 'react';
 import {apiGet, apiPost} from '../../../api/apiMethods';
-import colors from '../../../helpers/colors.helpers';
 import {
     Container,
     FormContainer,
@@ -13,7 +11,7 @@ import {
     SubmitButton,
     FileButtonsContainer,
     CustomTextArea,
-} from './ManageChallenges.style';
+} from './addChallenges.style';
 
 const submit = (
     title: string,
@@ -35,7 +33,7 @@ const submit = (
     console.log(res);
 };
 
-const ManageChallenges: React.FC = () => {
+const AddChallenges: React.FC = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [file, setFile] = useState<FileList | null>(null);
@@ -114,4 +112,4 @@ const ManageChallenges: React.FC = () => {
         </Container>
     );
 };
-export default ManageChallenges;
+export default AddChallenges;
