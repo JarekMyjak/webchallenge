@@ -7,7 +7,6 @@ import NavigationPanel from './NavigationPanel/NavigationPanel';
 const AdminPanel: React.FC = () => {
     return (
         <Container>
-            {/* ten lewy panel wywal stąd i daj go adminowi zamiast tego leftbar co ma użytkownik*/}
             <LeftPanel>
                 <NavigationPanel></NavigationPanel>
             </LeftPanel>

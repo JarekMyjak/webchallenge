@@ -11,6 +11,8 @@ import {
     CustomFileLabel,
     FileButton,
     SubmitButton,
+    FileButtonsContainer,
+    CustomTextArea,
 } from './ManageChallenges.style';
 
 const submit = (
@@ -64,7 +66,7 @@ const ManageChallenges: React.FC = () => {
                     <CustomLabel htmlFor='challengeDescription'>
                         Description:
                     </CustomLabel>
-                    <CustomInputText
+                    <CustomTextArea
                         type='text'
                         id='challengeDescription'
                         value={description}
@@ -72,27 +74,34 @@ const ManageChallenges: React.FC = () => {
                     />
                 </div>
                 {/* <span>{file?.item(0)?.name}</span><br/> */}
-                <FileButton>
-                    <CustomFileLabel htmlFor='challengeImages'>
-                        Upload images
-                        <CustomFile
-                            type='file'
-                            id='challengeImages'
-                            multiple
-                            onChange={e => setPictures(e.target.files)}
-                        />
-                    </CustomFileLabel>
-                </FileButton>
-                <FileButton>
-                    <CustomFileLabel htmlFor='challengeFile'>
-                        Upload challenges files
-                        <CustomFile
-                            type='file'
-                            id='challengeFile'
-                            onChange={e => setFile(e.target.files)}
-                        />
-                    </CustomFileLabel>
-                </FileButton>
+                <FileButtonsContainer>
+                    <FileButton>
+                        <CustomFileLabel htmlFor='challengeImages'>
+                            {pictures?.item(0)
+                                ? `Images: [${pictures?.length}]`
+                                : 'Upload images'}
+                            <CustomFile
+                                type='file'
+                                id='challengeImages'
+                                multiple
+                                accept='image/png, image/gif, image/jpeg'
+                                onChange={e => setPictures(e.target.files)}
+                            />
+                        </CustomFileLabel>
+                    </FileButton>
+                    <FileButton>
+                        <CustomFileLabel htmlFor='challengeFile'>
+                            {file?.item(0)
+                                ? `${file?.item(0)?.name}`
+                                : 'Upload challenges files'}
+                            <CustomFile
+                                type='file'
+                                id='challengeFile'
+                                onChange={e => setFile(e.target.files)}
+                            />
+                        </CustomFileLabel>
+                    </FileButton>
+                </FileButtonsContainer>
                 {/* <input type="text" value={title} onChange={((e) => setTitle(e.target.value))} /><br/> */}
                 <SubmitButton
                     onClick={() => {

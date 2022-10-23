@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const FormContainer = styled.div`
-    height: 500px;
+    height: 600px;
     width: 800px;
     background-color: ${colors.backgroundPrimary};
     color: white;
@@ -51,6 +51,24 @@ export const CustomInputText = styled.input`
         border-left: 2px solid ${colors.orange};
     }
 `;
+export const CustomTextArea = styled.textarea`
+    box-sizing: border-box;
+    min-width: 500px;
+    min-height: 250px;
+    max-width: 500px;
+    max-height: 250px;
+    font-size: 12px;
+    background-color: ${colors.backgroundSecondary};
+    border: none;
+    border-radius: 3px;
+    transition: 0.2s;
+    padding-left: 5px;
+    color: white;
+    &:focus {
+        outline: none;
+        border-left: 2px solid ${colors.orange};
+    }
+`;
 
 export const CustomFile = styled.input`
     border: 1px solid red;
@@ -61,6 +79,11 @@ export const CustomFileLabel = styled.label`
     display: block;
     width: 100%;
     cursor: pointer;
+`;
+
+export const FileButtonsContainer = styled.div`
+    display: flex;
+    gap: 20px;
 `;
 
 export const FileButton = styled.button`
@@ -75,11 +98,13 @@ export const FileButton = styled.button`
     cursor: pointer;
     transition: 0.2s;
     border: 2px solid ${colors.orange};
+    text-overflow: ellipsis;
     &:hover,
     &:focus,
     &:focus-visible {
         outline: none;
         background-color: #c47000;
+        content: 'upload images xd';
     }
 `;
 
