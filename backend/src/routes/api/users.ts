@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import User, { userType } from 'src/models/User';
+import User, { userType } from 'src/models/user';
 
 import requireJwtAuth from '../../middleware/requireJwtAuth';
 
