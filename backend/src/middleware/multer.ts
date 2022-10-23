@@ -1,7 +1,7 @@
 import multer from 'multer';
 import { MulterAzureStorage, MASNameResolver, MASObjectResolver } from 'multer-azure-blob-storage';
 
-const resolveBlobName: MASNameResolver = (req: any, file: multer.File): Promise<string> => {
+const resolveBlobName: MASNameResolver = (req: any, file: Express.Multer.File): Promise<string> => {
     return new Promise<string>((resolve, reject) => {
         const blobName: string = `${req.body.title}/${file.originalname}`;
         resolve(blobName);
@@ -9,14 +9,14 @@ const resolveBlobName: MASNameResolver = (req: any, file: multer.File): Promise<
 };
 
 export type MetadataObj = { [k: string]: string };
-const resolveMetadata: MASObjectResolver = (req: any, file: multer.File): Promise<MetadataObj> => {
+const resolveMetadata: MASObjectResolver = (req: any, file: Express.Multer.File): Promise<MetadataObj> => {
     return new Promise<MetadataObj>((resolve, reject) => {
         const metadata: MetadataObj = {}
         resolve(metadata);
     });
 };
 
-const resolveContentSettings: MASObjectResolver = (req: any, file: multer.File): Promise<MetadataObj> => {
+const resolveContentSettings: MASObjectResolver = (req: any, file: Express.Multer.File): Promise<MetadataObj> => {
     return new Promise<MetadataObj>((resolve, reject) => {
         const contentSettings: MetadataObj = {};
         resolve(contentSettings);
@@ -37,6 +37,6 @@ const azureStorage: MulterAzureStorage = new MulterAzureStorage({
     urlExpirationTime: 60
 });
 
-export const upload: multer.Instance = multer({
+export const upload = multer({
     storage: azureStorage
 });

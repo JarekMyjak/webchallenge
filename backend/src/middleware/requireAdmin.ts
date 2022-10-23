@@ -1,4 +1,4 @@
-import { userType } from "../models/User"
+import { userType } from "../models/user";
 import requireJwtAuth from "./requireJwtAuth"
 
 export default function requireAdmin(req, res, next) {

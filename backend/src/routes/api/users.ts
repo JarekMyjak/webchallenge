@@ -1,7 +1,8 @@
 import { Router } from 'express';
+import User, { userType } from '../../models/user';
 
 import requireJwtAuth from '../../middleware/requireJwtAuth';
-import User, { userType } from '../../models/User';
+
 
 const router = Router();
 

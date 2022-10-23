@@ -13,6 +13,7 @@ import AdminPanel from './pages/AdminPanel/AdminPanel';
 import AddChallenges from './pages/AdminPanel/ManageChallenges/AddChallenges';
 import Challenge from './pages/Challenge/Challenge';
 import Challenges from './pages/Challenges/Challenges';
+import Premium from './pages/Premium/Premium';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -42,6 +43,7 @@ const App: React.FC = () => {
                         ></Route>
                         <Route path='/profile' element={<Profile />}></Route>
                         <Route path='/settings' element={<Settings />}></Route>
+                        <Route path='/premium' element={<Premium />}></Route>
                         <Route
                             path='/challenge'
                             element={<Challenge />}

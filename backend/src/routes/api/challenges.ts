@@ -6,9 +6,11 @@ import Challenge, { challengeType } from '../../models/challenge';
 
 const router = Router();
 
+type extendedFile = Express.Multer.File & {url: string}
 router.post('/', requireAdmin, upload.any(), async (req, res) => {
 
-    const urlArr = req.files.map(file => file.url)
+    const fileArray = req.files as Array<extendedFile>;
+    const urlArr = fileArray.map(file => file.url);
     
     const newChallenge = await new Challenge({
         title: req.body.title,
