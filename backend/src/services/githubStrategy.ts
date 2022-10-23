@@ -8,12 +8,13 @@ const serverUrl = process.env.NODE_ENV === 'production' ? process.env.SERVER_URL
 const env = process.env;
 const GithubClientId = env.AUTH_GITHUB_CLIENT_ID;
 const GithubClientSecret = env.AUTH_GITHUB_CLIENT_SECRET;
+const ApiBaseUrl = env.API_BASE_URL;
 
 const githubLogin = new GithubStrategy(
   {
     clientID: GithubClientId,
 	clientSecret: GithubClientSecret,
-	callbackURL: "http://localhost:3030/auth/github/callback",
+	callbackURL: `${ApiBaseUrl}/auth/github/callback`,
     scope: ['user:email'],
   },
   async (accessToken, refreshToken, profile, done) => {

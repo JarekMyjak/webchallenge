@@ -7,7 +7,7 @@ export const apiGet = (endpoint: string) => {
     const config: AxiosRequestConfig = {
         headers: { Authorization: `Bearer ${token}` }
     }
-    return axios.get(`http://localhost:3030${endpoint}`, config)
+    return axios.get(`https://webchallenge.azurewebsites.net${endpoint}`, config)
 }
 
 export const apiPost = (endpoint: string, payload: any) => {
@@ -15,7 +15,7 @@ export const apiPost = (endpoint: string, payload: any) => {
     const config: AxiosRequestConfig = {
         headers: { Authorization: `Bearer ${token}` }
     }
-    return axios.post(`http://localhost:3030${endpoint}`, payload, config)
+    return axios.post(`https://webchallenge.azurewebsites.net${endpoint}`, payload, config)
 }
 
 export const apiPostFile = (endpoint: string, payload: any) => {
@@ -26,7 +26,7 @@ export const apiPostFile = (endpoint: string, payload: any) => {
             "Content-Type": "multipart/form-data",
     }
 }
-return axios.post(`http://localhost:3030${endpoint}`, payload, config)
+return axios.post(`https://webchallenge.azurewebsites.net${endpoint}`, payload, config)
 }
 
 
