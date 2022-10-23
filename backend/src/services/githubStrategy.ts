@@ -1,9 +1,8 @@
 import passport from 'passport';
 // import { Strategy as GoogleStrategy } from 'passport-google-oauth2';
 import { Strategy as GithubStrategy } from "passport-github2"
+import User from 'src/models/User';
 
-
-import User from '../models/User';
 
 const serverUrl = process.env.NODE_ENV === 'production' ? process.env.SERVER_URL_PROD : process.env.SERVER_URL_DEV;
 const env = process.env;
