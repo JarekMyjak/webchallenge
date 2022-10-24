@@ -2,11 +2,13 @@ import { Router } from 'express';
 import passport from 'passport';
 import generateAccessToken from '../services/token';
 
+const FrontendBaseUrl = process.env.FRONTEND_BASE_URL;
+
 const router = Router();
 
 function generateUserToken(req, res) {
     const accessToken = generateAccessToken(req.user.id);
-    res.redirect(`http://localhost:3000/authhandler?jwt=${accessToken}`);
+    res.redirect(`${FrontendBaseUrl}/authhandler?jwt=${accessToken}`);
 }
 
 router.get(

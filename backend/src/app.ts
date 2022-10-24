@@ -10,6 +10,8 @@ const env = process.env;
 
 const app = express();
 const port = env.PORT || 3030;
+const ApiBaseUrl = env.API_BASE_URL;
+
 const mongoConnectionString = env.MONGODBURL;
 app.use(cors())
 
@@ -36,5 +38,5 @@ app.get('/', (req, res) => {
 app.use('/', routes)
 
 app.listen(port, () => {
-	return console.log(`Express is listening at http://localhost:${port}`);
+	return console.log(`Express is listening at ${ApiBaseUrl}  Port: ${port}`);
 });
