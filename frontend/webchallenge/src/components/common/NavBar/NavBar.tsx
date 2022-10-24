@@ -68,7 +68,7 @@ const NavBar: React.FC = () => {
                     <NavButton>Challenges</NavButton>
                     <NavButton>Premium</NavButton>
                     <LoginAndRegister>
-                        <LoginLink href={"http://localhost:3030/auth/github"}>
+                        <LoginLink href={"http://webchallenge.azurewebsites.net/auth/github"}>
                             Login with Github
                             <LoginLogo src={github} />
                         </LoginLink>
