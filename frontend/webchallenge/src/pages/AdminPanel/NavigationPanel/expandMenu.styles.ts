@@ -16,6 +16,7 @@ export const MenuItemWrapper = styled.button<IExpanded>`
     font-size: 16px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding-left: 30px;
     border-left: 3px solid ${colors.navBarBackground};
     color: white;
@@ -23,9 +24,13 @@ export const MenuItemWrapper = styled.button<IExpanded>`
     transition: 0.1s;
     ${p => p.isExpanded && `border-bottom: 3px solid ${colors.orange};`}
 
-    :hover {
+    &:hover {
         border-left: 3px solid ${colors.orange};
         background-color: rgba(255, 255, 255, 0.1);
+    }
+    & > div {
+        display: flex;
+        align-items: center;
     }
 `;
 
@@ -46,8 +51,8 @@ export const ExpandedMenuContainer = styled.div<IExpanded>`
 export const IconArrow = styled.img<IExpanded>`
     width: 20px;
     height: 20px;
-    margin-left: 130px;
     transition: 0.2s;
+    margin-right: 25px;
     ${p => p.isExpanded && `transform:rotate(180deg);`};
 `;
 

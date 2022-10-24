@@ -14,6 +14,8 @@ import AddChallenges from './pages/AdminPanel/ManageChallenges/AddChallenges';
 import Challenge from './pages/Challenge/Challenge';
 import Challenges from './pages/Challenges/Challenges';
 import Premium from './pages/Premium/Premium';
+import ListOfChallenges from './pages/AdminPanel/ManageChallenges/ListOfChallenges';
+import EditChallenge from './pages/AdminPanel/ManageChallenges/EditChallenge';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -23,9 +25,13 @@ const App: React.FC = () => {
         <Container>
             <NavBar />
             <ContentWrapper>
-                {!['/', '/adminpanel', '/adminpanel/addchallenges'].includes(
-                    location.pathname
-                ) && <Leftbar />}
+                {![
+                    '/',
+                    '/adminpanel',
+                    '/adminpanel/addchallenges',
+                    '/adminpanel/listofchallenges',
+                    '/adminpanel/editchallenge',
+                ].includes(location.pathname) && <Leftbar />}
 
                 <Content>
                     <Routes>
@@ -35,6 +41,14 @@ const App: React.FC = () => {
                             <Route
                                 path='addchallenges'
                                 element={<AddChallenges />}
+                            />
+                            <Route
+                                path='listofchallenges'
+                                element={<ListOfChallenges />}
+                            />
+                            <Route //TODO
+                                path='editchallenge'
+                                element={<EditChallenge />}
                             />
                         </Route>
                         <Route

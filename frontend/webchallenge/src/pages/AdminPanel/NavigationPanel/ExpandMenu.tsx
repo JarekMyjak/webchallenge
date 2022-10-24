@@ -24,14 +24,17 @@ const ExpandMenu: React.FC<IExpandMenu> = props => {
                 isExpanded={isExpanded}
                 onClick={() => setIsExpanded(prev => !prev)}
             >
-                <Icon src={props.icon} alt='' />
-                {props.title}
+                <div>
+                    <Icon src={props.icon} alt='' />
+                    {props.title}
+                </div>
                 <IconArrow
                     isExpanded={isExpanded}
                     src='../../src/assets/icons/arrow-down.png'
                     alt='arrow'
                 />
             </MenuItemWrapper>
+
             <ExpandedMenuContainer isExpanded={isExpanded}>
                 {props.menuOptions.map(el => (
                     <CustomLink to={el.linkTo} key={el.linkTo}>
