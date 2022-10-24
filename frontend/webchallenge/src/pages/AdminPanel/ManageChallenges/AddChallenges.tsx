@@ -16,18 +16,19 @@ import {
 const submit = (
     title: string,
     description: string,
-    pictures: FileList,
-    file: FileList
+    pictures: FileList | null,
+    file: FileList | null
 ) => {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
-    file.item;
-    for (let i = 0; i < file.length; i++) {
-        formData.append('files', file.item(i) as Blob);
+    const fileFilelist = pictures ?? new FileList;
+    const picturesFilelist = pictures ?? new FileList;
+    for (let i = 0; i < fileFilelist.length; i++) {
+        formData.append('files', fileFilelist.item(i) as Blob);
     }
-    for (let i = 0; i < pictures.length; i++) {
-        formData.append('images', pictures.item(i) as Blob);
+    for (let i = 0; i < picturesFilelist.length; i++) {
+        formData.append('images', picturesFilelist.item(i) as Blob);
     }
     const res = apiPost('/api/challenges', formData);
     console.log(res);
@@ -65,7 +66,6 @@ const AddChallenges: React.FC = () => {
                         Description:
                     </CustomLabel>
                     <CustomTextArea
-                        type='text'
                         id='challengeDescription'
                         value={description}
                         onChange={e => setDescription(e.target.value)}

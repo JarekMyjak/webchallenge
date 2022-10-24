@@ -45,7 +45,6 @@ const EditChallenge: React.FC = () => {
                         Description:
                     </CustomLabel>
                     <CustomTextArea
-                        type='text'
                         id='challengeDescription'
                         value={description}
                         onChange={e => setDescription(e.target.value)}
