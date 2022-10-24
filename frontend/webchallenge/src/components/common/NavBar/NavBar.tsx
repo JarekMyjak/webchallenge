@@ -20,6 +20,7 @@ import { useLocation } from 'react-router-dom';
 import github from '../../../assets/icons/github.svg';
 import { useUser } from '../../../api/useAuth';
 import { apiGet, apiPost } from '../../../api/apiMethods';
+import { authUrl } from '../../../api/AuthHandler';
 
 // const add = addChallenge();
 const NavBar: React.FC = () => {
@@ -68,7 +69,7 @@ const NavBar: React.FC = () => {
                     <NavButton>Challenges</NavButton>
                     <NavButton>Premium</NavButton>
                     <LoginAndRegister>
-                        <LoginLink href={"http://webchallenge.azurewebsites.net/auth/github"}>
+                        <LoginLink href={authUrl}>
                             Login with Github
                             <LoginLogo src={github} />
                         </LoginLink>

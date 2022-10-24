@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import {Navigate, redirect, useParams, useSearchParams} from 'react-router-dom';
-import { apiGet } from './apiMethods';
+import { ApiBaseUrl, apiGet } from './apiMethods';
 import { useUser } from './useAuth';
+
+
+export const authUrl = `${ApiBaseUrl}/auth/github`
 
 const AuthHandler = () => {
     let [searchParams, setSearchParams] = useSearchParams();
