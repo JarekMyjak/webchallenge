@@ -20,15 +20,14 @@ const ListOfChallenges: React.FC = () => {
                     <Header>Completions</Header>
                     <Header>Controls</Header>
                 </Row>
-                {[...Array(20)].map(() => (
+                {[...Array(6)].map(() => (
                     <Row>
                         <Column>
-                            I HAD A DREAM, A DREAM TO BUILD a WOODEN HOUSES AT
-                            OLCZA, BUT
+                            DREAM PROJECT NAME
                         </Column>
                         <Column>Advanced</Column>
-                        <Column>2136</Column>
-                        <Column>2137</Column>
+                        <Column>26</Column>
+                        <Column>21</Column>
                         <Column>
                             <Link to='../editchallenge'>
                                 <Button>Edit</Button>

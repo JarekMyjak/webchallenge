@@ -91,7 +91,7 @@ const AddChallenges: React.FC = () => {
                         <CustomFileLabel htmlFor='challengeFile'>
                             {file?.item(0)
                                 ? `${file?.item(0)?.name}`
-                                : 'Upload challenges files'}
+                                : 'Upload challenge file'}
                             <CustomFile
                                 type='file'
                                 id='challengeFile'

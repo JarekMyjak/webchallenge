@@ -10,6 +10,7 @@ import {
     RightSide,
     ImageBackground,
 } from './sliderSection.styles';
+import topSliderGraphic from "./../../../assets/images/landing/Top_slider_graphic.jpg"
 
 const SliderSection: React.FC = () => {
     return (
@@ -32,7 +33,7 @@ const SliderSection: React.FC = () => {
                 </Content>
             </LeftSide>
             <RightSide>
-                <ImageBackground src="./src/graphic/photo/Top_slider_graphic.jpg"></ImageBackground>
+                <ImageBackground src={topSliderGraphic}></ImageBackground>
             </RightSide>
         </Wrapper>
     );

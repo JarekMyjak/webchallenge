@@ -22,7 +22,7 @@ const EditChallenge: React.FC = () => {
     return (
         <Container>
             <FormContainer>
-                Editing challenge: 'DUPA'
+                Editing challenge: 'name'
                 <div
                     style={{
                         transform: 'translateX(-100px)',

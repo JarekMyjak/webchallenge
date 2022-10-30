@@ -31,7 +31,7 @@ export const Nav = styled.nav`
     margin-right: 90px;
 `;
 
-export const NavButton = styled.button`
+export const NavButton = styled.a`
     font-size: 14px;
     font-weight: bold;
     padding: 0 35px;
