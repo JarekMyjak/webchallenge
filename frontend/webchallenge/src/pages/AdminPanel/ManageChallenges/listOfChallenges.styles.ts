@@ -11,32 +11,51 @@ export const Container = styled.div`
 export const Table = styled.table`
     border: none;
     border-collapse: collapse;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 2px 2px 10px black;
 `;
 
 export const Header = styled.th`
     padding: 5px 15px;
-    font-size: 24px;
-    background-color: ${colors.navBarBackground};
+    font-size: 16px;
+    font-weight: 400;
+    background-color: ${colors.backgroundPrimary};
+    text-align: right;
+    &:first-child {
+        text-align: left;
+    }
+    &:last-child {
+        text-align: center;
+    }
 `;
 
 export const Row = styled.tr`
-    font-size: 20px;
     background-color: ${colors.backgroundPrimary};
-    &:nth-child(odd) {
-        background-color: #3b3939;
+    font-size: 16px;
+    font-weight: 400;
+    border-bottom: 1px solid #3b3939;
+    &:last-child {
+        border-bottom: none;
     }
 `;
 
 export const Column = styled.td`
     padding: 10px 15px;
-    text-align: center;
+    text-align: right;
+    &:first-child {
+        text-align: left;
+    }
+    &:last-child {
+        text-align: center;
+    }
 `;
 
 export const Button = styled.button`
-    padding: 5px 10px;
+    padding: 3px 6px;
     border: none;
     color: white;
-    font-size: 20px;
+    font-size: 14px;
     border-radius: 3px;
     cursor: pointer;
     transition: 0.2s;
