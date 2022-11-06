@@ -18,28 +18,21 @@ export const FormContainer = styled.div`
     width: 800px;
     background-color: ${colors.backgroundPrimary};
     color: white;
-    font-size: 32px;
-    padding: 10px 20px;
+    font-size: 24px;
+    padding: 5px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
-`;
-
-export const CustomLabel = styled.label`
-    display: inline-block;
-    width: 200px;
-    font-size: 24px;
-    text-align: right;
-    margin-right: 10px;
+    box-shadow: 2px 2px 10px black;
 `;
 
 export const CustomInputText = styled.input`
     box-sizing: border-box;
-    width: 300px;
+    width: 500px;
     height: 50px;
-    font-size: 24px;
+    font-size: 20px;
     background-color: ${colors.backgroundSecondary};
     border: none;
     border-radius: 3px;
