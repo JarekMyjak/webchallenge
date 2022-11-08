@@ -48,7 +48,7 @@ const ListOfChallenges: React.FC = () => {
                         </Column>
                         <Column>{challenge.title}</Column>
                         <Column>{challenge.downloads}</Column>
-                        <Column>{challenge.entries}</Column>
+                        <Column>{0}</Column>
                         <Column>
                             <Link to='../editchallenge'>
                                 <Button>Edit</Button>
