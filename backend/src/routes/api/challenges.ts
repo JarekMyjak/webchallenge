@@ -16,7 +16,7 @@ router.post('/', requireAdmin, upload.any(), async (req, res) => {
         title: req.body.title,
         description: req.body.description,
         tech: req.body.tech,
-        difficulty: req.body.difficulty,
+        experience: req.body.experience,
         imageUrls: urlArr.slice(1),
         blobUrl: urlArr[0]
     }).save();
@@ -26,9 +26,10 @@ router.post('/', requireAdmin, upload.any(), async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-    const challenges = await Challenge.find().sort({ createdAt: 'desc' });
+    const challenges = await Challenge.find({}).sort({ createdAt: 'desc' });
+    const challengesa = await Challenge.find();
     const resChallenges = challenges.map((c) => c.toJSON())
-
+    console.log(challengesa)
     res.send(resChallenges)
 });
 

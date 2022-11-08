@@ -7,7 +7,7 @@ export interface challengeType {
     title: String;
     description: String;
     tech: String;
-    difficulty: String;
+    experience: String;
     imageUrls: String[];
     blobUrl: String;
     downloads: Number;
@@ -26,7 +26,7 @@ const challengeSchema = new Schema<challengeType>({
         type: String,
         required: false,
     },
-    difficulty: {
+    experience: {
         type: String,
         required: false,
     },
@@ -49,7 +49,7 @@ challengeSchema.methods.toJSON = function () {
         title: this.title,
         description: this.description,
         tech: this.tech,
-        difficulty: this.difficulty,
+        experience: this.experience,
         imageUrls: this.imageUrls,
         blobUrl: this.blobUrl,
         downloads: this.downloads

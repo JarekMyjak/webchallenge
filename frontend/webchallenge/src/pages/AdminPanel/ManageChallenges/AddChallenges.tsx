@@ -49,12 +49,17 @@ const AddChallenges: React.FC = () => {
         <Container>
             <FormContainer>
                 Add new challenge
-                <div>
+                <div
+                    style={{
+                        transform: 'translateX(-100px)',
+                    }}
+                >
+                    <CustomLabel htmlFor='challengeTitle'>Title:</CustomLabel>
                     <CustomInputText
                         type='text'
-                        id='challengeTech'
-                        value={tech}
-                        onChange={e => setTech(e.target.value)}
+                        id='challengeTitle'
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
                     />
                 </div>
                 <div
