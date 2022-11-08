@@ -3,7 +3,6 @@ import {apiGet, apiPost} from '../../../api/apiMethods';
 import {
     Container,
     FormContainer,
-    CustomLabel,
     CustomInputText,
     CustomFile,
     CustomFileLabel,
@@ -23,28 +22,18 @@ const EditChallenge: React.FC = () => {
         <Container>
             <FormContainer>
                 Editing challenge: 'name'
-                <div
-                    style={{
-                        transform: 'translateX(-100px)',
-                    }}
-                >
-                    <CustomLabel htmlFor='challengeTitle'>Title:</CustomLabel>
+                <div>
                     <CustomInputText
+                        placeholder='Title'
                         type='text'
                         id='challengeTitle'
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
                 </div>
-                <div
-                    style={{
-                        transform: 'translateX(-100px)',
-                    }}
-                >
-                    <CustomLabel htmlFor='challengeDescription'>
-                        Description:
-                    </CustomLabel>
+                <div>
                     <CustomTextArea
+                        placeholder='Description'
                         id='challengeDescription'
                         value={description}
                         onChange={e => setDescription(e.target.value)}
