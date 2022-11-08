@@ -10,7 +10,7 @@ import {
     RightSide,
     ImageBackground,
 } from './sliderSection.styles';
-import topSliderGraphic from "./../../../assets/images/landing/Top_slider_graphic.jpg"
+import topSliderGraphic from './../../../assets/images/landing/Top_slider_graphic.jpg';
 
 const SliderSection: React.FC = () => {
     return (

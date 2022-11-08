@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
     Wrapper,
     Logo,
@@ -16,19 +16,18 @@ import {
     CustomLink,
     LoginLink,
 } from './navBar.styles';
-import { useLocation } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import github from '../../../assets/icons/github.svg';
-import { useUser } from '../../../api/useAuth';
-import { apiGet, apiPost } from '../../../api/apiMethods';
-import { authUrl } from '../../../api/AuthHandler';
+import {useUser} from '../../../api/useAuth';
+import {apiGet, apiPost} from '../../../api/apiMethods';
+import {authUrl} from '../../../api/AuthHandler';
 
 // const add = addChallenge();
 const NavBar: React.FC = () => {
     const location = useLocation();
     //TEMP Verbiable
-    const user = useUser(state => state.user)
+    const user = useUser(state => state.user);
     const logged = false;
-
 
     if (user)
         return (

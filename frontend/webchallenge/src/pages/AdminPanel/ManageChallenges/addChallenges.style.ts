@@ -28,6 +28,15 @@ export const FormContainer = styled.div`
     box-shadow: 2px 2px 10px black;
 `;
 
+export const CustomLabel = styled.label`
+    display: inline-block;
+    width: 200px;
+    font-size: 24px;
+    text-align: right;
+    margin-right: 10px;
+    box-shadow: 2px 2px 10px black;
+`;
+
 export const CustomInputText = styled.input`
     box-sizing: border-box;
     width: 500px;

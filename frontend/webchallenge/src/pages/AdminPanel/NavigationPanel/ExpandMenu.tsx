@@ -9,6 +9,7 @@ import {
 } from './expandMenu.styles';
 
 import {IMenuOptions} from './NavigationPanel';
+import arrowImg from '../../../assets/icons/arrow-down.png';
 
 interface IExpandMenu {
     title: string;
@@ -28,11 +29,7 @@ const ExpandMenu: React.FC<IExpandMenu> = props => {
                     <Icon src={props.icon} alt='' />
                     {props.title}
                 </div>
-                <IconArrow
-                    isExpanded={isExpanded}
-                    src='../../src/assets/icons/arrow-down.png'
-                    alt='arrow'
-                />
+                <IconArrow isExpanded={isExpanded} src={arrowImg} alt='arrow' />
             </MenuItemWrapper>
 
             <ExpandedMenuContainer isExpanded={isExpanded}>
