@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Container,
     Table,
@@ -8,8 +8,29 @@ import {
     Button,
 } from './listOfChallenges.styles';
 import {Link} from 'react-router-dom';
+import { apiGet } from '../../../api/apiMethods';
+import { Challenge, getChallenges } from '../../../api/apiChallenges';
+
+// const getChallenges = async () => {
+//     return await apiGet('/api/challenges').then((res)=> {
+//         return res.data
+//     });
+// }
 
 const ListOfChallenges: React.FC = () => {
+    const [challenges, setChallenges] = useState<Challenge[]>([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await getChallenges();
+            console.log(response)
+            setChallenges(response);
+        };
+        fetchData();
+    	return () => {}
+    }, [])
+    
+
     return (
         <Container>
             <Table>
@@ -20,14 +41,14 @@ const ListOfChallenges: React.FC = () => {
                     <Header>Completions</Header>
                     <Header>Controls</Header>
                 </Row>
-                {[...Array(6)].map(() => (
-                    <Row>
+                {challenges.map(challenge => (
+                    <Row key={challenge.id}>
                         <Column>
-                            DREAM PROJECT NAME
+							{challenge.title}
                         </Column>
-                        <Column>Advanced</Column>
-                        <Column>26</Column>
-                        <Column>21</Column>
+                        <Column>{challenge.title}</Column>
+                        <Column>{challenge.downloads}</Column>
+                        <Column>{challenge.entries}</Column>
                         <Column>
                             <Link to='../editchallenge'>
                                 <Button>Edit</Button>
