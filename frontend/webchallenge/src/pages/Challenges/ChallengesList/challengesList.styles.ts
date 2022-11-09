@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import colors from '../../../helpers/colors.helpers';
+import {Link} from 'react-router-dom';
 
 export const Container = styled.div`
     width: 1250px;
@@ -29,4 +30,8 @@ export const Options = styled.div`
     height: 30px;
     width: 200px;
     background-color: green;
+`;
+
+export const CustomLink = styled(Link)`
+    text-decoration: none;
 `;

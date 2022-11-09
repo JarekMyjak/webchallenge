@@ -5,6 +5,7 @@ import {
     Container,
     TitleAndOptions,
     Options,
+    CustomLink,
     List,
 } from './challengesList.styles';
 import {
@@ -12,7 +13,6 @@ import {
     downloadChallengeUrl,
     getChallenges,
 } from '../../../api/apiChallenges';
-import {Link} from 'react-router-dom';
 import bookmarkIcon from '../../../assets/icons/bookmark.png';
 
 const ChallengesList: React.FC = () => {
@@ -33,7 +33,7 @@ const ChallengesList: React.FC = () => {
             <List>
                 {challenges.map(c => (
                     <React.Fragment key={`fragment${c.id}`}>
-                        <Link to={c.id}>
+                        <CustomLink to={c.id}>
                             <ChallengeCard
                                 key={`challengeCard${c.id}`}
                                 exp={c.experience}
@@ -47,7 +47,7 @@ const ChallengesList: React.FC = () => {
                                 description={c.description}
                                 image={c.imageUrls[0]}
                             />
-                        </Link>
+                        </CustomLink>
                         {/* <a href={downloadChallengeUrl(c.id)}>download</a> */}
                     </React.Fragment>
                 ))}
