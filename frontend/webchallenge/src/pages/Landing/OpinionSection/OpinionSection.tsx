@@ -11,8 +11,8 @@ import reactIcon from '../../../assets/icons/react.svg';
 import jsIcon from '../../../assets/icons/javascript-96.svg';
 import tsIcon from '../../../assets/icons/typescript-96.svg';
 import firstAvatar from '../../../assets/images/landing/First_avatar_comment.jpeg';
-import secondAvatar from '../../../assets/images/landing/Second_avatar_comment.jpeg';
-import thirdAvatar from '../../../assets/images/landing/Third_avatar_comment.jpeg';
+import secondAvatar from '../../../assets/images/landing/Second_avatar_comment.jpg';
+import thirdAvatar from '../../../assets/images/landing/Third_avatar_comment.jpg';
 
 const LastCardsSection: React.FC = () => {
     return (
