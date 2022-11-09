@@ -9,15 +9,13 @@ import {
     Space,
 } from './Activities.styles';
 import Activity from './Activity';
+import todoIcon from '../../../assets/icons/todo.png';
 
 const Activities: React.FC = () => {
     return (
         <Wrapper>
             <TopBar>
-                <TitleBar
-                    imageSrc='./src/assets/icons/todo.png'
-                    text='Your activities'
-                />
+                <TitleBar imageSrc={todoIcon} text='Your activities' />
                 <Filters>
                     <Filter>Filter By</Filter>
                 </Filters>

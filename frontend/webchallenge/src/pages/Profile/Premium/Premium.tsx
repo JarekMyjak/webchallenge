@@ -10,14 +10,12 @@ import {
     DayCounter,
     RenewButton,
 } from './Premium.styles';
+import keyIcon from '../../../assets/icons/key.png';
 
 const Premium: React.FC = () => {
     return (
         <Wrapper>
-            <TitleBar
-                imageSrc='./src/assets/icons/key.png'
-                text='Subscription'
-            />
+            <TitleBar imageSrc={keyIcon} text='Subscription' />
             <Info></Info>
             <Bar>
                 <ProgressBar />

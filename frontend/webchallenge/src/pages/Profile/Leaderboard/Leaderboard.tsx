@@ -2,14 +2,12 @@ import React from 'react';
 import TitleBar from '../../../components/TitleBar';
 import {Wrapper, Board, Header, Headers} from './Leaderboard.styles';
 import UserBar from './UserBar';
+import prizeIcon from '../../../assets/icons/prize.png';
 
 const Leaderboard: React.FC = () => {
     return (
         <Wrapper>
-            <TitleBar
-                imageSrc='./src/assets/icons/prize.png'
-                text='Leaderboard'
-            />
+            <TitleBar imageSrc={prizeIcon} text='Leaderboard' />
             <Board>
                 <Headers>
                     <Header width={40}>Rank</Header>

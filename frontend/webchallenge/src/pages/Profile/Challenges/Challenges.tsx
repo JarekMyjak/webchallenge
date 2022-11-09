@@ -9,6 +9,7 @@ import {
     TopBar,
     Wrapper,
 } from './Challenges.styles';
+import firstCard from '../../../assets/images/landing/First_card.jpg';
 
 const Challenges: React.FC = () => {
     return (
@@ -32,7 +33,7 @@ const Challenges: React.FC = () => {
                     description='There are many variations of passages of Lorem Ipsum
                         available, but the majority have suffered alteration in
                         some form, by injected humour, or randomised'
-                    image='./src/assets/images/landing/First_card.jpg'
+                    image={firstCard}
                 />
                 <ChallengeCard
                     exp='advanced'
@@ -42,7 +43,7 @@ const Challenges: React.FC = () => {
                     description='There are many variations of passages of Lorem Ipsum
                     available, but the majority have suffered alteration in
                     some form, by injected humour, or randomised'
-                    image='./src/assets/images/landing/First_card.jpg'
+                    image={firstCard}
                 />
                 <ChallengeCard
                     exp='advanced'
@@ -52,7 +53,7 @@ const Challenges: React.FC = () => {
                     description='There are many variations of passages of Lorem Ipsum
                 available, but the majority have suffered alteration in
                 some form, by injected humour, or randomised'
-                    image='./src/assets/images/landing/First_card.jpg'
+                    image={firstCard}
                 />
                 <ChallengeCard
                     exp='advanced'
@@ -62,7 +63,7 @@ const Challenges: React.FC = () => {
                     description='There are many variations of passages of Lorem Ipsum
             available, but the majority have suffered alteration in
             some form, by injected humour, or randomised'
-                    image='./src/assets/images/landing/First_card.jpg'
+                    image={firstCard}
                 />
                 <ChallengeCard
                     exp='advanced'
@@ -72,7 +73,7 @@ const Challenges: React.FC = () => {
                     description='There are many variations of passages of Lorem Ipsum
         available, but the majority have suffered alteration in
         some form, by injected humour, or randomised'
-                    image='./src/assets/images/landing/First_card.jpg'
+                    image={firstCard}
                 />
                 <ChallengeCard
                     exp='advanced'
@@ -82,7 +83,7 @@ const Challenges: React.FC = () => {
                     description='There are many variations of passages of Lorem Ipsum
     available, but the majority have suffered alteration in
     some form, by injected humour, or randomised'
-                    image='./src/assets/images/landing/First_card.jpg'
+                    image={firstCard}
                 />
                 {/* TEMP */}
             </ChallengeList>

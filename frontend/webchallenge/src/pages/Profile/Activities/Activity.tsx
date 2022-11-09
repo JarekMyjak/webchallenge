@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import {
     Wrapper,
     Forward,
@@ -8,6 +7,9 @@ import {
     FullDate,
     Text,
 } from './Activity.styles';
+import plusIcon from '../../../assets/icons/plus.png';
+import chatIcon from '../../../assets/icons/chat.png';
+import checkIcon from '../../../assets/icons/check.png';
 
 interface IActivity {
     type: 'newChallenge' | 'completed' | 'commented';
@@ -20,21 +22,21 @@ const Activity: React.FC<IActivity> = props => {
             case 'newChallenge':
                 return (
                     <>
-                        You have just started a <b>new challenge</b>.{' '}
+                        You have just started a <b>new challenge</b>.
                         <Forward>Go to this...</Forward>
                     </>
                 );
             case 'completed':
                 return (
                     <>
-                        You've <b>completed </b>the challenge, congratulations.{' '}
+                        You've <b>completed </b>the challenge, congratulations.
                         <Forward>See more challenges...</Forward>
                     </>
                 );
             case 'commented':
                 return (
                     <>
-                        You have <b>commented</b> on another user's post.{' '}
+                        You have <b>commented</b> on another user's post.
                         <Forward>See comments...</Forward>
                     </>
                 );
@@ -45,11 +47,11 @@ const Activity: React.FC<IActivity> = props => {
     const selectIcon = () => {
         switch (props.type) {
             case 'newChallenge':
-                return './src/assets/icons/plus.png';
+                return plusIcon;
             case 'completed':
-                return './src/assets/icons/check.png';
+                return checkIcon;
             case 'commented':
-                return './src/assets/icons/chat.png';
+                return chatIcon;
             default:
                 return '';
         }
