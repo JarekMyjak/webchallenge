@@ -7,7 +7,7 @@ import {
     AllChallenges,
     Completed,
     Text,
-} from './ChallengeData.styles';
+} from './challengeData.styles';
 
 const ChallengeData: React.FC = () => {
     return (

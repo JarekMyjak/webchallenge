@@ -5,22 +5,25 @@ import {
     Contact,
     ConctactImg,
     ContactText,
-} from './UserContact.styles';
+} from './userContact.styles';
+import mailIcon from '../../../assets/icons/mail.png';
+import phoneIcon from '../../../assets/icons/phone.png';
+import pinIcon from '../../../assets/icons/pin.png';
 
 const UserContact: React.FC = () => {
     return (
         <Wrapper>
             <Title>Contact</Title>
             <Contact>
-                <ConctactImg src='./src/assets/icons/mail.png'></ConctactImg>
+                <ConctactImg src={mailIcon}></ConctactImg>
                 <ContactText>johnpaul@gmail.com</ContactText>
             </Contact>
             <Contact>
-                <ConctactImg src='./src/assets/icons/phone.png'></ConctactImg>
+                <ConctactImg src={phoneIcon}></ConctactImg>
                 <ContactText> 989 588 763 </ContactText>
             </Contact>
             <Contact>
-                <ConctactImg src='./src/assets/icons/pin.png'></ConctactImg>
+                <ConctactImg src={pinIcon}></ConctactImg>
                 <ContactText>New York</ContactText>
             </Contact>
         </Wrapper>

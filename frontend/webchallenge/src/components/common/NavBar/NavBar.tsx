@@ -33,12 +33,14 @@ const NavBar: React.FC = () => {
         return (
             <Wrapper>
                 <LogoAndLocalization>
-                    <LoggedLogo></LoggedLogo>
+                    <LoggedLogo
+                        isAdminPanel={location.pathname.includes('adminpanel')}
+                    ></LoggedLogo>
                     <SmallLogoText>WebChallenge</SmallLogoText>
-                    &nbsp; &gt; &nbsp;
+                    {/* &nbsp; &gt; &nbsp;
                     <Localization>
                         {location.pathname.replace('/', '')}
-                    </Localization>
+                    </Localization> */}
                 </LogoAndLocalization>
                 <Nav>
                     <NavButton>Contact</NavButton>

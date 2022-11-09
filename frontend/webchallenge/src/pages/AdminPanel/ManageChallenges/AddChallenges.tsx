@@ -26,8 +26,8 @@ const submit = (
     formData.append('description', description);
     formData.append('tech', tech);
     formData.append('difficulty', difficulty);
-    const fileFilelist = file ?? new FileList;
-    const picturesFilelist = pictures ?? new FileList;
+    const fileFilelist = file ?? new FileList();
+    const picturesFilelist = pictures ?? new FileList();
     for (let i = 0; i < fileFilelist.length; i++) {
         formData.append('files', fileFilelist.item(i) as Blob);
     }
@@ -49,54 +49,36 @@ const AddChallenges: React.FC = () => {
         <Container>
             <FormContainer>
                 Add new challenge
-                <div
-                    style={{
-                        transform: 'translateX(-100px)',
-                    }}
-                >
-                    <CustomLabel htmlFor='challengeTitle'>Title:</CustomLabel>
+                <div>
                     <CustomInputText
+                        placeholder='Title'
                         type='text'
                         id='challengeTitle'
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
                 </div>
-                <div
-                    style={{
-                        transform: 'translateX(-100px)',
-                    }}
-                >
-                    <CustomLabel htmlFor='challengeDescription'>
-                        Description:
-                    </CustomLabel>
+                <div>
                     <CustomTextArea
+                        placeholder='Description'
                         id='challengeDescription'
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
                 </div>
-                <div
-                    style={{
-                        transform: 'translateX(-100px)',
-                    }}
-                >
-                    <CustomLabel htmlFor='challengeTech'>Tech:</CustomLabel>
+                <div>
                     <CustomInputText
+                        placeholder='Technologies'
                         type='text'
                         id='challengeTech'
                         value={tech}
                         onChange={e => setTech(e.target.value)}
                     />
                 </div>
-                <div
-                    style={{
-                        transform: 'translateX(-100px)',
-                    }}
-                >
-                    <CustomLabel htmlFor='challengeDifficulty'>Difficulty:</CustomLabel>
+                <div>
                     <CustomInputText
                         type='text'
+                        placeholder='Difficulty'
                         id='challengeDifficulty'
                         value={difficulty}
                         onChange={e => setDifficulty(e.target.value)}
@@ -134,7 +116,14 @@ const AddChallenges: React.FC = () => {
                 {/* <input type="text" value={title} onChange={((e) => setTitle(e.target.value))} /><br/> */}
                 <SubmitButton
                     onClick={() => {
-                        submit(title, description, tech, difficulty, pictures, file);
+                        submit(
+                            title,
+                            description,
+                            tech,
+                            difficulty,
+                            pictures,
+                            file
+                        );
                     }}
                 >
                     Submit

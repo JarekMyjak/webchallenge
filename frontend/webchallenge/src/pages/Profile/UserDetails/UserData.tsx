@@ -1,4 +1,5 @@
 import React from 'react';
+import {useUser} from '../../../api/useAuth';
 import {
     Wrapper,
     Avatar,
@@ -14,12 +15,18 @@ import {
     MyWebiste,
     WebsiteText,
     WebsiteImg,
-} from './UserData.styles';
+} from './userData.styles';
+import linkedinIcon from '../../../assets/icons/linkedin.png';
+import githubIcon from '../../../assets/icons/github.png';
+import twitterIcon from '../../../assets/icons/twitter.png';
+import websiteIcon from '../../../assets/icons/website.png';
 
 const UserData: React.FC = () => {
+    const user = useUser(state => state.user);
+
     return (
         <Wrapper>
-            <Avatar src='./src/assets/images/landing/First_avatar_comment.jpeg' />
+            <Avatar src={user?.avatar} />
             <UserInfo>
                 <NameWrapper>
                     <Username>John Paul</Username>
@@ -29,14 +36,14 @@ const UserData: React.FC = () => {
                     <Socials>
                         <SocialText>Social profile connection</SocialText>
                         <SocialLinks>
-                            <SocialImg src='./src/assets/icons/linkedin.png' />
-                            <SocialImg src='./src/assets/icons/github.png' />
-                            <SocialImg src='./src/assets/icons/twitter.png' />
+                            <SocialImg src={linkedinIcon} />
+                            <SocialImg src={githubIcon} />
+                            <SocialImg src={twitterIcon} />
                         </SocialLinks>
                     </Socials>
                     <MyWebiste>
                         <WebsiteText>My Private website</WebsiteText>
-                        <WebsiteImg src='./src/assets/icons/website.png' />
+                        <WebsiteImg src={websiteIcon} />
                     </MyWebiste>
                 </LinkSection>
             </UserInfo>

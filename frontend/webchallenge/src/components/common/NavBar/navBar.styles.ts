@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import colors from '../../../helpers/colors.helpers';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export const Wrapper = styled.div`
     background-color: ${colors.navBarBackground};
@@ -57,7 +57,7 @@ export const LoginAndRegister = styled.div`
     margin-left: 10px;
 `;
 
-export const LoginLink = styled("a")`
+export const LoginLink = styled.a`
     width: 180px;
     height: 36px;
     border: 2px solid ${colors.iris};
@@ -74,7 +74,9 @@ export const LoginLink = styled("a")`
     background-color: ${colors.iris};
     color: white;
     text-decoration: none;
-    &:hover, &:focus, &:focus-visible {
+    &:hover,
+    &:focus,
+    &:focus-visible {
         background-color: ${colors.irisDark};
     }
 `;
@@ -86,11 +88,18 @@ export const LoginLogo = styled.img`
 `;
 
 /// LOGGED
+//xD fuszera
+interface ILoggedLogo {
+    isAdminPanel: boolean;
+}
 
-export const LoggedLogo = styled.div`
+export const LoggedLogo = styled.div<ILoggedLogo>`
     width: 70px;
     height: 57px;
-    background-color: ${colors.orange};
+    ${p =>
+        p.isAdminPanel
+            ? `background-color: ${colors.navBarBackground}`
+            : `background-color: ${colors.orange}`};
     margin-right: 30px;
 `;
 

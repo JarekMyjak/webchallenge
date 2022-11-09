@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUser } from '../../api/useAuth';
+import {useUser} from '../../api/useAuth';
 import TitleBar from '../../components/TitleBar';
 import {
     Container,
@@ -18,10 +18,10 @@ import {
     UpdateContainer,
     UpdateButton,
     Text,
-} from './Settings.styles';
+} from './settings.styles';
 
 const Settings: React.FC = () => {
-    const user = useUser(state => state.user)
+    const user = useUser(state => state.user);
 
     return (
         <Container>

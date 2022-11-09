@@ -4,16 +4,14 @@ import AboutUser from './AboutUser';
 import ChallengeData from './ChallengeData';
 import UserContact from './UserContact';
 import UserData from './UserData';
-import {Container} from './UserDetails.styles';
+import {Container} from './userDetails.styles';
+import detailsIcon from '../../../assets/icons/user_icon.png';
 
 const UserDetails: React.FC = () => {
     return (
         <Container>
             <UserData />
-            <TitleBar
-                imageSrc='./src/assets/icons/user_icon.png'
-                text='Profile Details'
-            />
+            <TitleBar imageSrc={detailsIcon} text='Profile Details' />
             <AboutUser />
             <UserContact />
             <ChallengeData />

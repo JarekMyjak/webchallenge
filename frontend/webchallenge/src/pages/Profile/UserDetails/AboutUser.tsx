@@ -1,5 +1,5 @@
 import React from 'react';
-import {Wrapper, Description, DescTitle, DescText} from './AboutUser.styles';
+import {Wrapper, Description, DescTitle, DescText} from './aboutUser.styles';
 
 const AboutUser: React.FC = () => {
     return (

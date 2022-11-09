@@ -14,12 +14,12 @@ export const Container = styled.div`
 `;
 
 export const FormContainer = styled.div`
-    height: 600px;
-    width: 800px;
+    min-height: 600px;
+    width: 700px;
     background-color: ${colors.backgroundPrimary};
     color: white;
     font-size: 24px;
-    padding: 5px 10px;
+    padding: 15px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,6 +48,7 @@ export const CustomInputText = styled.input`
     transition: 0.2s;
     padding-left: 5px;
     color: white;
+    border-left: 2px solid ${colors.backgroundSecondary};
     &:focus {
         outline: none;
         border-left: 2px solid ${colors.orange};
@@ -66,6 +67,7 @@ export const CustomTextArea = styled.textarea`
     transition: 0.2s;
     padding-left: 5px;
     color: white;
+    border-left: 2px solid ${colors.backgroundSecondary};
     &:focus {
         outline: none;
         border-left: 2px solid ${colors.orange};

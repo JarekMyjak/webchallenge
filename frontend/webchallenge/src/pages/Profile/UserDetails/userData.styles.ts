@@ -10,6 +10,7 @@ export const Avatar = styled.img`
     height: 170px;
     border-radius: 40px;
     object-fit: cover;
+    box-shadow: 1px 1px 10px black;
 `;
 
 export const UserInfo = styled.div`
