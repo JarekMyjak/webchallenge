@@ -12,7 +12,7 @@ import {
     Description,
     Text,
     Image,
-} from './HowItWorksSection.styles';
+} from './howItWorksSection.styles';
 
 const HowItWorksSection: React.FC = () => {
     return (

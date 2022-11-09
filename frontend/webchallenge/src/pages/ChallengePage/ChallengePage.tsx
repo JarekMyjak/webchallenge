@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import colors from '../../helpers/colors.helpers';
 import TopSection from './TopSection';
 import {useParams} from 'react-router-dom';
-import {Challenge, downloadChallengeUrl, getChallenge} from '../../api/apiChallenges';
+import {
+    Challenge,
+    downloadChallengeUrl,
+    getChallenge,
+} from '../../api/apiChallenges';
 
 const ChallengePage: React.FC = () => {
     const {challengeId} = useParams();
@@ -19,12 +23,14 @@ const ChallengePage: React.FC = () => {
 
     return (
         <Wrapper>
-            {challenge && <>
-            <p>{challenge?.title}</p>
-			<a href={downloadChallengeUrl(challenge?.id)}>download</a>
-            </>}
+            {challenge && (
+                <>
+                    TBA:
+                    <a href={downloadChallengeUrl(challenge?.id)}>download</a>
+                </>
+            )}
             {/* <>{challengeId}</> */}
-            <TopSection />
+            <TopSection title={challenge?.title} />
         </Wrapper>
     );
 };
@@ -33,7 +39,7 @@ export default ChallengePage;
 
 const Wrapper = styled.div`
     width: 1250px;
-    height: 500px;
+    min-height: 500px;
     background-color: ${colors.backgroundSecondary};
     box-sizing: border-box;
     padding: 45px 60px;

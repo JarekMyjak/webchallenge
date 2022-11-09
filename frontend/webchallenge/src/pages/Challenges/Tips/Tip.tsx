@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-import colors from '../../../helpers/colors.helpers';
 import {Wrapper, BigNumber, TextContent, Title, Text} from './Tip.styles';
 
 interface ITip {

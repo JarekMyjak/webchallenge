@@ -10,15 +10,13 @@ import {
     Wrapper,
 } from './Challenges.styles';
 import firstCard from '../../../assets/images/landing/First_card.jpg';
+import bookmarkIcon from '../../../assets/icons/bookmark.png';
 
 const Challenges: React.FC = () => {
     return (
         <Wrapper>
             <TopBar>
-                <TitleBar
-                    imageSrc='./src/assets/icons/bookmark.png'
-                    text='Your challenges'
-                />
+                <TitleBar imageSrc={bookmarkIcon} text='Your challenges' />
                 <Filters>
                     <Filter>Sort By</Filter>
                     <Filter>Filter By</Filter>

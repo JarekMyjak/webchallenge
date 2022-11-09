@@ -17,7 +17,8 @@ import {
     TechnologiesList,
     Expirience,
     StartButton,
-} from './TopSection.styles';
+} from './topSection.styles';
+import fistCardImg from '../../assets/images/landing/First_card.jpg';
 
 export const enum techs {
     html = 'HTML',
@@ -32,6 +33,7 @@ interface ITopSection {
     exp?: 'begginer' | 'intermediate' | 'advanced';
     technologies?: techs[];
     premium?: boolean;
+    title?: string;
 }
 
 const TopSection: React.FC<ITopSection> = props => {
@@ -52,7 +54,7 @@ const TopSection: React.FC<ITopSection> = props => {
         <Wrapper>
             <ImageAndButtons>
                 <ImageWrapper>
-                    <Image src='./src/assets/images/landing/First_card.jpg' />
+                    <Image src={fistCardImg} />
                 </ImageWrapper>
                 <ButtonsWrapper>
                     <ButtonView active={true}>Desktop design</ButtonView>
@@ -63,7 +65,7 @@ const TopSection: React.FC<ITopSection> = props => {
             <ChallengeData>
                 <Info>
                     <TitleBar>
-                        <Title>WeatherApp</Title>
+                        <Title>{props.title}</Title>
                         <Status isPremium={true}>{true ? 'P' : 'F'}</Status>
                     </TitleBar>
                     <Description>
@@ -91,7 +93,7 @@ const TopSection: React.FC<ITopSection> = props => {
                         </Expirience>
                     </TechnologiesAndExperience>
                 </Info>
-                <StartButton>Active challenge</StartButton>
+                <StartButton>Download</StartButton>
             </ChallengeData>
         </Wrapper>
     );

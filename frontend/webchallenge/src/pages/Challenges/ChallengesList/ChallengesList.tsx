@@ -6,9 +6,14 @@ import {
     TitleAndOptions,
     Options,
     List,
-} from './ChallengesList.styles';
-import {Challenge, downloadChallengeUrl, getChallenges} from '../../../api/apiChallenges';
-import { Link } from 'react-router-dom';
+} from './challengesList.styles';
+import {
+    Challenge,
+    downloadChallengeUrl,
+    getChallenges,
+} from '../../../api/apiChallenges';
+import {Link} from 'react-router-dom';
+import bookmarkIcon from '../../../assets/icons/bookmark.png';
 
 const ChallengesList: React.FC = () => {
     const [challenges, setChallenges] = useState<Challenge[]>([]);
@@ -22,28 +27,31 @@ const ChallengesList: React.FC = () => {
     return (
         <Container>
             <TitleAndOptions>
-                <TitleBar
-                    imageSrc='./src/assets/icons/bookmark.png'
-                    text='All challenges'
-                />
+                <TitleBar imageSrc={bookmarkIcon} text='All challenges' />
                 {/* <Options>TODO</Options> */}
             </TitleAndOptions>
             <List>
                 {challenges.map(c => (
                     <React.Fragment key={`fragment${c.id}`}>
-                        <ChallengeCard
-                            key={`challengeCard${c.id}`}
-                            exp={c.experience}
-                            technologies={[techs.html, techs.css, techs.react]}
-                            premium={true}
-                            title={c.title}
-                            description={c.description}
-                            image={c.imageUrls[0]}
-                        />
-                        <Link to={c.id}>page</Link>
-                        <a href={downloadChallengeUrl(c.id)}>download</a>
+                        <Link to={c.id}>
+                            <ChallengeCard
+                                key={`challengeCard${c.id}`}
+                                exp={c.experience}
+                                technologies={[
+                                    techs.html,
+                                    techs.css,
+                                    techs.react,
+                                ]}
+                                premium={true}
+                                title={c.title}
+                                description={c.description}
+                                image={c.imageUrls[0]}
+                            />
+                        </Link>
+                        {/* <a href={downloadChallengeUrl(c.id)}>download</a> */}
                     </React.Fragment>
                 ))}
+
                 {/* <ChallengeCard
                     exp='advanced'
                     technologies={[techs.html, techs.css, techs.react]}
@@ -53,47 +61,7 @@ const ChallengesList: React.FC = () => {
                         available, but the majority have suffered alteration in
                         some form, by injected humour, or randomised'
                     image='./src/assets/images/landing/First_card.jpg'
-                />
-                <ChallengeCard
-                    exp='advanced'
-                    technologies={[techs.html, techs.css, techs.react]}
-                    premium={true}
-                    title='Advice generator app'
-                    description='There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration in
-                        some form, by injected humour, or randomised'
-                    image='./src/assets/images/landing/First_card.jpg'
-                />
-                <ChallengeCard
-                    exp='advanced'
-                    technologies={[techs.html, techs.css, techs.react]}
-                    premium={true}
-                    title='Advice generator app'
-                    description='There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration in
-                        some form, by injected humour, or randomised'
-                    image='./src/assets/images/landing/First_card.jpg'
-                />
-                <ChallengeCard
-                    exp='advanced'
-                    technologies={[techs.html, techs.css, techs.react]}
-                    premium={true}
-                    title='Advice generator app'
-                    description='There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration in
-                        some form, by injected humour, or randomised'
-                    image='./src/assets/images/landing/First_card.jpg'
-                />
-                <ChallengeCard
-                    exp='advanced'
-                    technologies={[techs.html, techs.css, techs.react]}
-                    premium={true}
-                    title='Advice generator app'
-                    description='There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration in
-                        some form, by injected humour, or randomised'
-                    image='./src/assets/images/landing/First_card.jpg'
-                /> */}
+                />  */}
             </List>
         </Container>
     );
