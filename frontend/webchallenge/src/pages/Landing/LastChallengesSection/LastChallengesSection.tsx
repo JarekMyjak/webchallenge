@@ -9,6 +9,9 @@ import {
     MoreChallenges,
     Bar,
 } from './lastChallengesSection.styles';
+import firstCardImg from '../../../assets/images/landing/First_card.jpg';
+import secondCardImg from '../../../assets/images/landing/Second_card.jpg';
+import thirdCardImg from '../../../assets/images/landing/Third_card.jpg';
 
 const LastCardsSection: React.FC = () => {
     return (
@@ -28,7 +31,7 @@ const LastCardsSection: React.FC = () => {
                         description='There are many variations of passages of Lorem Ipsum
                         available, but the majority have suffered alteration in
                         some form, by injected humour, or randomised'
-                        image='./src/assets/images/landing/First_card.jpg'
+                        image={firstCardImg}
                     />
                     <ChallengeCard
                         exp='begginer'
@@ -43,7 +46,7 @@ const LastCardsSection: React.FC = () => {
                         description='If you are going to use a passage of Lorem Ipsum,
                          you need to be sure there isnt anything embarrassing 
                          hidden in the middle of text.'
-                        image='./src/assets/images/landing/Second_card.jpg'
+                        image={secondCardImg}
                     />
                     <ChallengeCard
                         exp='intermediate'
@@ -53,7 +56,7 @@ const LastCardsSection: React.FC = () => {
                         description='If you are going to use a passage of Lorem Ipsum, 
                         you need to be sure there isnt anything embarrassing 
                         hidden in the middle of text.'
-                        image='./src/assets/images/landing/Third_card.jpg'
+                        image={thirdCardImg}
                     />
                 </Cards>
                 <MoreChallenges>
