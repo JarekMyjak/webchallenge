@@ -1,4 +1,3 @@
-import { Console } from 'console';
 import { Router } from 'express';
 import { upload } from '../../middleware/multer';
 
@@ -22,7 +21,7 @@ router.post('/challenge/:id', requireJwtAuth, async (req, res) => {
         userId: user._id,
         githubUrl: req.body.githubUrl,
         pagesUrl: req.body.pagesUrl,
-        comment: req.body.comment,
+        description: req.body.description,
     }).save();
 });
 
@@ -35,8 +34,10 @@ router.get('/challenge/:id', requireJwtAuth, async (req, res) => {
 });
 
 router.get('/user/:id', async (req, res) => {
-    const entries = await Entry.find({userId: req.params["id"]});
-    const resEntries = entries.map(entry => entry.toJSON());
+    const userEntry = req.user as userType;
+    const user = await User.findOne({ githubId: userEntry.githubId });
+    const entries = await Entry.find({ userId: req.params["id"]});
+    const resEntries = entries.map(entry => entry.userJSON(user.id));
     res.send(resEntries)
 });
 
@@ -53,6 +54,14 @@ router.post('/:id/dislike', requireJwtAuth, async (req, res) => {
     const user = await User.findOne({ githubId: userEntry.githubId });
     const entry = await Entry.findByIdAndUpdate(req.params.id, {$pull: {likedUserIds: user.id}})
 
+    res.sendStatus(200);
+});
+
+router.post('/:id/comment', requireJwtAuth, async (req, res) => {
+    const userEntry = req.user as userType;
+    const user = await User.findOne({ githubId: userEntry.githubId });
+    const newComment = {userId: user.id, userName: user.username, content: req.body.content}
+    const entry = await Entry.findByIdAndUpdate(req.params.id, {$push: {comments: newComment}})
     res.sendStatus(200);
 });
 

@@ -6,9 +6,16 @@ export interface Entry {
     userId: string,
     githubUrl: string,
     pagesUrl: string,
-    comment: string,
+    description: string,
     likes: number,
     liked: number,
+    comments: Comment[]
+}
+
+export interface Comment {
+    id: string;
+    userName: String;
+    content: String;
 }
 
 export const getEntriesByChallengeId = async (challengeId: string) => {
@@ -27,6 +34,10 @@ export const getEntriesByUserId = async (userId: string) => {
 
 export const postLikeToEntry = async (entryId: string) => {
     const res = await apiPost(`/api/entries/${entryId}/like`, {}).then(res => {});
+}
+
+export const postCommentToEntry = async (entryId: string) => {
+    const res = await apiPost(`/api/entries/${entryId}/comment`, {content: "content from frontend"}).then(res => {});
 }
 
 export const postDislikeToEntry = async (entryId: string) => {

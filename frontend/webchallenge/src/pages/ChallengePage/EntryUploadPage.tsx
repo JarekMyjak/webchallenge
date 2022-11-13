@@ -14,7 +14,7 @@ import { apiPost } from '../../api/apiMethods';
 interface Inputs {
     githubUrl: string;
     pagesUrl: string;
-    comment: string;
+    description: string;
 }
 
 const EntryUploadPage: React.FC = () => {
@@ -54,9 +54,9 @@ const EntryUploadPage: React.FC = () => {
                         </label>
                         <br />
                         <label>
-                            <span>your comment</span>
+                            <span>your description</span>
                             <br />
-                            <input {...register('comment')} />
+                            <input {...register('description')} />
                         </label>
                         <br />
                         <button type='submit'>submit</button>

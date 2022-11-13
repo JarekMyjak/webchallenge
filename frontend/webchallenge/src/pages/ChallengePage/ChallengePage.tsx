@@ -11,6 +11,7 @@ import {
 import {
     Entry,
     getEntriesByChallengeId,
+    postCommentToEntry,
     postDislikeToEntry,
     postLikeToEntry,
 } from '../../api/apiEntries';
@@ -54,9 +55,12 @@ const ChallengePage: React.FC = () => {
                 {entries.map(e => (
                     <>
                         <p>{e.githubUrl}</p>
-                        <p>{e.comment}</p>
+                        <p>{e.description}</p>
                         <p>{e.likes}</p>
                         <p>{e.liked ? 'liked' : 'not liked'}</p>
+                        <p>{e.comments.map((c) => <p>{c.content}</p>)}</p>
+
+
                         <button
                             onClick={() => {
                                 postDislikeToEntry(e.id);
@@ -70,6 +74,14 @@ const ChallengePage: React.FC = () => {
                             }}
                         >
                             star
+                        </button>
+
+                        <button
+                            onClick={() => {
+                                postCommentToEntry(e.id);
+                            }}
+                        >
+                            comment
                         </button>
                     </>
                 ))}
