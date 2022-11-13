@@ -17,6 +17,7 @@ import ListOfChallenges from './pages/AdminPanel/ManageChallenges/ListOfChalleng
 import EditChallenge from './pages/AdminPanel/ManageChallenges/EditChallenge';
 import ChallengePage from './pages/ChallengePage/ChallengePage';
 import ChallengeUpload from './pages/ChallengePage/EntryUploadPage';
+import Guard from './components/utils/Guard';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -33,45 +34,64 @@ const App: React.FC = () => {
                     '/adminpanel/listofchallenges',
                     '/adminpanel/editchallenge',
                 ].includes(location.pathname) && <Leftbar />}
+                <Guard>
+                    <Content>
+                        <Routes>
+                            <Route path='/' element={<Landing />} />
 
-                <Content>
-                    <Routes>
-                        <Route path='/' element={<Landing />}></Route>
-
-                        <Route path='adminpanel' element={<AdminPanel />}>
+                            <Route path='adminpanel' element={<AdminPanel />}>
+                                <Route
+                                    path='addchallenges'
+                                    element={<AddChallenges />}
+                                />
+                                <Route
+                                    path='listofchallenges'
+                                    element={<ListOfChallenges />}
+                                />
+                                <Route //TODO
+                                    path='editchallenge'
+                                    element={<EditChallenge />}
+                                />
+                            </Route>
                             <Route
-                                path='addchallenges'
-                                element={<AddChallenges />}
-                            />
+                                path='/authhandler'
+                                element={<AuthHandler />}
+                            ></Route>
                             <Route
-                                path='listofchallenges'
-                                element={<ListOfChallenges />}
-                            />
-                            <Route //TODO
-                                path='editchallenge'
-                                element={<EditChallenge />}
-                            />
-                        </Route>
-                        <Route
-                            path='/authhandler'
-                            element={<AuthHandler />}
-                        ></Route>
-                        <Route path='/profile' element={<Profile />}></Route>
-                        <Route path='/settings' element={<Settings />}></Route>
-                        <Route path='/premium' element={<Premium />}></Route>
-                        {/* <Route
+                                path='/profile'
+                                element={<Profile />}
+                            ></Route>
+                            <Route
+                                path='/settings'
+                                element={<Settings />}
+                            ></Route>
+                            <Route
+                                path='/premium'
+                                element={<Premium />}
+                            ></Route>
+                            {/* <Route
                             path='/challenge'
                             element={<Challenge />}
                         ></Route> */}
-                        <Route path='/challenges' element={<Challenges />}></Route>
-                        <Route path='/challenges/:challengeId' element={<ChallengePage />}></Route>
-                        <Route path='/challenges/:challengeId/upload' element={<ChallengeUpload />}></Route>
-                        <Route
-                            path='*'
-                            element={<>NOTING HERE ZULUL</>}
-                        ></Route>
-                    </Routes>
-                </Content>
+                            <Route
+                                path='/challenges'
+                                element={<Challenges />}
+                            ></Route>
+                            <Route
+                                path='/challenges/:challengeId'
+                                element={<ChallengePage />}
+                            ></Route>
+                            <Route
+                                path='/challenges/:challengeId/upload'
+                                element={<ChallengeUpload />}
+                            ></Route>
+                            <Route
+                                path='*'
+                                element={<>NOTING HERE ZULUL</>}
+                            ></Route>
+                        </Routes>
+                    </Content>
+                </Guard>
             </ContentWrapper>
             <Footer />
         </Container>

@@ -123,6 +123,7 @@ export const AnnouncesAndUser = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 40px;
 `;
 
 export const TempAnnounce = styled.img`
@@ -138,6 +139,8 @@ export const UserAvatar = styled.img`
     background-color: ${colors.backgroundSecondary};
     border-radius: 5px;
     object-fit: cover;
+    cursor: pointer;
+    position: relative;
 `;
 
 export const CustomLink = styled(Link)`

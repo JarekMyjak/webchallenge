@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Wrapper,
     Logo,
@@ -20,14 +20,21 @@ import {useLocation} from 'react-router-dom';
 import github from '../../../assets/icons/github.svg';
 import {useUser} from '../../../api/useAuth';
 import {authUrl} from '../../../api/AuthHandler';
+import Menu from './Menu';
+import ClickAwayListener from 'react-click-away-listener';
 
 // const add = addChallenge();
 const NavBar: React.FC = () => {
-    const location = useLocation();
-    //TEMP Verbiable
-    const user = useUser(state => state.user);
-    const logged = false;
+    const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
+    const location = useLocation();
+    const user = useUser(state => state.user);
+
+    const closeMenuHandler = () => {
+        setMenuOpen(false);
+    };
+
+    console.log(user);
     if (user)
         return (
             <Wrapper>
@@ -49,12 +56,15 @@ const NavBar: React.FC = () => {
                         <NavButton>Challenges</NavButton>
                     </CustomLink>
                     <NavButton>Premium</NavButton>
-                    {/* <NavButton onClick={() => login()}>test</NavButton> */}
-                    <AnnouncesAndUser>
-                        {user.name}
-                        <TempAnnounce src='https://i.imgur.com/JN9OLX6.png' />
-                        <UserAvatar src={user.avatar} />
-                    </AnnouncesAndUser>
+                    <ClickAwayListener onClickAway={closeMenuHandler}>
+                        <AnnouncesAndUser>
+                            <UserAvatar
+                                src={user.avatar}
+                                onClick={() => setMenuOpen(p => !p)}
+                            />
+                            <Menu isOpen={menuOpen} />
+                        </AnnouncesAndUser>
+                    </ClickAwayListener>
                 </Nav>
             </Wrapper>
         );
