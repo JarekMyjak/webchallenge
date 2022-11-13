@@ -86,5 +86,7 @@ const Wrapper = styled.div`
     background-color: ${colors.backgroundSecondary};
     box-sizing: border-box;
     padding: 45px 60px;
-    margin: 2rem 0 2rem;
+    margin: 2rem 0;
+    border-radius: 3px;
+    box-shadow: 1px 1px 7px black;
 `;

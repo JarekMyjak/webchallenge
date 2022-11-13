@@ -33,10 +33,13 @@ const azureStorage: MulterAzureStorage = new MulterAzureStorage({
     blobName: resolveBlobName,
     metadata: resolveMetadata,
     contentSettings: resolveContentSettings,
-    containerAccessLevel: 'blob',
-    urlExpirationTime: 60
+    containerAccessLevel: 'blob'
 });
 
 export const upload = multer({
     storage: azureStorage
 });
+
+export const removeUrlParams = (url: string) => {
+    return url.split('?')[0];
+};
