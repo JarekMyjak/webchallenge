@@ -11,7 +11,7 @@ router.post('/', requireAdmin, upload.any(), async (req, res) => {
 
     const fileArray = req.files as Array<extendedFile>;
     const urlArr = fileArray.map(file => file.url);
-    
+    console.log(urlArr);
     const newChallenge = await new Challenge({
         title: req.body.title,
         description: req.body.description,
@@ -34,7 +34,8 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    const challenge = await Challenge.findOne({_id: req.params["id"]});
+    // const challenge = await Challenge.findOne({_id: req.params["id"]});
+    const challenge = await Challenge.findById(req.params["id"]);
     const resChallenge = challenge.toJSON();
     res.send(resChallenge)
 });

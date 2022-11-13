@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
 
 const { Schema } = mongoose;
 
 export interface userType {
+    _id: String;
     provider: String;
     username: String;
     email: String;

@@ -19,7 +19,6 @@ import {
 import {useLocation} from 'react-router-dom';
 import github from '../../../assets/icons/github.svg';
 import {useUser} from '../../../api/useAuth';
-import {apiGet, apiPost} from '../../../api/apiMethods';
 import {authUrl} from '../../../api/AuthHandler';
 
 // const add = addChallenge();

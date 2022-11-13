@@ -8,30 +8,73 @@ import {
     downloadChallengeUrl,
     getChallenge,
 } from '../../api/apiChallenges';
+import {
+    Entry,
+    getEntriesByChallengeId,
+    postDislikeToEntry,
+    postLikeToEntry,
+} from '../../api/apiEntries';
 
 const ChallengePage: React.FC = () => {
     const {challengeId} = useParams();
     const [challenge, setChallenge] = useState<Challenge | undefined>();
+    const [entries, setEntries] = useState<Entry[]>([]);
 
     useEffect(() => {
         if (challengeId) {
             (async () => {
                 setChallenge(await getChallenge(challengeId));
             })();
+
+            (async () => {
+                setEntries(await getEntriesByChallengeId(challengeId));
+            })();
         }
     }, []);
 
     return (
-        <Wrapper>
-            {challenge && (
-                <>
-                    TBA:
-                    <a href={downloadChallengeUrl(challenge?.id)}>download</a>
-                </>
-            )}
-            {/* <>{challengeId}</> */}
-            <TopSection title={challenge?.title} />
-        </Wrapper>
+        <>
+            <Wrapper>
+                {challenge && (
+                    <>
+                        TBA:
+                        <a href={downloadChallengeUrl(challenge?.id)}>
+                            download
+                        </a>
+                        <br />
+                        <a href={`${challengeId}/upload`}>upload your entry</a>
+                    </>
+                )}
+                {/* <>{challengeId}</> */}
+                <TopSection title={challenge?.title} />
+            </Wrapper>
+            <Wrapper>
+                Entries:
+                {console.log(entries)}
+                {entries.map(e => (
+                    <>
+                        <p>{e.githubUrl}</p>
+                        <p>{e.comment}</p>
+                        <p>{e.likes}</p>
+                        <p>{e.liked ? 'liked' : 'not liked'}</p>
+                        <button
+                            onClick={() => {
+                                postDislikeToEntry(e.id);
+                            }}
+                        >
+                            unstar
+                        </button>
+                        <button
+                            onClick={() => {
+                                postLikeToEntry(e.id);
+                            }}
+                        >
+                            star
+                        </button>
+                    </>
+                ))}
+            </Wrapper>
+        </>
     );
 };
 
@@ -43,4 +86,5 @@ const Wrapper = styled.div`
     background-color: ${colors.backgroundSecondary};
     box-sizing: border-box;
     padding: 45px 60px;
+    margin: 2rem 0 2rem;
 `;

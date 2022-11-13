@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {apiGet, apiPost} from '../../../api/apiMethods';
 import {
     Container,
     FormContainer,

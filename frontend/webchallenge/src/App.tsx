@@ -11,11 +11,12 @@ import Profile from './pages/Profile/Profile';
 import Settings from './pages/Settings/Settings';
 import AdminPanel from './pages/AdminPanel/AdminPanel';
 import AddChallenges from './pages/AdminPanel/ManageChallenges/AddChallenges';
-import Challenge from './pages/ChallengePage/ChallengePage';
 import Challenges from './pages/Challenges/Challenges';
 import Premium from './pages/Premium/Premium';
 import ListOfChallenges from './pages/AdminPanel/ManageChallenges/ListOfChallenges';
 import EditChallenge from './pages/AdminPanel/ManageChallenges/EditChallenge';
+import ChallengePage from './pages/ChallengePage/ChallengePage';
+import ChallengeUpload from './pages/ChallengePage/EntryUploadPage';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -63,7 +64,8 @@ const App: React.FC = () => {
                             element={<Challenge />}
                         ></Route> */}
                         <Route path='/challenges' element={<Challenges />}></Route>
-                        <Route path='/challenges/:challengeId' element={<Challenge />}></Route>
+                        <Route path='/challenges/:challengeId' element={<ChallengePage />}></Route>
+                        <Route path='/challenges/:challengeId/upload' element={<ChallengeUpload />}></Route>
                         <Route
                             path='*'
                             element={<>NOTING HERE ZULUL</>}
