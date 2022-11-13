@@ -10,6 +10,7 @@ interface IMenu {
 
 const Menu: React.FC<IMenu> = props => {
     const user = useUser(state => state.user);
+    const logout = useUser().logout;
 
     return (
         <Container isOpen={props.isOpen}>
@@ -17,7 +18,9 @@ const Menu: React.FC<IMenu> = props => {
             {user?.role === 'USER' && (
                 <Button to='/adminpanel'>Admin panel</Button>
             )}
-            <Button to='/'>Logout</Button>
+            <Button to='/' onClick={() => logout()}>
+                Logout
+            </Button>
         </Container>
     );
 };

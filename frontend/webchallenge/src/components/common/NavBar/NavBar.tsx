@@ -29,7 +29,6 @@ const NavBar: React.FC = () => {
 
     const location = useLocation();
     const user = useUser(state => state.user);
-    const logout = useUser().logout;
 
     const closeMenuHandler = () => {
         setMenuOpen(false);
