@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes, useLocation} from 'react-router-dom';
+import {Navigate, Route, Routes, useLocation} from 'react-router-dom';
 import styled from 'styled-components';
 import AuthHandler from './api/AuthHandler';
 import Footer from './components/common/Footer/Footer';
@@ -34,64 +34,99 @@ const App: React.FC = () => {
                     '/adminpanel/listofchallenges',
                     '/adminpanel/editchallenge',
                 ].includes(location.pathname) && <Leftbar />}
-                <Guard>
-                    <Content>
-                        <Routes>
-                            <Route path='/' element={<Landing />} />
 
-                            <Route path='adminpanel' element={<AdminPanel />}>
-                                <Route
-                                    path='addchallenges'
-                                    element={<AddChallenges />}
-                                />
-                                <Route
-                                    path='listofchallenges'
-                                    element={<ListOfChallenges />}
-                                />
-                                <Route //TODO
-                                    path='editchallenge'
-                                    element={<EditChallenge />}
-                                />
-                            </Route>
+                <Content>
+                    <Routes>
+                        <Route path='/' element={<Landing />} />
+                        <Route path='/authhandler' element={<AuthHandler />} />
+                        <Route
+                            path='adminpanel'
+                            element={
+                                <Guard>
+                                    <AdminPanel />
+                                </Guard>
+                            }
+                        >
                             <Route
-                                path='/authhandler'
-                                element={<AuthHandler />}
-                            ></Route>
+                                path='addchallenges'
+                                element={
+                                    <Guard>
+                                        <AddChallenges />
+                                    </Guard>
+                                }
+                            />
                             <Route
-                                path='/profile'
-                                element={<Profile />}
-                            ></Route>
-                            <Route
-                                path='/settings'
-                                element={<Settings />}
-                            ></Route>
-                            <Route
-                                path='/premium'
-                                element={<Premium />}
-                            ></Route>
-                            {/* <Route
+                                path='listofchallenges'
+                                element={
+                                    <Guard>
+                                        <ListOfChallenges />
+                                    </Guard>
+                                }
+                            />
+                            <Route //TODO
+                                path='editchallenge'
+                                element={
+                                    <Guard>
+                                        <EditChallenge />
+                                    </Guard>
+                                }
+                            />
+                        </Route>
+                        <Route
+                            path='/profile'
+                            element={
+                                <Guard>
+                                    <Profile />
+                                </Guard>
+                            }
+                        />
+                        <Route
+                            path='/settings'
+                            element={
+                                <Guard>
+                                    <Settings />
+                                </Guard>
+                            }
+                        />
+                        <Route
+                            path='/premium'
+                            element={
+                                <Guard>
+                                    <Premium />
+                                </Guard>
+                            }
+                        />
+                        {/* <Route
                             path='/challenge'
                             element={<Challenge />}
                         ></Route> */}
-                            <Route
-                                path='/challenges'
-                                element={<Challenges />}
-                            ></Route>
-                            <Route
-                                path='/challenges/:challengeId'
-                                element={<ChallengePage />}
-                            ></Route>
-                            <Route
-                                path='/challenges/:challengeId/upload'
-                                element={<ChallengeUpload />}
-                            ></Route>
-                            <Route
-                                path='*'
-                                element={<>NOTING HERE ZULUL</>}
-                            ></Route>
-                        </Routes>
-                    </Content>
-                </Guard>
+                        <Route
+                            path='/challenges'
+                            element={
+                                <Guard>
+                                    <Challenges />
+                                </Guard>
+                            }
+                        />
+                        <Route
+                            path='/challenges/:challengeId'
+                            element={
+                                <Guard>
+                                    <ChallengePage />
+                                </Guard>
+                            }
+                        />
+                        <Route
+                            path='/challenges/:challengeId/upload'
+                            element={
+                                <Guard>
+                                    <ChallengeUpload />
+                                </Guard>
+                            }
+                        />
+                        <Route path='*' element={<Navigate to='/' />} />
+                    </Routes>
+                </Content>
             </ContentWrapper>
             <Footer />
         </Container>

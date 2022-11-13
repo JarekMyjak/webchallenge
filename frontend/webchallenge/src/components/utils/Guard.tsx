@@ -1,16 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {useUser} from '../../api/useAuth';
 import {Navigate, useLocation} from 'react-router-dom';
 
-interface IGuard {
-    children: React.ReactNode;
-}
 
-const Guard: React.FC<IGuard> = props => {
+const Guard: FC = props => {
     const location = useLocation();
     const user = useUser(state => state.user);
 
-    if (location.pathname !== '/' && user === undefined) {
+    if (user === undefined) {
         return <Navigate to='/' />;
     }
 

@@ -23,7 +23,7 @@ export const useUser = create<userState>()(
             (set) => ({
                 user: undefined,
                 setUser: (user: user) => set({ user }),
-                logout: () => set({ user: undefined}),
+                logout: () => {set({ user: undefined}); set({ token: undefined});},
                 token: undefined,
                 setToken: (token: string) => set({ token }),
             }),
