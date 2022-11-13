@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { upload } from '../../middleware/multer';
+import { removeUrlParams, upload } from '../../middleware/multer';
 
 import requireAdmin from '../../middleware/requireAdmin';
 import Challenge, { challengeType } from '../../models/challenge';
@@ -10,8 +10,7 @@ type extendedFile = Express.Multer.File & {url: string}
 router.post('/', requireAdmin, upload.any(), async (req, res) => {
 
     const fileArray = req.files as Array<extendedFile>;
-    const urlArr = fileArray.map(file => file.url);
-    console.log(urlArr);
+    const urlArr = fileArray.map(file => removeUrlParams(file.url));
     const newChallenge = await new Challenge({
         title: req.body.title,
         description: req.body.description,
