@@ -27,6 +27,7 @@ const NavBar: React.FC = () => {
     //TEMP Verbiable
     const user = useUser(state => state.user);
     const logged = false;
+    const logout = useUser().logout;
 
     if (user)
         return (
@@ -49,6 +50,7 @@ const NavBar: React.FC = () => {
                         <NavButton>Challenges</NavButton>
                     </CustomLink>
                     <NavButton>Premium</NavButton>
+                    <button onClick={()=>logout()}>logout</button>
                     {/* <NavButton onClick={() => login()}>test</NavButton> */}
                     <AnnouncesAndUser>
                         {user.name}

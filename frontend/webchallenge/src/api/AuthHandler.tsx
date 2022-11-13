@@ -7,7 +7,7 @@ import { useUser } from './useAuth';
 export const authUrl = `${ApiBaseUrl}/auth/github`
 
 const AuthHandler = () => {
-    let [searchParams, setSearchParams] = useSearchParams();
+    let [searchParams] = useSearchParams();
     const jwt = searchParams.get("jwt");
     const setToken = useUser().setToken;
     const setUser = useUser().setUser;
@@ -18,7 +18,6 @@ const AuthHandler = () => {
         })
     }
 
-    // redirect("/");
     return (<Navigate replace to="/" />)
 }
 

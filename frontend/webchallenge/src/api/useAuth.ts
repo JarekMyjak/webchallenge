@@ -12,6 +12,7 @@ interface user {
 interface userState {
     user: user | undefined,
     setUser: (user: user) => void,
+    logout: () => void,
     token: string | undefined,
     setToken: (token: string) => void
 }
@@ -22,6 +23,7 @@ export const useUser = create<userState>()(
             (set) => ({
                 user: undefined,
                 setUser: (user: user) => set({ user }),
+                logout: () => set({ user: undefined}),
                 token: undefined,
                 setToken: (token: string) => set({ token }),
             }),
