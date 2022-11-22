@@ -15,11 +15,18 @@ import {
     postDislikeToEntry,
     postLikeToEntry,
 } from '../../api/apiEntries';
+import Loader from '../../components/Loader';
+import EntryUploadPage from './EntryUploadPage';
+import ClickAwayListener from 'react-click-away-listener';
 
 const ChallengePage: React.FC = () => {
     const {challengeId} = useParams();
     const [challenge, setChallenge] = useState<Challenge | undefined>();
     const [entries, setEntries] = useState<Entry[]>([]);
+    const [addDialogOpen, setAddDialogOpen] = useState<boolean>(false);
+
+    const openDialogHandler = () => setAddDialogOpen(true);
+    const closeDialogHandler = () => setAddDialogOpen(false);
 
     useEffect(() => {
         if (challengeId) {
@@ -34,67 +41,98 @@ const ChallengePage: React.FC = () => {
     }, []);
 
     return (
-        <>
-            <Wrapper>
-                {challenge && (
-                    <>
-                        TBA:
-                        <a href={downloadChallengeUrl(challenge?.id)}>
-                            download
-                        </a>
-                        <br />
-                        <a href={`${challengeId}/upload`}>upload your entry</a>
-                    </>
-                )}
-                {/* <>{challengeId}</> */}
-                <TopSection title={challenge?.title} />
-            </Wrapper>
-            <Wrapper>
-                Entries:
-                {console.log(entries)}
-                {entries.map(e => (
-                    <>
-                        <p>{e.githubUrl}</p>
-                        <p>{e.description}</p>
-                        <p>{e.likes}</p>
-                        <p>{e.liked ? 'liked' : 'not liked'}</p>
-                        <p>
-                            {e.comments.map(c => (
-                                <p>{c.content}</p>
-                            ))}
-                        </p>
+        <div
+            style={{
+                width: 'calc(100% - 57px)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}
+        >
+            {challenge ? (
+                <Container>
+                    <Wrapper>
+                        <TopSection
+                            title={challenge?.title}
+                            id={challenge?.id}
+                            onUploadClick={openDialogHandler}
+                        />
+                    </Wrapper>
+                    <Wrapper>
+                        Entries:
+                        {console.log(entries)}
+                        {entries.map(e => (
+                            <>
+                                <p>{e.githubUrl}</p>
+                                <p>{e.description}</p>
+                                <p>{e.likes}</p>
+                                <p>{e.liked ? 'liked' : 'not liked'}</p>
+                                <p>
+                                    {e.comments.map(c => (
+                                        <p>{c.content}</p>
+                                    ))}
+                                </p>
 
-                        <button
-                            onClick={() => {
-                                postDislikeToEntry(e.id);
-                            }}
-                        >
-                            unstar
-                        </button>
-                        <button
-                            onClick={() => {
-                                postLikeToEntry(e.id);
-                            }}
-                        >
-                            star
-                        </button>
+                                <button
+                                    onClick={() => {
+                                        postDislikeToEntry(e.id);
+                                    }}
+                                >
+                                    unstar
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        postLikeToEntry(e.id);
+                                    }}
+                                >
+                                    star
+                                </button>
 
-                        <button
-                            onClick={() => {
-                                postCommentToEntry(e.id);
-                            }}
-                        >
-                            comment
-                        </button>
-                    </>
-                ))}
-            </Wrapper>
-        </>
+                                <button
+                                    onClick={() => {
+                                        postCommentToEntry(e.id);
+                                    }}
+                                >
+                                    comment
+                                </button>
+                            </>
+                        ))}
+                    </Wrapper>
+                    {addDialogOpen && challenge && (
+                        <Dialog>
+                            <EntryUploadPage
+                                challenge={challenge}
+                                closeDialogHandler={closeDialogHandler}
+                            />
+                        </Dialog>
+                    )}
+                </Container>
+            ) : (
+                <WrapperLoader>
+                    <Loader />
+                </WrapperLoader>
+            )}
+        </div>
     );
 };
 
 export default ChallengePage;
 
+const Container = styled.div`
+    position: relative;
+`;
+
+const Dialog = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px);
+    background-color: ${colors.backgroundPrimary + 'AD'};
+    display: flex;
+    justify-content: center;
+`;
 const Wrapper = styled.div`
     width: 1250px;
     min-height: 500px;
@@ -104,4 +142,12 @@ const Wrapper = styled.div`
     margin: 2rem 0;
     border-radius: 3px;
     box-shadow: 1px 1px 7px black;
+`;
+
+const WrapperLoader = styled.div`
+    width: 1250px;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;

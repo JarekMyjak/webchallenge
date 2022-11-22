@@ -19,6 +19,7 @@ import {
     StartButton,
 } from './topSection.styles';
 import fistCardImg from '../../assets/images/landing/First_card.jpg';
+import {downloadChallengeUrl} from '../../api/apiChallenges';
 
 export const enum techs {
     html = 'HTML',
@@ -34,6 +35,8 @@ interface ITopSection {
     technologies?: techs[];
     premium?: boolean;
     title?: string;
+    id: any;
+    onUploadClick(): void;
 }
 
 const TopSection: React.FC<ITopSection> = props => {
@@ -93,7 +96,10 @@ const TopSection: React.FC<ITopSection> = props => {
                         </Expirience>
                     </TechnologiesAndExperience>
                 </Info>
-                <StartButton>Download</StartButton>
+                <StartButton href={downloadChallengeUrl(props?.id)}>
+                    Download
+                </StartButton>
+                <StartButton onClick={props.onUploadClick}>Upload</StartButton>
             </ChallengeData>
         </Wrapper>
     );

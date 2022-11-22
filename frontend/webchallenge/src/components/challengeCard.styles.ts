@@ -43,6 +43,7 @@ export const ChallengeImg = styled.div`
     width: 100%;
     border-radius: 10px 10px 1px 1px;
     overflow: hidden;
+    box-shadow: 0px 0px 10px black;
     img {
         width: 100%;
         height: 100%;

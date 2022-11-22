@@ -38,4 +38,5 @@ export const Options = styled.div`
 
 export const CustomLink = styled(Link)`
     text-decoration: none;
+    color: black;
 `;

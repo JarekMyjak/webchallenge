@@ -168,7 +168,7 @@ export const Expirience = styled.div`
     }
 `;
 
-export const StartButton = styled.button`
+export const StartButton = styled.a`
     background-color: #f24e1e;
     font-size: 24px;
     font-weight: 700;
@@ -180,4 +180,15 @@ export const StartButton = styled.button`
     color: white;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.1s;
+    &:hover,
+    &:focus,
+    &:focus-visible {
+        outline: none;
+        background-color: #f26e1e;
+    }
 `;

@@ -108,7 +108,7 @@ export const FileButton = styled.button`
     &:focus-visible {
         outline: none;
         background-color: #c47000;
-        content: 'upload images xd';
+        /* content: 'upload images xd'; */
     }
 `;
 

@@ -18,10 +18,11 @@ import EditChallenge from './pages/AdminPanel/ManageChallenges/EditChallenge';
 import ChallengePage from './pages/ChallengePage/ChallengePage';
 import ChallengeUpload from './pages/ChallengePage/EntryUploadPage';
 import Guard from './components/utils/Guard';
+import {useUser} from './api/useAuth';
 
 const App: React.FC = () => {
     const location = useLocation();
-    // const set = useUser(store => store.setUser)
+    const user = useUser(store => store.setUser);
 
     return (
         <Container>
@@ -37,7 +38,14 @@ const App: React.FC = () => {
 
                 <Content>
                     <Routes>
-                        <Route path='/' element={<Landing />} />
+                        <Route
+                            path='/'
+                            element={
+                                <Guard>
+                                    <Landing />
+                                </Guard>
+                            }
+                        />
                         <Route path='/authhandler' element={<AuthHandler />} />
                         <Route
                             path='adminpanel'
@@ -117,14 +125,15 @@ const App: React.FC = () => {
                             }
                         />
                         <Route
-                            path='/challenges/:challengeId/upload'
+                            path='*'
                             element={
-                                <Guard>
-                                    <ChallengeUpload />
-                                </Guard>
+                                <Navigate
+                                    to={
+                                        user === undefined ? '/' : '/challenges'
+                                    }
+                                />
                             }
                         />
-                        <Route path='*' element={<Navigate to='/' />} />
                     </Routes>
                 </Content>
             </ContentWrapper>
