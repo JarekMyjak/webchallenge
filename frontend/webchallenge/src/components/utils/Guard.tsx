@@ -15,7 +15,7 @@ const Guard: FC = props => {
         return <Navigate to='/challenges' />;
     }
 
-    if (user.role !== 'ADMIN' && location.pathname.includes('admin')) {
+    if (user?.role !== 'ADMIN' && location.pathname.includes('admin')) {
         return <Navigate to='/challenges' />;
     }
 
