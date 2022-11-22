@@ -18,7 +18,7 @@ const Container = styled.div`
     min-width: 70px;
     width: 70px;
     max-width: 70px;
-    height: 100vh;
+    height: calc(100vh - 57px);
     background-color: #000000;
     position: sticky;
     align-self: flex-start;

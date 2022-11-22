@@ -58,8 +58,11 @@ const ChallengePage: React.FC = () => {
                         <p>{e.description}</p>
                         <p>{e.likes}</p>
                         <p>{e.liked ? 'liked' : 'not liked'}</p>
-                        <p>{e.comments.map((c) => <p>{c.content}</p>)}</p>
-
+                        <p>
+                            {e.comments.map(c => (
+                                <p>{c.content}</p>
+                            ))}
+                        </p>
 
                         <button
                             onClick={() => {

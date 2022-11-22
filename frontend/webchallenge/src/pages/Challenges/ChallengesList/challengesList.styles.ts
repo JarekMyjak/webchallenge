@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const TitleAndOptions = styled.div`
     color: white;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
 `;
@@ -22,8 +22,12 @@ export const List = styled.div`
     flex-wrap: wrap;
     row-gap: 60px;
     column-gap: 75px;
-    /* justify-content: space-between; */
-    //Experimental column-gap instead of justify-content
+`;
+export const LoaderList = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
 `;
 
 export const Options = styled.div`

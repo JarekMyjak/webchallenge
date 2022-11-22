@@ -7,6 +7,7 @@ import {
     Options,
     CustomLink,
     List,
+    LoaderList,
 } from './challengesList.styles';
 import {
     Challenge,
@@ -14,13 +15,15 @@ import {
     getChallenges,
 } from '../../../api/apiChallenges';
 import bookmarkIcon from '../../../assets/icons/bookmark.png';
+import Loader from '../../../components/Loader';
 
 const ChallengesList: React.FC = () => {
     const [challenges, setChallenges] = useState<Challenge[]>([]);
-
+    const [loading, setLoader] = useState<boolean>(true);
     useEffect(() => {
         (async () => {
             setChallenges(await getChallenges());
+            setLoader(false);
         })();
     }, []);
 
@@ -30,39 +33,34 @@ const ChallengesList: React.FC = () => {
                 <TitleBar imageSrc={bookmarkIcon} text='All challenges' />
                 {/* <Options>TODO</Options> */}
             </TitleAndOptions>
-            <List>
-                {challenges.map(c => (
-                    <React.Fragment key={`fragment${c.id}`}>
-                        <CustomLink to={c.id}>
-                            <ChallengeCard
-                                key={`challengeCard${c.id}`}
-                                exp={c.experience}
-                                technologies={[
-                                    techs.html,
-                                    techs.css,
-                                    techs.react,
-                                ]}
-                                premium={true}
-                                title={c.title}
-                                description={c.description}
-                                image={c.imageUrls[0]}
-                            />
-                        </CustomLink>
-                        {/* <a href={downloadChallengeUrl(c.id)}>download</a> */}
-                    </React.Fragment>
-                ))}
-
-                {/* <ChallengeCard
-                    exp='advanced'
-                    technologies={[techs.html, techs.css, techs.react]}
-                    premium={true}
-                    title='Advice generator app'
-                    description='There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration in
-                        some form, by injected humour, or randomised'
-                    image='./src/assets/images/landing/First_card.jpg'
-                />  */}
-            </List>
+            {!loading && (
+                <List>
+                    {challenges.map(c => (
+                        <React.Fragment key={`fragment${c.id}`}>
+                            <CustomLink to={c.id}>
+                                <ChallengeCard
+                                    key={`challengeCard${c.id}`}
+                                    exp={c.experience}
+                                    technologies={[
+                                        techs.html,
+                                        techs.css,
+                                        techs.react,
+                                    ]}
+                                    premium={true}
+                                    title={c.title}
+                                    description={c.description}
+                                    image={c.imageUrls[0]}
+                                />
+                            </CustomLink>
+                        </React.Fragment>
+                    ))}
+                </List>
+            )}
+            {loading && (
+                <LoaderList>
+                    <Loader />
+                </LoaderList>
+            )}
         </Container>
     );
 };

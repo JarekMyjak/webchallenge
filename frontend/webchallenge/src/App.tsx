@@ -153,5 +153,5 @@ const Content = styled.div`
     /* height: 1000px; */
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
 `;

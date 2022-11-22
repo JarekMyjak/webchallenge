@@ -16,5 +16,6 @@ export default Challenges;
 
 const Container = styled.div`
     width: 1250px;
-    padding: 90px 0;
+    padding: 10px 0;
+    /* border: 1px solid red; */
 `;
