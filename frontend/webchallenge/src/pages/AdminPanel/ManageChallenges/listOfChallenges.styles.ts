@@ -8,6 +8,22 @@ export const Container = styled.div`
     align-items: baseline;
     justify-content: center;
 `;
+
+export const LoaderContainer = styled.div`
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const LoaderText = styled.span`
+    opacity: 0.3;
+    margin-top: 10px;
+    user-select: none;
+`;
+
 export const Table = styled.table`
     border: none;
     border-collapse: collapse;

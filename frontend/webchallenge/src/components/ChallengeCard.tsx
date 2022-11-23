@@ -17,6 +17,7 @@ import {
 export const enum techs {
     html = 'HTML',
     css = 'CSS',
+    sass = 'SASS',
     react = 'REACT',
     js = 'JAVASCRIPT',
     ts = 'TYPESCRIPT',
@@ -24,8 +25,8 @@ export const enum techs {
 }
 
 interface IChallengeCard {
-    exp: 'begginer' | 'intermediate' | 'advanced';
-    technologies: techs[];
+    exp: 'beginner' | 'intermediate' | 'advanced';
+    technologies: string[];
     premium: boolean;
     title: string;
     description: string;
@@ -35,8 +36,8 @@ interface IChallengeCard {
 const ChallengeCard: React.FC<IChallengeCard> = props => {
     const experienceSwitch = () => {
         switch (props.exp) {
-            case 'begginer':
-                return <span className={props.exp}>begginer</span>;
+            case 'beginner':
+                return <span className={props.exp}>beginner</span>;
             case 'intermediate':
                 return <span className={props.exp}>intermediate</span>;
             case 'advanced':
@@ -66,12 +67,14 @@ const ChallengeCard: React.FC<IChallengeCard> = props => {
                         <p>technologies</p>
                         <TechContainer>
                             {props.technologies.map(el => (
-                                <span key={el} className={el}>{el}</span>
+                                <span key={el} className={el}>
+                                    {el}
+                                </span>
                             ))}
                         </TechContainer>
                     </Technologies>
                     <Experience>
-                        <p>expirience required</p>
+                        <p>experience required</p>
                         {experienceSwitch()}
                     </Experience>
                 </Info>

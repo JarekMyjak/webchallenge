@@ -32,8 +32,8 @@ export const LoaderList = styled.div`
 
 export const Options = styled.div`
     height: 30px;
-    width: 200px;
-    background-color: green;
+    width: 300px;
+    color: black;
 `;
 
 export const CustomLink = styled(Link)`

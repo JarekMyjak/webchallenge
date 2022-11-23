@@ -15,7 +15,7 @@ import {
     TechnologiesAndExperience,
     Technologies,
     TechnologiesList,
-    Expirience,
+    Experience,
     StartButton,
 } from './topSection.styles';
 import fistCardImg from '../../assets/images/landing/First_card.jpg';
@@ -31,7 +31,7 @@ export const enum techs {
 }
 
 interface ITopSection {
-    exp?: 'begginer' | 'intermediate' | 'advanced';
+    exp?: 'beginner' | 'intermediate' | 'advanced';
     technologies?: techs[];
     premium?: boolean;
     title?: string;
@@ -42,8 +42,8 @@ interface ITopSection {
 const TopSection: React.FC<ITopSection> = props => {
     const experienceSwitch = () => {
         switch (props.exp) {
-            case 'begginer':
-                return <span className={props.exp}>begginer</span>;
+            case 'beginner':
+                return <span className={props.exp}>beginner</span>;
             case 'intermediate':
                 return <span className={props.exp}>intermediate</span>;
             case 'advanced':
@@ -90,10 +90,10 @@ const TopSection: React.FC<ITopSection> = props => {
                                 </span>
                             </TechnologiesList>
                         </Technologies>
-                        <Expirience>
-                            <Title>Expirience required</Title>
+                        <Experience>
+                            <Title>Experience required</Title>
                             <span>{experienceSwitch()}</span>
-                        </Expirience>
+                        </Experience>
                     </TechnologiesAndExperience>
                 </Info>
                 <StartButton href={downloadChallengeUrl(props?.id)}>

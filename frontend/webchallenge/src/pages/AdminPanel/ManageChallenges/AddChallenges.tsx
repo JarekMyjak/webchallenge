@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Select from 'react-select';
 import {apiPost} from '../../../api/apiMethods';
 import {
     Container,
@@ -11,6 +12,7 @@ import {
     SubmitButton,
     FileButtonsContainer,
     CustomTextArea,
+    SelectDiv,
 } from './addChallenges.style';
 
 const submit = (
@@ -37,6 +39,22 @@ const submit = (
     const res = apiPost('/api/challenges', formData);
 };
 
+const options = [
+    {
+        label: 'Cos tu sie wpisze',
+        options: [
+            {value: 'HTML', label: 'HTML'},
+            {value: 'CSS', label: 'CSS'},
+            {value: 'REACT', label: 'REACT'},
+        ],
+    },
+];
+const optionsExperience = [
+    {value: 'BEGINNER', label: 'BEGINNER'},
+    {value: 'INTERMEDIATE', label: 'INTERMEDIATE'},
+    {value: 'ADVANCED', label: 'ADVANCED'},
+];
+
 const AddChallenges: React.FC = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -44,6 +62,15 @@ const AddChallenges: React.FC = () => {
     const [difficulty, setDifficulty] = useState('');
     const [file, setFile] = useState<FileList | null>(null);
     const [pictures, setPictures] = useState<FileList | null>(null);
+    const [selectedTechs, setSelectedTechs] = useState<any[]>([]);
+    const [selectedExp, setSelectedExp] = useState<any[]>([]);
+
+    const handleChangeTech = (selectedOption: any) => {
+        setSelectedTechs(selectedOption);
+    };
+    const handleChangeExp = (selectedOption: any) => {
+        setSelectedExp(selectedOption);
+    };
 
     return (
         <Container>
@@ -66,24 +93,38 @@ const AddChallenges: React.FC = () => {
                         onChange={e => setDescription(e.target.value)}
                     />
                 </div>
-                <div>
-                    <CustomInputText
-                        placeholder='Technologies'
-                        type='text'
-                        id='challengeTech'
-                        value={tech}
-                        onChange={e => setTech(e.target.value)}
+                <SelectDiv>
+                    <Select
+                        onChange={handleChangeTech}
+                        isMulti
+                        options={options}
+                        isSearchable={false}
+                        placeholder='Select technologies...'
                     />
-                </div>
-                <div>
-                    <CustomInputText
+
+                    {/* <CustomInputText
                         type='text'
                         placeholder='Difficulty'
                         id='challengeDifficulty'
                         value={difficulty}
                         onChange={e => setDifficulty(e.target.value)}
+                    /> */}
+                </SelectDiv>
+                <SelectDiv>
+                    <Select
+                        onChange={handleChangeExp}
+                        options={optionsExperience}
+                        isSearchable={false}
+                        placeholder='Select experience...'
                     />
-                </div>
+
+                    {/* <CustomInputText
+                        placeholder='Technologies'
+                        type='text'
+                        id='challengeTech'
+                        value={tech}
+                        onChange={e => setTech(e.target.value)} */}
+                </SelectDiv>
                 {/* <span>{file?.item(0)?.name}</span><br/> */}
                 <FileButtonsContainer>
                     <FileButton>

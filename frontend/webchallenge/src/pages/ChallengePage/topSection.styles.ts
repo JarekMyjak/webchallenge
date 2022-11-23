@@ -149,7 +149,7 @@ export const TechnologiesList = styled.div`
     }
 `;
 
-export const Expirience = styled.div`
+export const Experience = styled.div`
     width: 300px;
     display: flex;
     flex-direction: column;
