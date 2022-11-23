@@ -46,16 +46,6 @@ const options = [
             {value: 'HTML', label: 'HTML'},
             {value: 'CSS', label: 'CSS'},
             {value: 'REACT', label: 'REACT'},
-            {value: 'REACT1', label: 'REACT'},
-            {value: 'REACT2', label: 'REACT'},
-            {value: 'REACT2', label: 'REACT'},
-            {value: 'REA4CT2', label: 'REACT'},
-            {value: 'REA4C4T2', label: 'REACT'},
-            {value: 'REA4CT2', label: 'REACT'},
-            {value: 'REA1CT2', label: 'REACT'},
-            {value: 'REA4CT2', label: 'REACT'},
-            {value: 'REA2CT2', label: 'REACT'},
-            {value: 'REA3CT2', label: 'REACT'},
         ],
     },
 ];
@@ -64,6 +54,7 @@ const optionsExperience = [
     {value: 'INTERMEDIATE', label: 'INTERMEDIATE'},
     {value: 'ADVANCED', label: 'ADVANCED'},
 ];
+
 const AddChallenges: React.FC = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -80,6 +71,7 @@ const AddChallenges: React.FC = () => {
     const handleChangeExp = (selectedOption: any) => {
         setSelectedExp(selectedOption);
     };
+
     return (
         <Container>
             <FormContainer>
