@@ -34,7 +34,7 @@ const LastCardsSection: React.FC = () => {
                         image={firstCardImg}
                     />
                     <ChallengeCard
-                        exp='begginer'
+                        exp='beginner'
                         technologies={[
                             techs.html,
                             techs.css,

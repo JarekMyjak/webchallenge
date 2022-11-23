@@ -25,7 +25,7 @@ export const enum techs {
 }
 
 interface IChallengeCard {
-    exp: 'begginer' | 'intermediate' | 'advanced';
+    exp: 'beginner' | 'intermediate' | 'advanced';
     technologies: string[];
     premium: boolean;
     title: string;
@@ -36,8 +36,8 @@ interface IChallengeCard {
 const ChallengeCard: React.FC<IChallengeCard> = props => {
     const experienceSwitch = () => {
         switch (props.exp) {
-            case 'begginer':
-                return <span className={props.exp}>begginer</span>;
+            case 'beginner':
+                return <span className={props.exp}>beginner</span>;
             case 'intermediate':
                 return <span className={props.exp}>intermediate</span>;
             case 'advanced':
@@ -74,7 +74,7 @@ const ChallengeCard: React.FC<IChallengeCard> = props => {
                         </TechContainer>
                     </Technologies>
                     <Experience>
-                        <p>expirience required</p>
+                        <p>experience required</p>
                         {experienceSwitch()}
                     </Experience>
                 </Info>

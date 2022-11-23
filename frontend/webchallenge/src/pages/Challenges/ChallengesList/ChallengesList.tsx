@@ -28,8 +28,8 @@ const options = [
         ],
     },
 ];
-const optionsExpirience = [
-    {value: 'BEGGINER', label: 'BEGGINER'},
+const optionsExperience = [
+    {value: 'BEGINNER', label: 'BEGINNER'},
     {value: 'INTERMEDIATE', label: 'INTERMEDIATE'},
     {value: 'ADVANCED', label: 'ADVANCED'},
 ];
@@ -71,9 +71,9 @@ const ChallengesList: React.FC = () => {
                     <Select
                         onChange={handleChangeExp}
                         isMulti
-                        options={optionsExpirience}
+                        options={optionsExperience}
                         isSearchable={false}
-                        placeholder='Select expirience...'
+                        placeholder='Select experience...'
                     />
                 </Options> */}
             </TitleAndOptions>

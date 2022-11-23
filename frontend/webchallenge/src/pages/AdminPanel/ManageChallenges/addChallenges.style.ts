@@ -132,3 +132,9 @@ export const SubmitButton = styled.button`
         background-color: ${colors.irisDark};
     }
 `;
+
+export const SelectDiv = styled.div`
+    width: 500px;
+    color: black;
+    font-size: 16px;
+`;

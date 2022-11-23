@@ -104,7 +104,7 @@ export const Experience = styled(Technologies)`
     .intermediate {
         color: ${colors.orange};
     }
-    .begginer {
+    .beginner {
         color: #0acf83;
     }
 `;

@@ -1,18 +1,18 @@
-import { ApiBaseUrl, apiGet } from "./apiMethods";
+import {ApiBaseUrl, apiGet} from './apiMethods';
 
 export interface Challenge {
     id: string;
-    title: string,
-    description: string,
-    tech: string,
-    experience: "advanced" | "begginer" | "intermediate",
-    imageUrls: string[],
-    blobUrl: string,
-    downloads: number,
+    title: string;
+    description: string;
+    tech: string;
+    experience: 'advanced' | 'beginner' | 'intermediate';
+    imageUrls: string[];
+    blobUrl: string;
+    downloads: number;
 }
 
 export const getChallenges = async () => {
-    const challengeArr = await apiGet("/api/challenges").then(res => {
+    const challengeArr = await apiGet('/api/challenges').then(res => {
         console.log(res.data);
         return res.data as Challenge[];
     });
@@ -20,14 +20,16 @@ export const getChallenges = async () => {
 };
 
 export const getChallenge = async (challengeId: string) => {
-    const challenge = await apiGet(`/api/challenges/${challengeId}`).then(res => {
-        console.log(res.data);
-        return res.data as Challenge;
-    });
+    const challenge = await apiGet(`/api/challenges/${challengeId}`).then(
+        res => {
+            console.log(res.data);
+            return res.data as Challenge;
+        }
+    );
     return challenge;
 };
 
 export const downloadChallengeUrl = (challengeId: string) => {
-    ApiBaseUrl
+    ApiBaseUrl;
     return `${ApiBaseUrl}/api/challenges/${challengeId}/download`;
 };
