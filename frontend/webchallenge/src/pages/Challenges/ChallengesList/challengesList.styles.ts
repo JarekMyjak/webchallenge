@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const TitleAndOptions = styled.div`
-    color: white;
+    /* color: white; */
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
@@ -32,8 +32,7 @@ export const LoaderList = styled.div`
 
 export const Options = styled.div`
     height: 30px;
-    width: 200px;
-    background-color: green;
+    width: 300px;
 `;
 
 export const CustomLink = styled(Link)`

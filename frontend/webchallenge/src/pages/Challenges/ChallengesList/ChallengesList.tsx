@@ -16,10 +16,30 @@ import {
 } from '../../../api/apiChallenges';
 import bookmarkIcon from '../../../assets/icons/bookmark.png';
 import Loader from '../../../components/Loader';
+import Select from 'react-select';
+
+const options = [
+    {
+        label: 'Cos tu sie wpisze',
+        options: [
+            {value: 'HTML', label: 'HTML'},
+            {value: 'CSS', label: 'CSS'},
+            {value: 'REACT', label: 'REACT'},
+        ],
+    },
+];
+const optionsExpirience = [
+    {value: 'BEGGINER', label: 'BEGGINER'},
+    {value: 'INTERMEDIATE', label: 'INTERMEDIATE'},
+    {value: 'ADVANCED', label: 'ADVANCED'},
+];
 
 const ChallengesList: React.FC = () => {
     const [challenges, setChallenges] = useState<Challenge[]>([]);
     const [loading, setLoader] = useState<boolean>(true);
+    const [selectedTechs, setSelectedTechs] = useState<any[]>([]);
+    const [selectedExp, setSelectedExp] = useState<any[]>([]);
+
     useEffect(() => {
         (async () => {
             setChallenges(await getChallenges());
@@ -27,33 +47,86 @@ const ChallengesList: React.FC = () => {
         })();
     }, []);
 
+    const handleChangeTech = (selectedOption: any) => {
+        setSelectedTechs(selectedOption);
+    };
+    const handleChangeExp = (selectedOption: any) => {
+        setSelectedExp(selectedOption);
+    };
+
     return (
         <Container>
             <TitleAndOptions>
                 <TitleBar imageSrc={bookmarkIcon} text='All challenges' />
-                {/* <Options>TODO</Options> */}
+                <Options>
+                    <Select
+                        onChange={handleChangeTech}
+                        isMulti
+                        options={options}
+                        isSearchable={false}
+                        placeholder='Select technologies...'
+                    />
+                </Options>
+                {/* <Options>
+                    <Select
+                        onChange={handleChangeExp}
+                        isMulti
+                        options={optionsExpirience}
+                        isSearchable={false}
+                        placeholder='Select expirience...'
+                    />
+                </Options> */}
             </TitleAndOptions>
             {!loading && (
                 <List>
-                    {challenges.map(c => (
-                        <React.Fragment key={`fragment${c.id}`}>
-                            <CustomLink to={c.id}>
-                                <ChallengeCard
-                                    key={`challengeCard${c.id}`}
-                                    exp={c.experience}
-                                    technologies={[
-                                        techs.html,
-                                        techs.css,
-                                        techs.react,
-                                    ]}
-                                    premium={true}
-                                    title={c.title}
-                                    description={c.description}
-                                    image={c.imageUrls[0]}
-                                />
-                            </CustomLink>
-                        </React.Fragment>
-                    ))}
+                    {challenges
+                        .filter(el =>
+                            el.tech
+                                .replace(/ /g, '')
+                                .split(',')
+                                .some(r => {
+                                    return selectedTechs.length > 0
+                                        ? selectedTechs.some(sel =>
+                                              sel.value.includes(
+                                                  r.toUpperCase()
+                                              )
+                                          )
+                                        : true;
+                                })
+                        )
+                        // .filter(el =>
+                        //     el?.experience
+                        //         .replace(/ /g, '')
+                        //         .split(',')
+                        //         .some(r => {
+                        //             return selectedExp.length > 0
+                        //                 ? selectedExp.some(sel =>
+                        //                       sel.value.includes(
+                        //                           r.toUpperCase()
+                        //                       )
+                        //                   )
+                        //                 : true;
+                        //         })
+                        // )
+                        .map(c => (
+                            // {challenges.map(c => (
+                            <React.Fragment key={`fragment${c.id}`}>
+                                <CustomLink to={c.id}>
+                                    <ChallengeCard
+                                        key={`challengeCard${c.id}`}
+                                        exp={c.experience}
+                                        technologies={c.tech
+                                            .toUpperCase()
+                                            .replace(/ /g, '')
+                                            .split(',')}
+                                        premium={true}
+                                        title={c.title}
+                                        description={c.description}
+                                        image={c.imageUrls[0]}
+                                    />
+                                </CustomLink>
+                            </React.Fragment>
+                        ))}
                 </List>
             )}
             {loading && (

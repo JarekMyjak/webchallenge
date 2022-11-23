@@ -17,6 +17,7 @@ import {
 export const enum techs {
     html = 'HTML',
     css = 'CSS',
+    sass = 'SASS',
     react = 'REACT',
     js = 'JAVASCRIPT',
     ts = 'TYPESCRIPT',
@@ -25,7 +26,7 @@ export const enum techs {
 
 interface IChallengeCard {
     exp: 'begginer' | 'intermediate' | 'advanced';
-    technologies: techs[];
+    technologies: string[];
     premium: boolean;
     title: string;
     description: string;
@@ -66,7 +67,9 @@ const ChallengeCard: React.FC<IChallengeCard> = props => {
                         <p>technologies</p>
                         <TechContainer>
                             {props.technologies.map(el => (
-                                <span key={el} className={el}>{el}</span>
+                                <span key={el} className={el}>
+                                    {el}
+                                </span>
                             ))}
                         </TechContainer>
                     </Technologies>
