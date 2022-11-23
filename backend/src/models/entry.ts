@@ -12,6 +12,10 @@ export interface entryType {
     comments: commentType[];
 }
 
+interface entryTypeMethods {
+    userJSON(userId: string): {};
+}
+
 export interface commentType {
     _id: ObjectId;
     userId: String;
@@ -44,7 +48,7 @@ const commentSchema = new Schema<commentType>({
     },
 })
 
-const entrySchema = new Schema<entryType>({
+const entrySchema = new Schema<entryType, {}, entryTypeMethods>({
     userId: {
         type: String,
         required: true,
