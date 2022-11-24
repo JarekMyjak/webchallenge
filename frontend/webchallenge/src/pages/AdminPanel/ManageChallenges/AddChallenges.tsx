@@ -14,6 +14,7 @@ import {
     CustomTextArea,
     SelectDiv,
 } from './addChallenges.style';
+import {useForm, Controller} from 'react-hook-form';
 
 const submit = (
     title: string,
@@ -71,105 +72,116 @@ const AddChallenges: React.FC = () => {
     const handleChangeExp = (selectedOption: any) => {
         setSelectedExp(selectedOption);
     };
+    const {
+        register,
+        handleSubmit,
+        watch,
+        control,
+        formState: {errors},
+    } = useForm();
+
+    const onSubmit = (data: any) => console.log(data);
 
     return (
         <Container>
-            <FormContainer>
-                Add new challenge
-                <div>
-                    <CustomInputText
-                        placeholder='Title'
-                        type='text'
-                        id='challengeTitle'
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <CustomTextArea
-                        placeholder='Description'
-                        id='challengeDescription'
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
-                    />
-                </div>
-                <SelectDiv>
-                    <Select
-                        onChange={handleChangeTech}
-                        isMulti
-                        options={options}
-                        isSearchable={false}
-                        placeholder='Select technologies...'
-                    />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <FormContainer>
+                    Add new challenge
+                    <div>
+                        <CustomInputText
+                            {...register('title')}
+                            placeholder='Title'
+                            type='text'
+                            // id='challengeTitle'
+                            // value={title}
+                            // onChange={e => setTitle(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <CustomTextArea
+                            {...register('description')}
+                            placeholder='Description'
 
-                    {/* <CustomInputText
-                        type='text'
-                        placeholder='Difficulty'
-                        id='challengeDifficulty'
-                        value={difficulty}
-                        onChange={e => setDifficulty(e.target.value)}
-                    /> */}
-                </SelectDiv>
-                <SelectDiv>
-                    <Select
-                        onChange={handleChangeExp}
-                        options={optionsExperience}
-                        isSearchable={false}
-                        placeholder='Select experience...'
-                    />
-
-                    {/* <CustomInputText
-                        placeholder='Technologies'
-                        type='text'
-                        id='challengeTech'
-                        value={tech}
-                        onChange={e => setTech(e.target.value)} */}
-                </SelectDiv>
-                {/* <span>{file?.item(0)?.name}</span><br/> */}
-                <FileButtonsContainer>
-                    <FileButton>
-                        <CustomFileLabel htmlFor='challengeImages'>
-                            {pictures?.item(0)
-                                ? `Images: [${pictures?.length}]`
-                                : 'Upload images'}
-                            <CustomFile
-                                type='file'
-                                id='challengeImages'
-                                multiple
-                                accept='image/png, image/gif, image/jpeg'
-                                onChange={e => setPictures(e.target.files)}
-                            />
-                        </CustomFileLabel>
-                    </FileButton>
-                    <FileButton>
-                        <CustomFileLabel htmlFor='challengeFile'>
-                            {file?.item(0)
-                                ? `${file?.item(0)?.name}`
-                                : 'Upload challenge file'}
-                            <CustomFile
-                                type='file'
-                                id='challengeFile'
-                                onChange={e => setFile(e.target.files)}
-                            />
-                        </CustomFileLabel>
-                    </FileButton>
-                </FileButtonsContainer>
-                {/* <input type="text" value={title} onChange={((e) => setTitle(e.target.value))} /><br/> */}
-                <SubmitButton
-                    onClick={() => {
-                        submit(
-                            title,
-                            description,
-                            tech,
-                            difficulty,
-                            pictures,
-                            file
-                        );
-                    }}
-                >
-                    Submit
-                </SubmitButton>
-            </FormContainer>
+                            // id='challengeDescription'
+                            // value={description}
+                            // onChange={e => setDescription(e.target.value)}
+                        />
+                    </div>
+                    <SelectDiv>
+                        <Controller
+                            name='challengeTech'
+                            control={control}
+                            render={({field}) => (
+                                <Select
+                                    {...field}
+                                    options={options}
+                                    isMulti
+                                    isSearchable={false}
+                                    placeholder='Select technologies...'
+                                />
+                            )}
+                        />
+                    </SelectDiv>
+                    <SelectDiv>
+                        <Controller
+                            name='challengeExperience'
+                            control={control}
+                            render={({field}) => (
+                                <Select
+                                    {...field}
+                                    options={optionsExperience}
+                                    isMulti
+                                    isSearchable={false}
+                                    placeholder='Select experience'
+                                />
+                            )}
+                        />
+                    </SelectDiv>
+                    <FileButtonsContainer>
+                        <FileButton>
+                            <CustomFileLabel htmlFor='challengeImages'>
+                                {pictures?.item(0)
+                                    ? `Images: [${pictures?.length}]`
+                                    : 'Upload images'}
+                                <CustomFile
+                                    {...register('challengeImages')}
+                                    type='file'
+                                    id='challengeImages'
+                                    multiple
+                                    accept='image/png, image/gif, image/jpeg'
+                                />
+                            </CustomFileLabel>
+                        </FileButton>
+                        <FileButton>
+                            <CustomFileLabel htmlFor='challengeFile'>
+                                {file?.item(0)
+                                    ? `${file?.item(0)?.name}`
+                                    : 'Upload challenge file'}
+                                <CustomFile
+                                    {...register('challengeFile')}
+                                    type='file'
+                                    id='challengeFile'
+                                />
+                            </CustomFileLabel>
+                        </FileButton>
+                    </FileButtonsContainer>
+                    {/* <input type="text" value={title} onChange={((e) => setTitle(e.target.value))} /><br/> */}
+                    <SubmitButton
+                    // onClick={() => {
+                    //     submit(
+                    //         title,
+                    //         description,
+                    //         tech,
+                    //         difficulty,
+                    //         pictures,
+                    //         file
+                    //     );
+                    // }}
+                    >
+                        Submit
+                    </SubmitButton>
+                </FormContainer>
+            </form>
         </Container>
     );
 };
