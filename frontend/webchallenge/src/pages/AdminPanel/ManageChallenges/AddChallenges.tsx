@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import Select from 'react-select';
 import {apiPost} from '../../../api/apiMethods';
 import {
@@ -13,6 +13,8 @@ import {
     FileButtonsContainer,
     CustomTextArea,
     SelectDiv,
+    FieldWrapper,
+    FieldError,
 } from './addChallenges.style';
 import {useForm, Controller} from 'react-hook-form';
 
@@ -72,7 +74,12 @@ const AddChallenges: React.FC = () => {
     const handleChangeExp = (selectedOption: any) => {
         setSelectedExp(selectedOption);
     };
+
+    const challengeFileLabelRef = useRef<HTMLLabelElement>(null);
+    const challengeImagesRef = useRef<HTMLLabelElement>(null);
+
     const {
+        setFocus,
         register,
         handleSubmit,
         watch,
@@ -87,26 +94,29 @@ const AddChallenges: React.FC = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormContainer>
                     Add new challenge
-                    <div>
+                    <FieldWrapper>
                         <CustomInputText
-                            {...register('title')}
+                            {...register('title', {
+                                required: 'Required',
+                            })}
                             placeholder='Title'
                             type='text'
-                            // id='challengeTitle'
-                            // value={title}
-                            // onChange={e => setTitle(e.target.value)}
                         />
-                    </div>
-                    <div>
+                        <FieldError error={!!errors.title}>
+                            {errors.title?.message}
+                        </FieldError>
+                    </FieldWrapper>
+                    <FieldWrapper>
                         <CustomTextArea
-                            {...register('description')}
+                            {...register('description', {
+                                required: 'Required',
+                            })}
                             placeholder='Description'
-
-                            // id='challengeDescription'
-                            // value={description}
-                            // onChange={e => setDescription(e.target.value)}
                         />
-                    </div>
+                        <FieldError error={!!errors.description}>
+                            {errors.description?.message}
+                        </FieldError>
+                    </FieldWrapper>
                     <SelectDiv>
                         <Controller
                             name='challengeTech'
@@ -120,7 +130,11 @@ const AddChallenges: React.FC = () => {
                                     placeholder='Select technologies...'
                                 />
                             )}
+                            rules={{required: 'Required!'}}
                         />
+                        <FieldError error={!!errors.challengeTech}>
+                            {errors.challengeTech?.message}
+                        </FieldError>
                     </SelectDiv>
                     <SelectDiv>
                         <Controller
@@ -130,35 +144,58 @@ const AddChallenges: React.FC = () => {
                                 <Select
                                     {...field}
                                     options={optionsExperience}
-                                    isMulti
-                                    isSearchable={false}
                                     placeholder='Select experience'
                                 />
                             )}
+                            rules={{required: 'Required!'}}
                         />
+                        <FieldError error={!!errors.challengeExperience}>
+                            {errors.challengeExperience?.message}
+                        </FieldError>
                     </SelectDiv>
                     <FileButtonsContainer>
-                        <FileButton>
-                            <CustomFileLabel htmlFor='challengeImages'>
+                        <FileButton
+                            error={!!errors.challengeImages}
+                            onClick={e => {
+                                // e.preventDefault();
+                                challengeImagesRef.current?.click();
+                            }}
+                        >
+                            <CustomFileLabel
+                                htmlFor='challengeImages'
+                                ref={challengeImagesRef}
+                            >
                                 {pictures?.item(0)
                                     ? `Images: [${pictures?.length}]`
                                     : 'Upload images'}
-                                <CustomFile
-                                    {...register('challengeImages')}
-                                    type='file'
-                                    id='challengeImages'
-                                    multiple
-                                    accept='image/png, image/gif, image/jpeg'
-                                />
                             </CustomFileLabel>
                         </FileButton>
-                        <FileButton>
-                            <CustomFileLabel htmlFor='challengeFile'>
+                        <CustomFile
+                            {...register('challengeImages', {required: true})}
+                            type='file'
+                            id='challengeImages'
+                            multiple
+                            accept='image/png, image/gif, image/jpeg'
+                        />
+                        <FileButton
+                            error={!!errors.challengeFile}
+                            onClick={e => {
+                                e.stopPropagation();
+                                challengeFileLabelRef.current?.click();
+                                // e.preventDefault();
+                            }}
+                        >
+                            <CustomFileLabel
+                                htmlFor='challengeFile'
+                                ref={challengeFileLabelRef}
+                            >
                                 {file?.item(0)
                                     ? `${file?.item(0)?.name}`
                                     : 'Upload challenge file'}
                                 <CustomFile
-                                    {...register('challengeFile')}
+                                    {...register('challengeFile', {
+                                        required: true,
+                                    })}
                                     type='file'
                                     id='challengeFile'
                                 />

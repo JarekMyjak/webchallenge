@@ -15,7 +15,7 @@ export const Container = styled.div`
 
 export const FormContainer = styled.div`
     min-height: 600px;
-    width: 700px;
+    width: 600px;
     background-color: ${colors.backgroundPrimary};
     color: white;
     font-size: 24px;
@@ -24,8 +24,27 @@ export const FormContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 6px;
     box-shadow: 2px 2px 10px black;
+`;
+export const FieldWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+interface IFieldError {
+    error: boolean;
+}
+
+export const FieldError = styled.div<IFieldError>`
+    color: red;
+    font-size: 12px;
+    height: 16px;
+    transition: 0.2s;
+    transform: ${p => (p.error ? 'translateY(0px)' : 'translateY(-16px)')};
+    opacity: ${p => (p.error ? '1' : '0')};
+    bottom: 0;
+    position: relative;
 `;
 
 export const CustomLabel = styled.label`
@@ -75,7 +94,6 @@ export const CustomTextArea = styled.textarea`
 `;
 
 export const CustomFile = styled.input`
-    border: 1px solid red;
     display: none;
 `;
 
@@ -90,24 +108,25 @@ export const FileButtonsContainer = styled.div`
     gap: 20px;
 `;
 
-export const FileButton = styled.button`
+export const FileButton = styled.button<IFieldError>`
     width: 200px;
     height: 50px;
     font-size: 16px;
     padding: 0;
-    border: none;
-    background-color: ${colors.orange};
+    background-color: ${p => (p.error ? '#8a1111' : `${colors.orange}`)};
+    border: 2px solid ${p => (p.error ? `#8a1111` : `${colors.orange}`)};
+
     border-radius: 3px;
     padding: 10px 20px;
     cursor: pointer;
     transition: 0.2s;
-    border: 2px solid ${colors.orange};
     text-overflow: ellipsis;
     &:hover,
     &:focus,
     &:focus-visible {
         outline: none;
-        background-color: #c47000;
+        background-color: ${p => (p.error ? '#5e0b0b' : `#c47000`)};
+
         /* content: 'upload images xd'; */
     }
 `;
@@ -137,4 +156,5 @@ export const SelectDiv = styled.div`
     width: 500px;
     color: black;
     font-size: 16px;
+    height: 60px;
 `;
