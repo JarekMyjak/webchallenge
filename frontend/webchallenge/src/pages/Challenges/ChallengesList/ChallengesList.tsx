@@ -65,17 +65,22 @@ const ChallengesList: React.FC = () => {
                         options={options}
                         isSearchable={false}
                         placeholder='Select technologies...'
+                        theme={(theme: any) => ({
+                            ...theme,
+                            borderRadius: 1,
+                            colors: {
+                                ...theme.colors,
+                                neutral0: '#454545',
+                                neutral20: '#222222',
+                                neutral10: '#222222',
+                                primary: '#222222',
+                                primary25: '#7c7c7c',
+                                primary50: '#575757',
+                                neutral80: '#D0D0D0',
+                            },
+                        })}
                     />
                 </Options>
-                {/* <Options>
-                    <Select
-                        onChange={handleChangeExp}
-                        isMulti
-                        options={optionsExperience}
-                        isSearchable={false}
-                        placeholder='Select experience...'
-                    />
-                </Options> */}
             </TitleAndOptions>
             {!loading && (
                 <List>
@@ -94,22 +99,8 @@ const ChallengesList: React.FC = () => {
                                         : true;
                                 })
                         )
-                        // .filter(el =>
-                        //     el?.experience
-                        //         .replace(/ /g, '')
-                        //         .split(',')
-                        //         .some(r => {
-                        //             return selectedExp.length > 0
-                        //                 ? selectedExp.some(sel =>
-                        //                       sel.value.includes(
-                        //                           r.toUpperCase()
-                        //                       )
-                        //                   )
-                        //                 : true;
-                        //         })
-                        // )
+
                         .map(c => (
-                            // {challenges.map(c => (
                             <React.Fragment key={`fragment${c.id}`}>
                                 <CustomLink to={c.id}>
                                     <ChallengeCard

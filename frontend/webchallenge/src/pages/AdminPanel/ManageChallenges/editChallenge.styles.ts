@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import colors from '../../../helpers/colors.helpers';
+import Select from 'react-select';
 
 export const Container = styled.div`
     height: calc(100% - 20px);
@@ -14,17 +15,38 @@ export const Container = styled.div`
 `;
 
 export const FormContainer = styled.div`
-    height: 600px;
-    width: 800px;
+    min-height: 600px;
+    width: 600px;
     background-color: ${colors.backgroundPrimary};
     color: white;
-    font-size: 32px;
-    padding: 10px 20px;
+    font-size: 24px;
+    padding: 15px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 6px;
+    box-shadow: 2px 2px 10px black;
+`;
+export const FieldWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+interface IFieldError {
+    error: boolean;
+}
+
+export const FieldError = styled.div<IFieldError>`
+    color: #a10803;
+    font-size: 12px;
+    height: 16px;
+    z-index: 1;
+    transition: 0.2s;
+    transform: ${p => (p.error ? 'translateY(0px)' : 'translateY(-16px)')};
+    opacity: ${p => (p.error ? '1' : '0')};
+    bottom: 0;
+    position: relative;
 `;
 
 export const CustomLabel = styled.label`
@@ -33,25 +55,29 @@ export const CustomLabel = styled.label`
     font-size: 24px;
     text-align: right;
     margin-right: 10px;
+    box-shadow: 2px 2px 10px black;
 `;
 
-export const CustomInputText = styled.input`
+export const CustomInputText = styled.input<IFieldError>`
     box-sizing: border-box;
-    width: 300px;
+    width: 500px;
     height: 50px;
-    font-size: 24px;
+    font-size: 20px;
     background-color: ${colors.backgroundSecondary};
     border: none;
     border-radius: 3px;
     transition: 0.2s;
     padding-left: 5px;
+    z-index: 2;
     color: white;
+    border-left: 2px solid
+        ${p => (!p.error ? colors.backgroundSecondary : '#a10803')};
     &:focus {
         outline: none;
         border-left: 2px solid ${colors.orange};
     }
 `;
-export const CustomTextArea = styled.textarea`
+export const CustomTextArea = styled.textarea<IFieldError>`
     box-sizing: border-box;
     min-width: 500px;
     min-height: 250px;
@@ -63,7 +89,10 @@ export const CustomTextArea = styled.textarea`
     border-radius: 3px;
     transition: 0.2s;
     padding-left: 5px;
+    z-index: 2;
     color: white;
+    border-left: 2px solid
+        ${p => (!p.error ? colors.backgroundSecondary : '#a10803')};
     &:focus {
         outline: none;
         border-left: 2px solid ${colors.orange};
@@ -71,7 +100,6 @@ export const CustomTextArea = styled.textarea`
 `;
 
 export const CustomFile = styled.input`
-    border: 1px solid red;
     display: none;
 `;
 
@@ -86,25 +114,29 @@ export const FileButtonsContainer = styled.div`
     gap: 20px;
 `;
 
-export const FileButton = styled.button`
+export const FileButton = styled.div<IFieldError>`
+    box-sizing: border-box;
     width: 200px;
     height: 50px;
     font-size: 16px;
+    overflow: hidden;
     padding: 0;
-    border: none;
-    background-color: ${colors.orange};
+    color: black;
+    background-color: ${p => (p.error ? '#8a1111' : `${colors.orange}`)};
+    border: 2px solid ${p => (p.error ? `#8a1111` : `${colors.orange}`)};
+    display: flex;
+    align-items: center;
+    text-align: center;
     border-radius: 3px;
     padding: 10px 20px;
     cursor: pointer;
     transition: 0.2s;
-    border: 2px solid ${colors.orange};
     text-overflow: ellipsis;
     &:hover,
     &:focus,
     &:focus-visible {
         outline: none;
-        background-color: #c47000;
-        /* content: 'upload images xd'; */
+        background-color: ${p => (p.error ? '#5e0b0b' : `#c47000`)};
     }
 `;
 
@@ -133,4 +165,9 @@ export const SelectDiv = styled.div`
     width: 500px;
     color: black;
     font-size: 16px;
+    height: 60px;
+`;
+
+export const CustomSelect = styled(Select)`
+    z-index: 10;
 `;

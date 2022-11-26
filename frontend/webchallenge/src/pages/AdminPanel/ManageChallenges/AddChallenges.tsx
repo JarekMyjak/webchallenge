@@ -15,8 +15,10 @@ import {
     SelectDiv,
     FieldWrapper,
     FieldError,
+    CustomSelect,
 } from './addChallenges.style';
 import {useForm, Controller} from 'react-hook-form';
+import {optionsTech, optionsExperience} from './options';
 
 const submit = (
     title: string,
@@ -42,39 +44,7 @@ const submit = (
     const res = apiPost('/api/challenges', formData);
 };
 
-const options = [
-    {
-        label: 'Cos tu sie wpisze',
-        options: [
-            {value: 'HTML', label: 'HTML'},
-            {value: 'CSS', label: 'CSS'},
-            {value: 'REACT', label: 'REACT'},
-        ],
-    },
-];
-const optionsExperience = [
-    {value: 'BEGINNER', label: 'BEGINNER'},
-    {value: 'INTERMEDIATE', label: 'INTERMEDIATE'},
-    {value: 'ADVANCED', label: 'ADVANCED'},
-];
-
 const AddChallenges: React.FC = () => {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [tech, setTech] = useState('');
-    const [difficulty, setDifficulty] = useState('');
-    const [file, setFile] = useState<FileList | null>(null);
-    const [pictures, setPictures] = useState<FileList | null>(null);
-    const [selectedTechs, setSelectedTechs] = useState<any[]>([]);
-    const [selectedExp, setSelectedExp] = useState<any[]>([]);
-
-    const handleChangeTech = (selectedOption: any) => {
-        setSelectedTechs(selectedOption);
-    };
-    const handleChangeExp = (selectedOption: any) => {
-        setSelectedExp(selectedOption);
-    };
-
     const challengeFileLabelRef = useRef<HTMLLabelElement>(null);
     const challengeImagesRef = useRef<HTMLLabelElement>(null);
 
@@ -85,9 +55,17 @@ const AddChallenges: React.FC = () => {
         watch,
         control,
         formState: {errors},
+        getValues,
     } = useForm();
 
-    const onSubmit = (data: any) => console.log(data);
+    const watchImages = watch('challengeImages');
+    const watchChallFile = watch('challengeFile');
+
+    const onSubmit = (data: any) => {
+        console.log(watchImages);
+
+        /// przekierowanie do zrobionego czellendzu?
+    };
 
     return (
         <Container>
@@ -96,6 +74,7 @@ const AddChallenges: React.FC = () => {
                     Add new challenge
                     <FieldWrapper>
                         <CustomInputText
+                            error={!!errors.title}
                             {...register('title', {
                                 required: 'Required',
                             })}
@@ -108,6 +87,7 @@ const AddChallenges: React.FC = () => {
                     </FieldWrapper>
                     <FieldWrapper>
                         <CustomTextArea
+                            error={!!errors.description}
                             {...register('description', {
                                 required: 'Required',
                             })}
@@ -122,12 +102,26 @@ const AddChallenges: React.FC = () => {
                             name='challengeTech'
                             control={control}
                             render={({field}) => (
-                                <Select
+                                <CustomSelect
                                     {...field}
-                                    options={options}
+                                    options={optionsTech}
                                     isMulti
                                     isSearchable={false}
                                     placeholder='Select technologies...'
+                                    theme={(theme: any) => ({
+                                        ...theme,
+                                        borderRadius: 1,
+                                        colors: {
+                                            ...theme.colors,
+                                            neutral0: '#454545',
+                                            neutral20: '#454545',
+                                            neutral10: '#222222',
+                                            primary: '#EB8702',
+                                            primary25: '#7c7c7c',
+                                            primary50: '#575757',
+                                            neutral80: '#D0D0D0',
+                                        },
+                                    })}
                                 />
                             )}
                             rules={{required: 'Required!'}}
@@ -141,10 +135,24 @@ const AddChallenges: React.FC = () => {
                             name='challengeExperience'
                             control={control}
                             render={({field}) => (
-                                <Select
+                                <CustomSelect
                                     {...field}
                                     options={optionsExperience}
                                     placeholder='Select experience'
+                                    theme={(theme: any) => ({
+                                        ...theme,
+                                        borderRadius: 1,
+                                        colors: {
+                                            ...theme.colors,
+                                            neutral0: '#454545',
+                                            neutral20: '#454545',
+                                            neutral10: '#222222',
+                                            primary: '#EB8702',
+                                            primary25: '#7c7c7c',
+                                            primary50: '#575757',
+                                            neutral80: '#D0D0D0',
+                                        },
+                                    })}
                                 />
                             )}
                             rules={{required: 'Required!'}}
@@ -165,8 +173,8 @@ const AddChallenges: React.FC = () => {
                                 htmlFor='challengeImages'
                                 ref={challengeImagesRef}
                             >
-                                {pictures?.item(0)
-                                    ? `Images: [${pictures?.length}]`
+                                {watchImages?.item(0)
+                                    ? `Images: [${watchImages?.length}]`
                                     : 'Upload images'}
                             </CustomFileLabel>
                         </FileButton>
@@ -189,8 +197,8 @@ const AddChallenges: React.FC = () => {
                                 htmlFor='challengeFile'
                                 ref={challengeFileLabelRef}
                             >
-                                {file?.item(0)
-                                    ? `${file?.item(0)?.name}`
+                                {watchChallFile?.item(0)
+                                    ? `${watchChallFile?.item(0)?.name}`
                                     : 'Upload challenge file'}
                                 <CustomFile
                                     {...register('challengeFile', {
