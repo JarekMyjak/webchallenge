@@ -32,24 +32,14 @@ const EditChallenge: React.FC = () => {
     const {challengeId} = useParams();
     const [challenge, setChallenge] = useState<Challenge | undefined>();
     const {
-        setFocus,
+        setValue,
         register,
         handleSubmit,
         watch,
         control,
         formState: {errors},
         getValues,
-    } = useForm({
-        defaultValues: {
-            title: '',
-            description: '',
-            challengeTech: '',
-            challengeImages: undefined,
-            challengeFile: undefined,
-            challengeExperience: '',
-            challengeTechnologies: '',
-        },
-    });
+    } = useForm();
 
     const watchImages = watch('challengeImages');
     const watchChallFile = watch('challengeFile');
@@ -67,6 +57,11 @@ const EditChallenge: React.FC = () => {
             })();
         }
     }, []);
+
+    useEffect(() => {
+        setValue('title', challenge?.title);
+        setValue('description', challenge?.description);
+    }, [challenge]);
 
     return challenge ? (
         <Container>
