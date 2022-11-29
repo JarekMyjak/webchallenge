@@ -59,6 +59,7 @@ export const CustomLabel = styled.label`
 `;
 
 export const CustomInputText = styled.input<IFieldError>`
+    margin-top: 4px;
     box-sizing: border-box;
     width: 500px;
     height: 50px;
@@ -78,6 +79,7 @@ export const CustomInputText = styled.input<IFieldError>`
     }
 `;
 export const CustomTextArea = styled.textarea<IFieldError>`
+    margin-top: 4px;
     box-sizing: border-box;
     min-width: 500px;
     min-height: 250px;
@@ -169,5 +171,23 @@ export const SelectDiv = styled.div`
 `;
 
 export const CustomSelect = styled(Select)`
-    z-index: 10;
+    margin-top: 4px;
+    .Select-menu-outer {
+        z-index: 999 !important;
+    }
+`;
+
+export const LoaderContainer = styled.div`
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const LoaderText = styled.span`
+    opacity: 0.3;
+    margin-top: 10px;
+    user-select: none;
 `;

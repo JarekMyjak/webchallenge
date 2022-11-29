@@ -1,3 +1,4 @@
+import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 import colors from '../../helpers/colors.helpers';
 
@@ -190,5 +191,18 @@ export const StartButton = styled.a`
     &:focus-visible {
         outline: none;
         background-color: #f26e1e;
+    }
+`;
+
+export const ReactMarkdownCustom = styled(ReactMarkdown)`
+    color: white;
+    p > a {
+        color: white;
+    }
+    code {
+        padding: 5px 20px;
+        border-radius: 3px;
+        background-color: ${colors.backgroundPrimary};
+        box-shadow: 0px 0px 10px ${colors.backgroundPrimary};
     }
 `;

@@ -28,13 +28,7 @@ const App: React.FC = () => {
         <Container>
             <NavBar />
             <ContentWrapper>
-                {![
-                    '/',
-                    '/adminpanel',
-                    '/adminpanel/addchallenges',
-                    '/adminpanel/listofchallenges',
-                    '/adminpanel/editchallenge',
-                ].includes(location.pathname) && <Leftbar />}
+                {!location.pathname.includes('adminpanel') && <Leftbar />}
 
                 <Content>
                     <Routes>
@@ -72,7 +66,7 @@ const App: React.FC = () => {
                                 }
                             />
                             <Route //TODO
-                                path='editchallenge'
+                                path='editchallenge/:challengeId'
                                 element={
                                     <Guard>
                                         <EditChallenge />

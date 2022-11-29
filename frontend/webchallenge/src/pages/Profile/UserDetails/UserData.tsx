@@ -30,7 +30,7 @@ const UserData: React.FC = () => {
             <UserInfo>
                 <NameWrapper>
                     <Username>John Paul</Username>
-                    <Nickname>@Freaks_US</Nickname>
+                    <Nickname>{user?.name}</Nickname>
                 </NameWrapper>
                 <LinkSection>
                     <Socials>

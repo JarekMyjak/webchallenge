@@ -31,11 +31,11 @@ const ListOfChallenges: React.FC = () => {
             // console.log(response)
             setChallenges(response);
             setLoading(false);
+            console.log(response);
         };
         fetchData();
         return () => {};
     }, []);
-
     return (
         <Container>
             {!loading ? (
@@ -54,7 +54,7 @@ const ListOfChallenges: React.FC = () => {
                             <Column>{challenge.downloads}</Column>
                             <Column>{0}</Column>
                             <Column>
-                                <Link to='../editchallenge'>
+                                <Link to={`../editchallenge/${challenge.id}`}>
                                     <Button>Edit</Button>
                                 </Link>
                             </Column>

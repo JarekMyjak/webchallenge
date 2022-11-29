@@ -59,6 +59,7 @@ export const CustomLabel = styled.label`
 `;
 
 export const CustomInputText = styled.input<IFieldError>`
+    margin-top: 4px;
     box-sizing: border-box;
     width: 500px;
     height: 50px;
@@ -78,6 +79,7 @@ export const CustomInputText = styled.input<IFieldError>`
     }
 `;
 export const CustomTextArea = styled.textarea<IFieldError>`
+    margin-top: 4px;
     box-sizing: border-box;
     min-width: 500px;
     min-height: 250px;
@@ -169,6 +171,8 @@ export const SelectDiv = styled.div`
 `;
 
 export const CustomSelect = styled(Select)`
-    z-index: 10;
-    background-color: red;
+    margin-top: 4px;
+    .Select-menu-outer {
+        z-index: 999 !important;
+    }
 `;

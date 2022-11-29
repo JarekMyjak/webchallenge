@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useEffect} from 'react';
 import Select from 'react-select';
 import {apiPost} from '../../../api/apiMethods';
 import {
@@ -19,6 +19,7 @@ import {
 } from './addChallenges.style';
 import {useForm, Controller} from 'react-hook-form';
 import {optionsTech, optionsExperience} from './options';
+import TitleBar from '../../../components/TitleBar';
 
 const submit = (
     title: string,
@@ -73,6 +74,7 @@ const AddChallenges: React.FC = () => {
                 <FormContainer>
                     Add new challenge
                     <FieldWrapper>
+                        <TitleBar text='Challenge title' />
                         <CustomInputText
                             error={!!errors.title}
                             {...register('title', {
@@ -86,6 +88,7 @@ const AddChallenges: React.FC = () => {
                         </FieldError>
                     </FieldWrapper>
                     <FieldWrapper>
+                        <TitleBar text='Description (MARKDOWN)' />
                         <CustomTextArea
                             error={!!errors.description}
                             {...register('description', {
@@ -97,70 +100,77 @@ const AddChallenges: React.FC = () => {
                             {errors.description?.message}
                         </FieldError>
                     </FieldWrapper>
-                    <SelectDiv>
-                        <Controller
-                            name='challengeTech'
-                            control={control}
-                            render={({field}) => (
-                                <CustomSelect
-                                    {...field}
-                                    options={optionsTech}
-                                    isMulti
-                                    isSearchable={false}
-                                    placeholder='Select technologies...'
-                                    theme={(theme: any) => ({
-                                        ...theme,
-                                        borderRadius: 1,
-                                        colors: {
-                                            ...theme.colors,
-                                            neutral0: '#454545',
-                                            neutral20: '#454545',
-                                            neutral10: '#222222',
-                                            primary: '#EB8702',
-                                            primary25: '#7c7c7c',
-                                            primary50: '#575757',
-                                            neutral80: '#D0D0D0',
-                                        },
-                                    })}
-                                />
-                            )}
-                            rules={{required: 'Required!'}}
-                        />
-                        <FieldError error={!!errors.challengeTech}>
-                            {errors.challengeTech?.message}
-                        </FieldError>
-                    </SelectDiv>
-                    <SelectDiv>
-                        <Controller
-                            name='challengeExperience'
-                            control={control}
-                            render={({field}) => (
-                                <CustomSelect
-                                    {...field}
-                                    options={optionsExperience}
-                                    placeholder='Select experience'
-                                    theme={(theme: any) => ({
-                                        ...theme,
-                                        borderRadius: 1,
-                                        colors: {
-                                            ...theme.colors,
-                                            neutral0: '#454545',
-                                            neutral20: '#454545',
-                                            neutral10: '#222222',
-                                            primary: '#EB8702',
-                                            primary25: '#7c7c7c',
-                                            primary50: '#575757',
-                                            neutral80: '#D0D0D0',
-                                        },
-                                    })}
-                                />
-                            )}
-                            rules={{required: 'Required!'}}
-                        />
-                        <FieldError error={!!errors.challengeExperience}>
-                            {errors.challengeExperience?.message}
-                        </FieldError>
-                    </SelectDiv>
+                    <FieldWrapper>
+                        <TitleBar text='Technologies' />
+                        <SelectDiv>
+                            <Controller
+                                name='challengeTech'
+                                control={control}
+                                render={({field}) => (
+                                    <CustomSelect
+                                        {...field}
+                                        options={optionsTech}
+                                        isMulti
+                                        isSearchable={false}
+                                        placeholder='Select technologies...'
+                                        theme={(theme: any) => ({
+                                            ...theme,
+                                            borderRadius: 1,
+                                            colors: {
+                                                ...theme.colors,
+                                                neutral0: '#454545',
+                                                neutral20: '#454545',
+                                                neutral10: '#222222',
+                                                primary: '#EB8702',
+                                                primary25: '#7c7c7c',
+                                                primary50: '#575757',
+                                                neutral80: '#D0D0D0',
+                                            },
+                                        })}
+                                    />
+                                )}
+                                rules={{required: 'Required!'}}
+                            />
+                            <FieldError error={!!errors.challengeTech}>
+                                {errors.challengeTech?.message}
+                            </FieldError>
+                        </SelectDiv>
+                    </FieldWrapper>
+                    <FieldWrapper>
+                        <TitleBar text='Experience' />
+                        <SelectDiv>
+                            <Controller
+                                name='challengeExperience'
+                                control={control}
+                                render={({field}) => (
+                                    <CustomSelect
+                                        {...field}
+                                        // menuPortalTarget={{}}
+                                        options={optionsExperience}
+                                        placeholder='Select experience'
+                                        theme={(theme: any) => ({
+                                            ...theme,
+                                            borderRadius: 1,
+                                            colors: {
+                                                ...theme.colors,
+                                                neutral0: '#454545',
+                                                neutral20: '#454545',
+                                                neutral10: '#222222',
+                                                primary: '#EB8702',
+                                                primary25: '#7c7c7c',
+                                                primary50: '#575757',
+                                                neutral80: '#D0D0D0',
+                                            },
+                                        })}
+                                    />
+                                )}
+                                rules={{required: 'Required!'}}
+                            />
+                            <FieldError error={!!errors.challengeExperience}>
+                                {errors.challengeExperience?.message}
+                            </FieldError>
+                        </SelectDiv>
+                    </FieldWrapper>
                     <FileButtonsContainer>
                         <FileButton
                             error={!!errors.challengeImages}

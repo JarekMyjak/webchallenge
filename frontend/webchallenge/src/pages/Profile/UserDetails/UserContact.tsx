@@ -9,14 +9,17 @@ import {
 import mailIcon from '../../../assets/icons/mail.png';
 import phoneIcon from '../../../assets/icons/phone.png';
 import pinIcon from '../../../assets/icons/pin.png';
+import {useUser} from '../../../api/useAuth';
 
 const UserContact: React.FC = () => {
+    const user = useUser(store => store.setUser);
+
     return (
         <Wrapper>
             <Title>Contact</Title>
             <Contact>
                 <ConctactImg src={mailIcon}></ConctactImg>
-                <ContactText>johnpaul@gmail.com</ContactText>
+                <ContactText></ContactText>
             </Contact>
             <Contact>
                 <ConctactImg src={phoneIcon}></ConctactImg>
