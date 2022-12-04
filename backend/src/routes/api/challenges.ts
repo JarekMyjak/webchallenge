@@ -33,7 +33,6 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    // const challenge = await Challenge.findOne({_id: req.params["id"]});
     const challenge = await Challenge.findById(req.params["id"]);
     const resChallenge = challenge.toJSON();
     res.send(resChallenge)
@@ -41,10 +40,9 @@ router.get('/:id', async (req, res) => {
 
 router.get('/:id/download', async (req, res) => {
     const challenge = await Challenge.findOne({_id: req.params["id"]});
-    const resUrl = challenge.blobUrl as string;
-    challenge.update({$inc: {'downloads': 1}})
-    const testUrl = "https://challengestore.blob.core.windows.net/challenges/test 2: reaktywacja/Im a test file.txt"
-    res.redirect(testUrl);
+    const blobUrl = challenge.blobUrl as string;
+    challenge.updateOne({$inc: {'downloads': 1}}).exec()
+    res.redirect(blobUrl);
 });
 
 export default router;
