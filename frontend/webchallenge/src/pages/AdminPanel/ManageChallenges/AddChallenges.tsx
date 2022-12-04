@@ -1,10 +1,8 @@
 import React, {useRef, useEffect, useState} from 'react';
-import Select from 'react-select';
 import {apiPost} from '../../../api/apiMethods';
 import {
     Container,
     FormContainer,
-    CustomLabel,
     CustomInputText,
     CustomFile,
     CustomFileLabel,
@@ -20,41 +18,12 @@ import {
 import {useForm, Controller, SubmitHandler, FieldValues} from 'react-hook-form';
 import {optionsTech, optionsExperience} from './options';
 import TitleBar from '../../../components/TitleBar';
-import {Challenge} from '../../../api/apiChallenges';
-
-// const submit = (
-//     title: string,
-//     description: string,
-//     tech: {value: string; label: string}[],
-//     difficulty: string,
-//     files: FileList | null,
-//     pictures: FileList | null
-// ) => {
-//     const formData = new FormData();
-//     formData.append('title', title);
-//     formData.append('description', description);
-//     formData.append('details', description);
-//     formData.append('tech', tech);
-//     formData.append('difficulty', difficulty);
-//     const fileFilelist = files ?? new FileList();
-//     const picturesFilelist = pictures ?? new FileList();
-//     for (let i = 0; i < fileFilelist.length; i++) {
-//         formData.append('files', fileFilelist.item(i) as Blob);
-//     }
-//     for (let i = 0; i < picturesFilelist.length; i++) {
-//         formData.append('images', picturesFilelist.item(i) as Blob);
-//     }
-//     const res = apiPost<Challenge>('/api/challenges', formData);
-//     res.then(value => {
-//         console.log('?', value);
-//     });
-// };
+import { useNavigate } from 'react-router-dom';
 
 const AddChallenges: React.FC = () => {
-    const challengeFileLabelRef = useRef<HTMLLabelElement>(null);
-    const challengeImagesRef = useRef<HTMLLabelElement>(null);
     const [file, setFile] = useState<FileList | null>(null);
     const [pictures, setPictures] = useState<FileList | null>(null);
+    const navigate = useNavigate();
 
     const {
         setFocus,
@@ -66,11 +35,7 @@ const AddChallenges: React.FC = () => {
         getValues,
     } = useForm();
 
-    const watchImages = watch('challengeImages');
-    const watchChallFile = watch('challengeFile');
-
-    const onSubmit = (data: FieldValues) => {
-        console.log(data);
+    const onSubmit = async (data: FieldValues) => {
         let formData = new FormData();
         formData.append('title', data.title);
         formData.append('description', data.description);
@@ -78,10 +43,6 @@ const AddChallenges: React.FC = () => {
         formData.append('tech', JSON.stringify(data.challengeTech));
         formData.append('experience', data.challengeExperience.value);
 
-        // const fileFilelist = file ?? new FileList();
-        // const picturesFilelist = pictures ?? new FileList();
-        console.log(file);
-        console.log(pictures);
         if (file) {
             for (let i = 0; i < file.length; i++) {
                 formData.append('files', file.item(i) as Blob);
@@ -92,13 +53,9 @@ const AddChallenges: React.FC = () => {
                 formData.append('images', pictures.item(i) as Blob);
             }
         }
-        // formData.values().forEach(element => {
-        //     console.log(element);
-        // });
-        console.log('asd', Array.from(formData.values()));
-        const res = apiPost('/api/challenges', formData);
-        console.log(res);
-        /// przekierowanie do zrobionego czellendzu?
+        apiPost('/api/challenges', formData).then((res) => {
+            navigate(`/challenges/${res.data.challenge.id}`)
+        });
     };
 
     return (
@@ -192,7 +149,6 @@ const AddChallenges: React.FC = () => {
                                 render={({field}) => (
                                     <CustomSelect
                                         {...field}
-                                        // menuPortalTarget={{}}
                                         options={optionsExperience}
                                         placeholder='Select experience'
                                         theme={(theme: any) => ({
@@ -242,7 +198,6 @@ const AddChallenges: React.FC = () => {
                             />
                         </CustomFileLabel>
                     </FileButtonsContainer>
-                    {/* <input type="text" value={title} onChange={((e) => setTitle(e.target.value))} /><br/> */}
                     <SubmitButton>Submit</SubmitButton>
                 </FormContainer>
             </form>
