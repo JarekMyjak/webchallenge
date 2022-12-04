@@ -6,6 +6,7 @@ const { Schema } = mongoose;
 export interface challengeType {
     title: String;
     description: String;
+    details: String;
     tech: String;
     experience: String;
     imageUrls: String[];
@@ -19,6 +20,10 @@ const challengeSchema = new Schema<challengeType>({
         required: true,
     },
     description: {
+        type: String,
+        required: false,
+    },
+	details: {
         type: String,
         required: false,
     },
@@ -48,6 +53,7 @@ challengeSchema.methods.toJSON = function () {
         id: this._id,
         title: this.title,
         description: this.description,
+        details: this.details,
         tech: this.tech,
         experience: this.experience,
         imageUrls: this.imageUrls,

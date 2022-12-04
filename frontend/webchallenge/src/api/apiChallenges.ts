@@ -4,6 +4,7 @@ export interface Challenge {
     id: string;
     title: string;
     description: string;
+    details: string;
     tech: string;
     experience: 'advanced' | 'beginner' | 'intermediate';
     imageUrls: string[];

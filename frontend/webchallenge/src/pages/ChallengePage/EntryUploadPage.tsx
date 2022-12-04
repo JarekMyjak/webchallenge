@@ -1,113 +1,84 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../helpers/colors.helpers';
 import TopSection from './TopSection';
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
-    Challenge,
-    downloadChallengeUrl,
-    getChallenge,
+	Challenge,
+	downloadChallengeUrl,
+	getChallenge,
 } from '../../api/apiChallenges';
-import {SubmitHandler, useForm} from 'react-hook-form';
-import {apiPost} from '../../api/apiMethods';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { apiPost } from '../../api/apiMethods';
 import ClickAwayListener from 'react-click-away-listener';
 
 interface Inputs {
-    githubUrl: string;
-    pagesUrl: string;
-    description: string;
+	githubUrl: string;
+	pagesUrl: string;
+	description: string;
 }
 
 interface IEntryUploadPage {
-    closeDialogHandler(): void;
-    challenge: any;
+	closeDialogHandler(): void;
+	challenge: any;
 }
 
 const EntryUploadPage: React.FC<IEntryUploadPage> = props => {
-    // const {challengeId} = useParams();
-    // const [challenge, setChallenge] = useState<Challenge | undefined>();
+	const { challengeId } = useParams();
+	// const [challenge, setChallenge] = useState<Challenge | undefined>();
 
-    const {register, handleSubmit} = useForm<Inputs>();
-    // const onSubmit: SubmitHandler<Inputs> = data => {
-    //     const res = apiPost(`/api/entries/challenge/${challengeId}`, data);
-    //     console.log(res);
-    // };
+	const { register, handleSubmit } = useForm<Inputs>();
+	const onSubmit: SubmitHandler<Inputs> = data => {
+		const res = apiPost(`/api/entries/challenge/${challengeId}`, data);
+		console.log(challengeId);
+		console.log(res);
+		props.closeDialogHandler();
+	};
 
-    // useEffect(() => {
-    //     if (challengeId) {
-    //         (async () => {
-    //             setChallenge(await getChallenge(challengeId));
-    //         })();
-    //     }
-    // }, []);
-
-    return (
-        <ClickAwayListener onClickAway={props.closeDialogHandler}>
-            <Wrapper>
-                {props.challenge && (
-                    <>
-                        <h2>Upload challenge entry:</h2>
-                        <div>
-                            <CustomInputText
-                                placeholder='Repository url'
-                                type='text'
-                                id='challengeTitle'
-                                {...register('githubUrl')}
-                                // value={title}
-                                // onChange={e => setTitle(e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <CustomInputText
-                                placeholder='Pages url'
-                                type='text'
-                                id='challengeTitle'
-                                {...register('pagesUrl')}
-                                // value={title}
-                                // onChange={e => setTitle(e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <CustomTextArea
-                                placeholder='Description'
-                                id='challengeDescription'
-                                {...register('description')}
-                                //     value={description}
-                                //     onChange={e => setDescription(e.target.value)}
-                            />
-                        </div>
-
-                        {/* <form onSubmit={handleSubmit(onSubmit)}>
-                            <label>
-                                <span>repository url</span>
-                                <br />
-                                <input {...register('githubUrl')} />
-                            </label>
-                            <br />
-                            <label>
-                                <span>github pages url</span>
-                                <br />
-                                <input {...register('pagesUrl')} />
-                            </label>
-                            <br />
-                            <label>
-                                <span>your description</span>
-                                <br />
-                                <input {...register('description')} />
-                            </label>
-                            <br /> */}
-                        <SubmitButton type='submit'>Submit</SubmitButton>
-                        {/* </form> */}
-                    </>
-                )}
-            </Wrapper>
-        </ClickAwayListener>
-    );
+	return (
+		<ClickAwayListener onClickAway={props.closeDialogHandler}>
+			{props.challenge && (
+				<Wrapper
+					onSubmit={e => {
+						handleSubmit(onSubmit)(e).catch(err =>
+							console.log(err)
+						);
+					}}
+				>
+					<h2>Upload challenge entry:</h2>
+					<div>
+						<CustomInputText
+							placeholder='Repository url'
+							type='text'
+							id='challengeTitle'
+							{...register('githubUrl')}
+						/>
+					</div>
+					<div>
+						<CustomInputText
+							placeholder='Pages url'
+							type='text'
+							id='challengeTitle'
+							{...register('pagesUrl')}
+						/>
+					</div>
+					<div>
+						<CustomTextArea
+							placeholder='Description'
+							id='challengeDescription'
+							{...register('description')}
+						/>
+					</div>
+					<SubmitButton type='submit'>Submit</SubmitButton>
+				</Wrapper>
+			)}
+		</ClickAwayListener>
+	);
 };
 
 export default EntryUploadPage;
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
     transform: translateY(150px);
     width: 600px;
     height: 600px;

@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import Select from 'react-select';
 import {apiPost} from '../../../api/apiMethods';
 import {
@@ -17,37 +17,44 @@ import {
     FieldError,
     CustomSelect,
 } from './addChallenges.style';
-import {useForm, Controller} from 'react-hook-form';
+import {useForm, Controller, SubmitHandler, FieldValues} from 'react-hook-form';
 import {optionsTech, optionsExperience} from './options';
 import TitleBar from '../../../components/TitleBar';
+import {Challenge} from '../../../api/apiChallenges';
 
-const submit = (
-    title: string,
-    description: string,
-    tech: string,
-    difficulty: string,
-    pictures: FileList | null,
-    file: FileList | null
-) => {
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('tech', tech);
-    formData.append('difficulty', difficulty);
-    const fileFilelist = file ?? new FileList();
-    const picturesFilelist = pictures ?? new FileList();
-    for (let i = 0; i < fileFilelist.length; i++) {
-        formData.append('files', fileFilelist.item(i) as Blob);
-    }
-    for (let i = 0; i < picturesFilelist.length; i++) {
-        formData.append('images', picturesFilelist.item(i) as Blob);
-    }
-    const res = apiPost('/api/challenges', formData);
-};
+// const submit = (
+//     title: string,
+//     description: string,
+//     tech: {value: string; label: string}[],
+//     difficulty: string,
+//     files: FileList | null,
+//     pictures: FileList | null
+// ) => {
+//     const formData = new FormData();
+//     formData.append('title', title);
+//     formData.append('description', description);
+//     formData.append('details', description);
+//     formData.append('tech', tech);
+//     formData.append('difficulty', difficulty);
+//     const fileFilelist = files ?? new FileList();
+//     const picturesFilelist = pictures ?? new FileList();
+//     for (let i = 0; i < fileFilelist.length; i++) {
+//         formData.append('files', fileFilelist.item(i) as Blob);
+//     }
+//     for (let i = 0; i < picturesFilelist.length; i++) {
+//         formData.append('images', picturesFilelist.item(i) as Blob);
+//     }
+//     const res = apiPost<Challenge>('/api/challenges', formData);
+//     res.then(value => {
+//         console.log('?', value);
+//     });
+// };
 
 const AddChallenges: React.FC = () => {
     const challengeFileLabelRef = useRef<HTMLLabelElement>(null);
     const challengeImagesRef = useRef<HTMLLabelElement>(null);
+    const [file, setFile] = useState<FileList | null>(null);
+    const [pictures, setPictures] = useState<FileList | null>(null);
 
     const {
         setFocus,
@@ -62,9 +69,35 @@ const AddChallenges: React.FC = () => {
     const watchImages = watch('challengeImages');
     const watchChallFile = watch('challengeFile');
 
-    const onSubmit = (data: any) => {
-        console.log(watchImages);
+    const onSubmit = (data: FieldValues) => {
+        console.log(data);
+        let formData = new FormData();
+        formData.append('title', data.title);
+        formData.append('description', data.description);
+        formData.append('details', data.details);
+        formData.append('tech', JSON.stringify(data.challengeTech));
+        formData.append('experience', data.challengeExperience.value);
 
+        // const fileFilelist = file ?? new FileList();
+        // const picturesFilelist = pictures ?? new FileList();
+        console.log(file);
+        console.log(pictures);
+        if (file) {
+            for (let i = 0; i < file.length; i++) {
+                formData.append('files', file.item(i) as Blob);
+            }
+        }
+        if (pictures) {
+            for (let i = 0; i < pictures.length; i++) {
+                formData.append('images', pictures.item(i) as Blob);
+            }
+        }
+        // formData.values().forEach(element => {
+        //     console.log(element);
+        // });
+        console.log('asd', Array.from(formData.values()));
+        const res = apiPost('/api/challenges', formData);
+        console.log(res);
         /// przekierowanie do zrobionego czellendzu?
     };
 
@@ -88,10 +121,24 @@ const AddChallenges: React.FC = () => {
                         </FieldError>
                     </FieldWrapper>
                     <FieldWrapper>
-                        <TitleBar text='Description (MARKDOWN)' />
+                        <TitleBar text='Description' />
                         <CustomTextArea
                             error={!!errors.description}
+                            small
                             {...register('description', {
+                                required: 'Required',
+                            })}
+                            placeholder='Description'
+                        />
+                        <FieldError error={!!errors.description}>
+                            {errors.description?.message}
+                        </FieldError>
+                    </FieldWrapper>
+                    <FieldWrapper>
+                        <TitleBar text='Details (MARKDOWN)' />
+                        <CustomTextArea
+                            error={!!errors.description}
+                            {...register('details', {
                                 required: 'Required',
                             })}
                             placeholder='Description'
@@ -172,69 +219,31 @@ const AddChallenges: React.FC = () => {
                         </SelectDiv>
                     </FieldWrapper>
                     <FileButtonsContainer>
-                        <FileButton
-                            error={!!errors.challengeImages}
-                            onClick={e => {
-                                // e.preventDefault();
-                                challengeImagesRef.current?.click();
-                            }}
-                        >
-                            <CustomFileLabel
-                                htmlFor='challengeImages'
-                                ref={challengeImagesRef}
-                            >
-                                {watchImages?.item(0)
-                                    ? `Images: [${watchImages?.length}]`
-                                    : 'Upload images'}
-                            </CustomFileLabel>
-                        </FileButton>
-                        <CustomFile
-                            {...register('challengeImages', {required: true})}
-                            type='file'
-                            id='challengeImages'
-                            multiple
-                            accept='image/png, image/gif, image/jpeg'
-                        />
-                        <FileButton
-                            error={!!errors.challengeFile}
-                            onClick={e => {
-                                e.stopPropagation();
-                                challengeFileLabelRef.current?.click();
-                                // e.preventDefault();
-                            }}
-                        >
-                            <CustomFileLabel
-                                htmlFor='challengeFile'
-                                ref={challengeFileLabelRef}
-                            >
-                                {watchChallFile?.item(0)
-                                    ? `${watchChallFile?.item(0)?.name}`
-                                    : 'Upload challenge file'}
-                                <CustomFile
-                                    {...register('challengeFile', {
-                                        required: true,
-                                    })}
-                                    type='file'
-                                    id='challengeFile'
-                                />
-                            </CustomFileLabel>
-                        </FileButton>
+                        <CustomFileLabel htmlFor='challengeImages'>
+                            {pictures?.item(0)
+                                ? `Images: [${pictures?.length}]`
+                                : 'Upload images'}
+                            <CustomFile
+                                type='file'
+                                id='challengeImages'
+                                multiple
+                                accept='image/png, image/gif, image/jpeg'
+                                onChange={e => setPictures(e.target.files)}
+                            />
+                        </CustomFileLabel>
+                        <CustomFileLabel htmlFor='challengeFile'>
+                            {file?.item(0)
+                                ? `${file?.item(0)?.name}`
+                                : 'Upload challenge file'}
+                            <CustomFile
+                                type='file'
+                                id='challengeFile'
+                                onChange={e => setFile(e.target.files)}
+                            />
+                        </CustomFileLabel>
                     </FileButtonsContainer>
                     {/* <input type="text" value={title} onChange={((e) => setTitle(e.target.value))} /><br/> */}
-                    <SubmitButton
-                    // onClick={() => {
-                    //     submit(
-                    //         title,
-                    //         description,
-                    //         tech,
-                    //         difficulty,
-                    //         pictures,
-                    //         file
-                    //     );
-                    // }}
-                    >
-                        Submit
-                    </SubmitButton>
+                    <SubmitButton>Submit</SubmitButton>
                 </FormContainer>
             </form>
         </Container>

@@ -26,7 +26,14 @@ const ChallengePage: React.FC = () => {
     const [addDialogOpen, setAddDialogOpen] = useState<boolean>(false);
 
     const openDialogHandler = () => setAddDialogOpen(true);
-    const closeDialogHandler = () => setAddDialogOpen(false);
+    const closeDialogHandler = () => {
+        setAddDialogOpen(false);
+        if (challengeId) {
+            (async () => {
+                setEntries(await getEntriesByChallengeId(challengeId));
+            })();
+        }
+    };
 
     useEffect(() => {
         if (challengeId) {
@@ -56,6 +63,8 @@ const ChallengePage: React.FC = () => {
                             title={challenge?.title}
                             id={challenge?.id}
                             onUploadClick={openDialogHandler}
+                            description={challenge.description}
+                            details={challenge.details}
                         />
                     </Wrapper>
                     <Wrapper>

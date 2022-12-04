@@ -35,6 +35,7 @@ export const FieldWrapper = styled.div`
 
 interface IFieldError {
     error: boolean;
+    small?: boolean;
 }
 
 export const FieldError = styled.div<IFieldError>`
@@ -82,7 +83,7 @@ export const CustomTextArea = styled.textarea<IFieldError>`
     margin-top: 4px;
     box-sizing: border-box;
     min-width: 500px;
-    min-height: 250px;
+    min-height: ${p => (p.small ? '100px' : '200px')};;
     max-width: 500px;
     max-height: 250px;
     font-size: 12px;
@@ -102,7 +103,7 @@ export const CustomTextArea = styled.textarea<IFieldError>`
 `;
 
 export const CustomFile = styled.input`
-    display: none;
+    /* display: none; */
 `;
 
 export const CustomFileLabel = styled.label`

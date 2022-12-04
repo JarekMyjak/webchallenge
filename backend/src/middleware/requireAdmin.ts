@@ -7,5 +7,4 @@ export default function requireAdmin(req, res, next) {
         if (userEntry.role != 'ADMIN') { res.status(401).send(); return; }
         next()
     })
-
 }

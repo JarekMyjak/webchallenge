@@ -2,18 +2,20 @@ import { Router } from 'express';
 import { removeUrlParams, upload } from '../../middleware/multer';
 
 import requireAdmin from '../../middleware/requireAdmin';
+import consoleLog from '../../middleware/consoleLog';
 import Challenge, { challengeType } from '../../models/challenge';
 
 const router = Router();
 
 type extendedFile = Express.Multer.File & {url: string}
-router.post('/', requireAdmin, upload.any(), async (req, res) => {
 
+router.post('/', requireAdmin, upload.any(), async (req, res) => {
     const fileArray = req.files as Array<extendedFile>;
     const urlArr = fileArray.map(file => removeUrlParams(file.url));
     const newChallenge = await new Challenge({
         title: req.body.title,
         description: req.body.description,
+        details: req.body.details,
         tech: req.body.tech,
         experience: req.body.experience,
         imageUrls: urlArr.slice(1),
@@ -26,9 +28,7 @@ router.post('/', requireAdmin, upload.any(), async (req, res) => {
 
 router.get('/', async (req, res) => {
     const challenges = await Challenge.find({}).sort({ createdAt: 'desc' });
-    const challengesa = await Challenge.find();
     const resChallenges = challenges.map((c) => c.toJSON())
-    console.log(challengesa)
     res.send(resChallenges)
 });
 

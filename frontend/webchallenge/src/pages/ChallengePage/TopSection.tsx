@@ -21,7 +21,6 @@ import {
 } from './topSection.styles';
 import fistCardImg from '../../assets/images/landing/First_card.jpg';
 import {downloadChallengeUrl} from '../../api/apiChallenges';
-import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 export const enum techs {
@@ -38,6 +37,8 @@ interface ITopSection {
     technologies?: techs[];
     premium?: boolean;
     title?: string;
+    description?: string;
+    details?: string;
     id: any;
     onUploadClick(): void;
 }
@@ -76,9 +77,7 @@ const TopSection: React.FC<ITopSection> = props => {
                             <Status isPremium={true}>{true ? 'P' : 'F'}</Status>
                         </TitleBar>
                         <Description>
-                            If you are going to use a passage of Lorem Ipsum,
-                            you need to be sure there isn't anything
-                            embarrassing hidden in the middle of text.
+                            {props.description}
                         </Description>
                         <TechnologiesAndExperience>
                             <Technologies>
@@ -114,7 +113,7 @@ const TopSection: React.FC<ITopSection> = props => {
                     </StartButton>
                 </ChallengeData>
             </Wrapper>
-            <ReactMarkdownCustom children={xd} remarkPlugins={[remarkGfm]} />
+            <ReactMarkdownCustom children={props.details} remarkPlugins={[remarkGfm]} />
         </div>
     );
 };

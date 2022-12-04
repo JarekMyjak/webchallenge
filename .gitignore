@@ -1,1 +1,6 @@
 backend/.env prod config
+
+backend/dist
+
+backend/dist/*
+backend/dist/app.js
