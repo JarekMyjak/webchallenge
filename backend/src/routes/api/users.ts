@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import User, { userType } from '../../models/user';
+import User, { userType, userTypeMethods } from '../../models/user';
 
 import requireJwtAuth from '../../middleware/requireJwtAuth';
 
@@ -7,13 +7,8 @@ import requireJwtAuth from '../../middleware/requireJwtAuth';
 const router = Router();
 
 router.get('/me', requireJwtAuth, async (req, res) => {
-    const userEntry = req.user as userType;
-    const me = {
-        name: userEntry.name,
-        avatar: userEntry.avatar,
-        role: userEntry.role,
-    }
-    res.json(me);
+    const userEntry = req.user as userType & userTypeMethods;
+    res.json(userEntry.toJSON());
 });
 
 router.get('/:username', requireJwtAuth, async (req, res) => {

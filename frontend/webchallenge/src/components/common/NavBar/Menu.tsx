@@ -12,7 +12,7 @@ const Menu: React.FC<IMenu> = props => {
 
     return (
         <Container isOpen={props.isOpen}>
-            <Button to='/profile'>{user?.name}</Button>
+            <Button to='/profile'>{user?.username}</Button>
             {user?.role === 'ADMIN' && (
                 <Button to='/adminpanel'>Admin panel</Button>
             )}

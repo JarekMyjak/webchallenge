@@ -7,14 +7,22 @@ export interface userType {
     provider: String;
     username: String;
     email: String;
-    name: String;
+    githubName: String;
     avatar: String;
     role: String;
     bio: String;
     githubId: String;
+    github: String;
+    linkedIn: String;
+    website: String;
+    city: String;
 }
 
-const userSchema = new Schema(
+export interface userTypeMethods {
+    toJSON(): {};
+}
+
+const userSchema = new Schema<userType, {}, userTypeMethods>(
     {
         provider: {
             type: String,
@@ -22,10 +30,7 @@ const userSchema = new Schema(
         },
         username: {
             type: String,
-            lowercase: true,
-            unique: true,
             required: [true, "can't be blank"],
-            match: [/^[a-zA-Z0-9_]+$/, 'is invalid'],
             index: true,
         },
         email: {
@@ -36,10 +41,14 @@ const userSchema = new Schema(
             match: [/\S+@\S+\.\S+/, 'is invalid'],
             index: true,
         },
-        name: String,
+        githubName: String,
         avatar: String,
         role: { type: String, default: 'USER' },
         bio: String,
+        city: String,
+        github: String,
+        linkedIn: String,
+        website: String,
         githubId: {
             type: String,
             unique: true,
@@ -57,10 +66,15 @@ userSchema.methods.toJSON = function () {
         email: this.email,
         username: this.username,
         avatar: this.avatar,
-        name: this.name,
+        githubName: this.githubName,
         role: this.role,
         createdAt: this.createdAt,
         updatedAt: this.updatedAt,
+        bio: this.bio,
+        city: this.city,
+        website: this.website,
+        github: this.github,
+        linkedIn: this.linkedIn,
     };
 };
 

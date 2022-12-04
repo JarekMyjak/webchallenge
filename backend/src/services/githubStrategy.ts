@@ -11,37 +11,42 @@ const GithubClientSecret = env.AUTH_GITHUB_CLIENT_SECRET;
 const ApiBaseUrl = env.API_BASE_URL;
 
 const githubLogin = new GithubStrategy(
-  {
-    clientID: GithubClientId,
-	clientSecret: GithubClientSecret,
-	callbackURL: `${ApiBaseUrl}/auth/github/callback`,
-    scope: ['user:email'],
-  },
-  async (accessToken, refreshToken, profile, done) => {
-    try {
-      const oldUser = await User.findOne({ email: profile.emails[0].value });
-        console.log("profile: ",profile);
-      if (oldUser) {
-        return done(null, oldUser);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+	{
+		clientID: GithubClientId,
+		clientSecret: GithubClientSecret,
+		callbackURL: `${ApiBaseUrl}/auth/github/callback`,
+		scope: ['user:email'],
+	},
+	async (accessToken, refreshToken, profile, done) => {
+		try {
+			const existingUser = await User.findOne({ email: profile.emails[0].value });
+			console.log("profile: ", profile);
+			if (existingUser) {
+				return done(null, existingUser);
+			}
+		} catch (err) {
+			console.log(err);
+		}
 
-    try {
-      const newUser = await new User({
-        provider: 'github',
-        githubId: profile.id,
-        username: `user${profile.id}`,
-        email: profile.emails[0].value,
-        name: profile.username,
-        avatar: profile.photos[0].value,
-      }).save();
-      done(null, newUser);
-    } catch (err) {
-      console.log(err);
-    }
-  },
+		try {
+			const newUser = await new User({
+				provider: 'github',
+				githubId: profile.id,
+				username: profile.username,
+				email: profile.emails[0].value,
+				githubName: profile.username,
+				avatar: profile.photos[0].value,
+				bio: "",
+				city: "",
+				website: "",
+				linkedIn: "",
+				github: profile.profileUrl,
+			}).save();
+			done(null, newUser);
+		} catch (err) {
+			console.log(err);
+		}
+	},
 );
 
 passport.use(githubLogin);

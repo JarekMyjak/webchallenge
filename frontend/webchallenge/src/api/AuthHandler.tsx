@@ -15,6 +15,7 @@ const AuthHandler = () => {
         setToken(jwt);
         apiGet('/api/users/me').then((response)=>{
             setUser(response.data);
+            console.log(response.data);
         })
     }
 
