@@ -28,7 +28,8 @@ const App: React.FC = () => {
         <Container>
             <NavBar />
             <ContentWrapper>
-                {!location.pathname.includes('adminpanel') && <Leftbar />}
+                {!location.pathname.includes('adminpanel') &&
+                    location.pathname === ' ' && <Leftbar />}
 
                 <Content>
                     <Routes>

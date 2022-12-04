@@ -105,11 +105,10 @@ const ChallengesList: React.FC = () => {
                                 <CustomLink to={c.id}>
                                     <ChallengeCard
                                         key={`challengeCard${c.id}`}
-                                        exp={c.experience}
-                                        technologies={c.tech
-                                            .toUpperCase()
-                                            .replace(/ /g, '')
-                                            .split(',')}
+                                        exp={c.experience.toLowerCase()}
+                                        technologies={JSON.parse(c.tech).map(
+                                            (el: any) => el.value
+                                        )}
                                         premium={true}
                                         title={c.title}
                                         description={c.description}

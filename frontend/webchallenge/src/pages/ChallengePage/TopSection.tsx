@@ -76,9 +76,7 @@ const TopSection: React.FC<ITopSection> = props => {
                             <Title>{props.title}</Title>
                             <Status isPremium={true}>{true ? 'P' : 'F'}</Status>
                         </TitleBar>
-                        <Description>
-                            {props.description}
-                        </Description>
+                        <Description>{props.description}</Description>
                         <TechnologiesAndExperience>
                             <Technologies>
                                 <Title>Technologies</Title>
@@ -113,7 +111,10 @@ const TopSection: React.FC<ITopSection> = props => {
                     </StartButton>
                 </ChallengeData>
             </Wrapper>
-            <ReactMarkdownCustom children={props.details} remarkPlugins={[remarkGfm]} />
+            <ReactMarkdownCustom
+                children={props.details as string}
+                remarkPlugins={[remarkGfm]}
+            />
         </div>
     );
 };

@@ -25,7 +25,7 @@ export const enum techs {
 }
 
 interface IChallengeCard {
-    exp: 'beginner' | 'intermediate' | 'advanced';
+    exp: string;
     technologies: string[];
     premium: boolean;
     title: string;
@@ -49,9 +49,9 @@ const ChallengeCard: React.FC<IChallengeCard> = props => {
 
     return (
         <Wrapper>
-            <Top isPremium={props.premium}>
-                <Status isPremium={props.premium}>
-                    {props.premium ? 'P' : 'F'}
+            <Top isPremium={!props.premium}>
+                <Status isPremium={!props.premium}>
+                    {!props.premium ? 'P' : 'F'}
                 </Status>
                 <ChallengeImg>
                     <img src={props.image} />
