@@ -46,7 +46,10 @@ export const Socials = styled.div`
     flex-direction: column;
 `;
 
-export const SocialLinks = styled.div``;
+export const SocialLinks = styled.div`
+    display: flex;
+    gap: 5px;
+`;
 
 export const SocialText = styled.span`
     font-size: 13px;
@@ -54,10 +57,20 @@ export const SocialText = styled.span`
     margin-bottom: 10px;
 `;
 
+export const SocialButton = styled.button`
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: transparent;
+    transition: 0.1s;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.2);
+    }
+`;
 export const SocialImg = styled.img`
     width: 35px;
     height: 35px;
-    margin-right: 12px;
 `;
 
 export const MyWebiste = styled(Socials)`

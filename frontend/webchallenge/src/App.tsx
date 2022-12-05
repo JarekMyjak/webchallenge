@@ -19,6 +19,7 @@ import ChallengePage from './pages/ChallengePage/ChallengePage';
 import ChallengeUpload from './pages/ChallengePage/EntryUploadPage';
 import Guard from './components/utils/Guard';
 import {useUser} from './api/useAuth';
+import Entry from './pages/Entry/Entry';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -99,10 +100,14 @@ const App: React.FC = () => {
                                 </Guard>
                             }
                         />
-                        {/* <Route
-                            path='/challenge'
-                            element={<Challenge />}
-                        ></Route> */}
+                        <Route
+                            path='/entry/:id'
+                            element={
+                                <Guard>
+                                    <Entry />
+                                </Guard>
+                            }
+                        ></Route>
                         <Route
                             path='/challenges'
                             element={

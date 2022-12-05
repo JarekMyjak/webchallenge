@@ -1,17 +1,18 @@
 import React from 'react';
+import {useUser} from '../../../api/useAuth';
 import {Wrapper, Description, DescTitle, DescText} from './aboutUser.styles';
 
 const AboutUser: React.FC = () => {
+    const user = useUser(store => store.user);
+
     return (
         <Wrapper>
             <Description>
                 <DescTitle>About me</DescTitle>
                 <DescText>
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page when looking at
-                    its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less normal distribution of letters, as opposed to
-                    using 'Content here, content here'
+                    {user?.bio === ''
+                        ? `We don't know much about ${user?.username}, but we know that he/she is great!😁`
+                        : user?.bio}
                 </DescText>
             </Description>
         </Wrapper>

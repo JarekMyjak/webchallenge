@@ -19,6 +19,7 @@ import Loader from '../../components/Loader';
 import EntryUploadPage from './EntryUploadPage';
 import ClickAwayListener from 'react-click-away-listener';
 import EntryBox from './EntryBox';
+import TitleBar from '../../components/TitleBar';
 
 const ChallengePage: React.FC = () => {
     const {challengeId} = useParams();
@@ -27,6 +28,7 @@ const ChallengePage: React.FC = () => {
     const [addDialogOpen, setAddDialogOpen] = useState<boolean>(false);
 
     const openDialogHandler = () => setAddDialogOpen(true);
+
     const closeDialogHandler = () => {
         setAddDialogOpen(false);
         if (challengeId) {
@@ -73,11 +75,13 @@ const ChallengePage: React.FC = () => {
                             exp={challenge.experience.toLowerCase()}
                         />
                     </Wrapper>
-                    <Wrapper>
-                        {/* Entries: */}
-                        {console.log(entries)}
-                        {entries.map(e => (
-                            <>
+                    {entries?.length > 0 && (
+                        <Wrapper>
+                            <Title>
+                                <TitleBar text='Users entries:' />
+                            </Title>
+                            {console.log(entries)}
+                            {entries.map(e => (
                                 <EntryBox
                                     challengeId={challenge.id}
                                     description={e.description}
@@ -86,41 +90,9 @@ const ChallengePage: React.FC = () => {
                                     liked={e.liked}
                                     githubUrl={e.githubUrl}
                                 />
-                                {/* <p>{e.githubUrl}</p>
-                                <p>{e.description}</p>
-                                <p>{e.likes}</p>
-                                <p>{e.liked ? 'liked' : 'not liked'}</p>
-                                <p>
-                                    {e.comments.map(c => (
-                                        <p>{c.content}</p>
-                                    ))}
-                                </p>
-
-                                <button
-                                    onClick={() => {
-                                        postDislikeToEntry(e.id);
-                                    }}
-                                >
-                                    unstar
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        postLikeToEntry(e.id);
-                                    }}
-                                >
-                                    star
-                                </button>
-
-                                <button
-                                    onClick={() => {
-                                        postCommentToEntry(e.id);
-                                    }}
-                                >
-                                    comment
-                                </button> */}
-                            </>
-                        ))}
-                    </Wrapper>
+                            ))}
+                        </Wrapper>
+                    )}
                     {addDialogOpen && challenge && (
                         <Dialog>
                             <EntryUploadPage
@@ -173,4 +145,9 @@ const WrapperLoader = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+`;
+
+const Title = styled.div`
+    color: white;
+    margin-bottom: 10px;
 `;

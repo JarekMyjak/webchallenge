@@ -5,6 +5,7 @@ import {devtools, persist} from 'zustand/middleware';
 
 interface user {
     username: string;
+    githubName: string;
     avatar: string;
     role: string;
     bio: string;
