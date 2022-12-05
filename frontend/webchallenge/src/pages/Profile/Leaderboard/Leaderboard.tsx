@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TitleBar from '../../../components/TitleBar';
 import {Wrapper, Board, Header, Headers} from './Leaderboard.styles';
 import UserBar from './UserBar';
 import prizeIcon from '../../../assets/icons/prize.png';
+import { getLeaderboard, LeaderboardEntry } from '../../../api/apiLeaderboard';
 
 const Leaderboard: React.FC = () => {
+    const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            setLeaderboard(await getLeaderboard());
+        })();
+    }, []);
+
     return (
         <Wrapper>
             <TitleBar imageSrc={prizeIcon} text='Leaderboard' />
@@ -14,26 +23,12 @@ const Leaderboard: React.FC = () => {
                     <Header width={220}>User</Header>
                     <Header width={70}>Score</Header>
                 </Headers>
-                <UserBar
-                    avatarSrc='https://www.wykop.pl/cdn/c3201142/comment_3q2kbaZ0x9Sf0ctp0I01euXDRRiCCGTd.jpg'
-                    points={21}
-                    name='Matthew Makula'
-                />
-                <UserBar
-                    avatarSrc='https://www.wykop.pl/cdn/c3201142/comment_3q2kbaZ0x9Sf0ctp0I01euXDRRiCCGTd.jpg'
-                    points={20}
-                    name='Matthew Makula'
-                />
-                <UserBar
-                    avatarSrc='https://www.wykop.pl/cdn/c3201142/comment_3q2kbaZ0x9Sf0ctp0I01euXDRRiCCGTd.jpg'
-                    points={19}
-                    name='You'
-                />
-                <UserBar
-                    avatarSrc='https://www.wykop.pl/cdn/c3201142/comment_3q2kbaZ0x9Sf0ctp0I01euXDRRiCCGTd.jpg'
-                    points={7}
-                    name='Matthew Makula'
-                />
+                {leaderboard.map((entry, idx) => <UserBar
+                    avatarSrc={entry.user.avatar}
+                    points={entry.likes}
+                    name={entry.user.username}
+                    rank={idx+1}
+                />)}
             </Board>
         </Wrapper>
     );

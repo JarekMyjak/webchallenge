@@ -3,7 +3,7 @@ import axios from 'axios';
 import {unstable_batchedUpdates} from 'react-dom';
 import {devtools, persist} from 'zustand/middleware';
 
-interface user {
+export interface user {
     username: string;
     githubName: string;
     avatar: string;

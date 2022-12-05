@@ -17,13 +17,13 @@ router.post('/', requireAdmin, upload.any(), async (req, res) => {
 	console.log(fileArray);
 	let fileUrl, premiumFileUrl, imageUrls = [];
 	fileArray.forEach(file => {
-		if (file.fieldname === "file"){
+		if (file.fieldname === "file") {
 			fileUrl = file.url
 		}
-		if (file.fieldname === "premiumFile"){
+		if (file.fieldname === "premiumFile") {
 			premiumFileUrl = file.url
 		}
-		if (file.fieldname === "images"){
+		if (file.fieldname === "images") {
 			imageUrls.push(file.url)
 		}
 	});
@@ -49,9 +49,13 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-	const challenge = await Challenge.findById(req.params["id"]);
-	const resChallenge = challenge.toJSON();
-	res.send(resChallenge)
+	try {
+		const challenge = await Challenge.findById(req.params["id"]);
+		const resChallenge = challenge.toJSON();
+		res.send(resChallenge)
+	} catch (err) {
+		res.status(500).json({ message: 'Something went wrong.' });
+	}
 });
 
 router.get('/:id/download', async (req, res) => {

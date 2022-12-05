@@ -44,7 +44,7 @@ router.get('/user/:id', async (req, res) => {
 router.post('/:id/like', requireJwtAuth, async (req, res) => {
     const userEntry = req.user as userType;
     const user = await User.findOne({ githubId: userEntry.githubId });
-    const entry = await Entry.findByIdAndUpdate(req.params.id, {$addToSet: {likedUserIds: user.id}})
+    await Entry.findByIdAndUpdate(req.params.id, {$addToSet: {likedUserIds: user.id}})
 
     res.sendStatus(200);
 });

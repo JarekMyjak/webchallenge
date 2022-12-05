@@ -41,11 +41,11 @@ const ListOfChallenges: React.FC = () => {
             {!loading ? (
                 <Table>
                     <Row>
-                        <Header>Challenge name</Header>
-                        <Header>Level</Header>
-                        <Header>Participants</Header>
-                        <Header>Completions</Header>
-                        <Header>Controls</Header>
+                        <Header>name</Header>
+                        <Header>level</Header>
+                        <Header>downloads</Header>
+                        <Header>entries</Header>
+                        <Header>controls</Header>
                     </Row>
                     {challenges.map(challenge => (
                         <Row key={challenge.id}>

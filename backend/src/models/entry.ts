@@ -48,6 +48,8 @@ const commentSchema = new Schema<commentType>({
     },
 })
 
+
+
 const entrySchema = new Schema<entryType, {}, entryTypeMethods>({
     userId: {
         type: String,
@@ -79,6 +81,10 @@ const entrySchema = new Schema<entryType, {}, entryTypeMethods>({
         default: [],
     },
 }, { timestamps: true });
+
+entrySchema.virtual('likes').get(function() {
+    return this.likedUserIds.length;
+});
 
 entrySchema.methods.toJSON = function () {
     return {

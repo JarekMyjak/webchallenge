@@ -5,12 +5,14 @@ interface IUserBar {
     avatarSrc: string;
     name: string;
     points: number;
+    rank: number;
 }
+const nth = (n: number) => {return["st","nd","rd"][((n+90)%100-10)%10-1]||"th"}
 
 const UserBar: React.FC<IUserBar> = props => {
     return (
         <Wrapper>
-            <Rank>1st</Rank>
+            <Rank>{props.rank}{nth(props.rank)}</Rank>
             <User>
                 <UserImg src={props.avatarSrc} />
                 {props.name}
