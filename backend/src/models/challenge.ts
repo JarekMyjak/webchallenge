@@ -11,6 +11,7 @@ export interface challengeType {
     experience: String;
     imageUrls: String[];
     blobUrl: String;
+    premiumBlobUrl: String;
     downloads: Number;
 }
 
@@ -39,6 +40,10 @@ const challengeSchema = new Schema<challengeType>({
         type: [String],
     },
     blobUrl: {
+        type: String,
+        required: true,
+    },
+    premiumBlobUrl: {
         type: String,
         required: true,
     },

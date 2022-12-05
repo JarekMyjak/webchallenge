@@ -1,4 +1,5 @@
 import {ApiBaseUrl, apiGet} from './apiMethods';
+import { redirect } from "react-router-dom";
 
 export interface Challenge {
     id: string;
@@ -31,6 +32,12 @@ export const getChallenge = async (challengeId: string) => {
 };
 
 export const downloadChallengeUrl = (challengeId: string) => {
-    ApiBaseUrl;
     return `${ApiBaseUrl}/api/challenges/${challengeId}/download`;
+};
+
+export const getPremiumChallenge = async (challengeId: string) => {
+    const fileUrl = await apiGet(`/api/challenges/${challengeId}/premium`).then(
+        res => res.data
+    );
+    return fileUrl as string;
 };

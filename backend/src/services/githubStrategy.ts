@@ -41,6 +41,7 @@ const githubLogin = new GithubStrategy(
 				website: "",
 				linkedIn: "",
 				github: profile.profileUrl,
+				premium: false,
 			}).save();
 			done(null, newUser);
 		} catch (err) {

@@ -22,6 +22,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AddChallenges: React.FC = () => {
     const [file, setFile] = useState<FileList | null>(null);
+    const [premiumFile, setPremiumFile] = useState<FileList | null>(null);
     const [pictures, setPictures] = useState<FileList | null>(null);
     const navigate = useNavigate();
 
@@ -45,7 +46,12 @@ const AddChallenges: React.FC = () => {
 
         if (file) {
             for (let i = 0; i < file.length; i++) {
-                formData.append('files', file.item(i) as Blob);
+                formData.append('file', file.item(i) as Blob);
+            }
+        }
+        if (premiumFile) {
+            for (let i = 0; i < premiumFile.length; i++) {
+                formData.append('premiumFile', premiumFile.item(i) as Blob);
             }
         }
         if (pictures) {
@@ -195,6 +201,16 @@ const AddChallenges: React.FC = () => {
                                 type='file'
                                 id='challengeFile'
                                 onChange={e => setFile(e.target.files)}
+                            />
+                        </CustomFileLabel>
+                        <CustomFileLabel htmlFor='premiumFile'>
+                            {file?.item(0)
+                                ? `${premiumFile?.item(0)?.name}`
+                                : 'Upload premium file'}
+                            <CustomFile
+                                type='file'
+                                id='premiumFile'
+                                onChange={e => setPremiumFile(e.target.files)}
                             />
                         </CustomFileLabel>
                     </FileButtonsContainer>

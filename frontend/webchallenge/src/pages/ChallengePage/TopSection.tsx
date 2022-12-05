@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Image,
     Wrapper,
@@ -20,7 +20,10 @@ import {
     ReactMarkdownCustom,
 } from './topSection.styles';
 import fistCardImg from '../../assets/images/landing/First_card.jpg';
-import {downloadChallengeUrl} from '../../api/apiChallenges';
+import {
+    downloadChallengeUrl,
+    getPremiumChallenge,
+} from '../../api/apiChallenges';
 import remarkGfm from 'remark-gfm';
 
 export const enum techs {
@@ -45,6 +48,14 @@ interface ITopSection {
 }
 
 const TopSection: React.FC<ITopSection> = props => {
+    const [premiumUrl, setPremiumUrl] = useState('');
+
+    useEffect(() => {
+        (async () => {
+            setPremiumUrl(await getPremiumChallenge(props?.id));
+        })();
+    }, []);
+
     const experienceSwitch = () => {
         switch (props.exp) {
             case 'beginner':
@@ -98,6 +109,7 @@ const TopSection: React.FC<ITopSection> = props => {
                     <StartButton href={downloadChallengeUrl(props?.id)}>
                         Download
                     </StartButton>
+                    <StartButton href={premiumUrl}>Download Premium File</StartButton>
                     <StartButton onClick={props.onUploadClick}>
                         Upload
                     </StartButton>

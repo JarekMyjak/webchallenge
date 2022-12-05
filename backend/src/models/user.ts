@@ -16,6 +16,7 @@ export interface userType {
     linkedIn: String;
     website: String;
     city: String;
+    premium: boolean;
 }
 
 export interface userTypeMethods {
@@ -49,6 +50,7 @@ const userSchema = new Schema<userType, {}, userTypeMethods>(
         github: String,
         linkedIn: String,
         website: String,
+        premium: Boolean,
         githubId: {
             type: String,
             unique: true,
@@ -75,6 +77,7 @@ userSchema.methods.toJSON = function () {
         website: this.website,
         github: this.github,
         linkedIn: this.linkedIn,
+        premium: this.premium,
     };
 };
 
