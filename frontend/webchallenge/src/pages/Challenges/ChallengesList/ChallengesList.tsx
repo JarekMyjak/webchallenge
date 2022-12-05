@@ -109,7 +109,7 @@ const ChallengesList: React.FC = () => {
                                         technologies={JSON.parse(c.tech).map(
                                             (el: any) => el.value
                                         )}
-                                        premium={true}
+                                        premium={false}
                                         title={c.title}
                                         description={c.description}
                                         image={c.imageUrls[0]}

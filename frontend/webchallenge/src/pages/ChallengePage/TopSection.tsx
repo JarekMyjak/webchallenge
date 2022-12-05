@@ -33,8 +33,9 @@ export const enum techs {
 }
 
 interface ITopSection {
-    exp?: 'beginner' | 'intermediate' | 'advanced';
-    technologies?: techs[];
+    image: string;
+    exp: string;
+    technologies: techs[];
     premium?: boolean;
     title?: string;
     description?: string;
@@ -62,7 +63,7 @@ const TopSection: React.FC<ITopSection> = props => {
             <Wrapper>
                 <ImageAndButtons>
                     <ImageWrapper>
-                        <Image src={fistCardImg} />
+                        <Image src={props.image} />
                     </ImageWrapper>
                     <ButtonsWrapper>
                         <ButtonView active={true}>Desktop design</ButtonView>
@@ -81,20 +82,11 @@ const TopSection: React.FC<ITopSection> = props => {
                             <Technologies>
                                 <Title>Technologies</Title>
                                 <TechnologiesList>
-                                    {/* CHECK CHALLANGECARD IN FUTURE  */}
-                                    <span className={techs.api}>
-                                        {techs.api}
-                                    </span>
-                                    <span className={techs.html}>
-                                        {techs.html}
-                                    </span>
-                                    <span className={techs.css}>
-                                        {techs.css}
-                                    </span>
-                                    <span className={techs.ts}>{techs.ts}</span>
-                                    <span className={techs.react}>
-                                        {techs.react}
-                                    </span>
+                                    {props.technologies.map(el => (
+                                        <span key={el} className={el}>
+                                            {el}
+                                        </span>
+                                    ))}
                                 </TechnologiesList>
                             </Technologies>
                             <Experience>

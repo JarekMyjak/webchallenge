@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import colors from '../../helpers/colors.helpers';
 import TopSection from './TopSection';
-import {useParams} from 'react-router-dom';
+import {json, useParams} from 'react-router-dom';
 import {
     Challenge,
     downloadChallengeUrl,
@@ -18,6 +18,7 @@ import {
 import Loader from '../../components/Loader';
 import EntryUploadPage from './EntryUploadPage';
 import ClickAwayListener from 'react-click-away-listener';
+import EntryBox from './EntryBox';
 
 const ChallengePage: React.FC = () => {
     const {challengeId} = useParams();
@@ -60,19 +61,32 @@ const ChallengePage: React.FC = () => {
                 <Container>
                     <Wrapper>
                         <TopSection
+                            image={challenge.imageUrls[0]}
                             title={challenge?.title}
                             id={challenge?.id}
                             onUploadClick={openDialogHandler}
                             description={challenge.description}
                             details={challenge.details}
+                            technologies={JSON.parse(challenge.tech).map(
+                                (el: any) => el.value
+                            )}
+                            exp={challenge.experience.toLowerCase()}
                         />
                     </Wrapper>
                     <Wrapper>
-                        Entries:
+                        {/* Entries: */}
                         {console.log(entries)}
                         {entries.map(e => (
                             <>
-                                <p>{e.githubUrl}</p>
+                                <EntryBox
+                                    challengeId={challenge.id}
+                                    description={e.description}
+                                    ownerId={e.userId}
+                                    likes={e.likes}
+                                    liked={e.liked}
+                                    githubUrl={e.githubUrl}
+                                />
+                                {/* <p>{e.githubUrl}</p>
                                 <p>{e.description}</p>
                                 <p>{e.likes}</p>
                                 <p>{e.liked ? 'liked' : 'not liked'}</p>
@@ -103,7 +117,7 @@ const ChallengePage: React.FC = () => {
                                     }}
                                 >
                                     comment
-                                </button>
+                                </button> */}
                             </>
                         ))}
                     </Wrapper>

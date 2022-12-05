@@ -1,15 +1,15 @@
-import { apiGet, apiPost } from "./apiMethods";
+import {apiGet, apiPost} from './apiMethods';
 
 export interface Entry {
-    id: string,
-    challengeId: string,
-    userId: string,
-    githubUrl: string,
-    pagesUrl: string,
-    description: string,
-    likes: number,
-    liked: number,
-    comments: Comment[]
+    id: string;
+    challengeId: string;
+    userId: string;
+    githubUrl: string;
+    pagesUrl: string;
+    description: string;
+    likes: number;
+    liked: boolean;
+    comments: Comment[];
 }
 
 export interface Comment {
@@ -19,7 +19,9 @@ export interface Comment {
 }
 
 export const getEntriesByChallengeId = async (challengeId: string) => {
-    const entriesArr = await apiGet(`/api/entries/challenge/${challengeId}`).then(res => {
+    const entriesArr = await apiGet(
+        `/api/entries/challenge/${challengeId}`
+    ).then(res => {
         return res.data as Entry[];
     });
     return entriesArr;
@@ -33,13 +35,19 @@ export const getEntriesByUserId = async (userId: string) => {
 };
 
 export const postLikeToEntry = async (entryId: string) => {
-    const res = await apiPost(`/api/entries/${entryId}/like`, {}).then(res => {});
-}
+    const res = await apiPost(`/api/entries/${entryId}/like`, {}).then(
+        res => {}
+    );
+};
 
 export const postCommentToEntry = async (entryId: string) => {
-    const res = await apiPost(`/api/entries/${entryId}/comment`, {content: "content from frontend"}).then(res => {});
-}
+    const res = await apiPost(`/api/entries/${entryId}/comment`, {
+        content: 'content from frontend',
+    }).then(res => {});
+};
 
 export const postDislikeToEntry = async (entryId: string) => {
-    const res = await apiPost(`/api/entries/${entryId}/dislike`, {}).then(res => {});
-}
+    const res = await apiPost(`/api/entries/${entryId}/dislike`, {}).then(
+        res => {}
+    );
+};
