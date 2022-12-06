@@ -13,6 +13,8 @@ import {Link} from 'react-router-dom';
 import {apiGet} from '../../../api/apiMethods';
 import {Challenge, getChallenges} from '../../../api/apiChallenges';
 import Loader from '../../../components/Loader';
+import styled from 'styled-components';
+import colors from '../../../helpers/colors.helpers';
 
 // const getChallenges = async () => {
 //     return await apiGet('/api/challenges').then((res)=> {
@@ -41,16 +43,22 @@ const ListOfChallenges: React.FC = () => {
             {!loading ? (
                 <Table>
                     <Row>
-                        <Header>name</Header>
-                        <Header>level</Header>
-                        <Header>downloads</Header>
-                        <Header>entries</Header>
-                        <Header>controls</Header>
+                        <Header></Header>
+                        <Header>ID</Header>
+                        <Header>Title</Header>
+                        <Header>Experience</Header>
+                        <Header>Downloads</Header>
+                        <Header>Entries</Header>
+                        <Header>Controls</Header>
                     </Row>
                     {challenges.map(challenge => (
                         <Row key={challenge.id}>
+                            <Column>
+                                <UserAvatar src={challenge.imageUrls[0]} />
+                            </Column>
+                            <Column>{challenge.id}</Column>
                             <Column>{challenge.title}</Column>
-                            <Column>{challenge.title}</Column>
+                            <Column>{challenge.experience}</Column>
                             <Column>{challenge.downloads}</Column>
                             <Column>{0}</Column>
                             <Column>
@@ -72,3 +80,13 @@ const ListOfChallenges: React.FC = () => {
 };
 
 export default ListOfChallenges;
+
+export const UserAvatar = styled.img`
+    width: 40px;
+    height: 40px;
+    background-color: ${colors.backgroundSecondary};
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+    position: relative;
+`;
