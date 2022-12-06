@@ -44,7 +44,7 @@ router.get('/challenge/:id', requireJwtAuth, async (req, res) => {
 	}
 });
 
-router.get('/user/:id', async (req, res) => {
+router.get('/user/:id', requireJwtAuth, async (req, res) => {
 	try {
 		const userEntry = req.user as userType;
 		const user = await User.findOne({ githubId: userEntry.githubId });
@@ -57,9 +57,11 @@ router.get('/user/:id', async (req, res) => {
 	}
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', requireJwtAuth, async (req, res) => {
+	const userEntry = req.user as userType;
+	const user = await User.findOne({ githubId: userEntry.githubId });
 	const entry = await Entry.findById(req.params["id"]);
-	const resEntry = entry.toJSON();
+	const resEntry = entry.userJSON(user.id);
 	res.send(resEntry)
 });
 
