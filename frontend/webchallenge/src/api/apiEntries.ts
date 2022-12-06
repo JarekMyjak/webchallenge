@@ -40,9 +40,9 @@ export const postLikeToEntry = async (entryId: string) => {
     );
 };
 
-export const postCommentToEntry = async (entryId: string) => {
+export const postCommentToEntry = async (entryId: string, comment: string) => {
     const res = await apiPost(`/api/entries/${entryId}/comment`, {
-        content: 'content from frontend',
+        content: comment,
     }).then(res => {});
 };
 
