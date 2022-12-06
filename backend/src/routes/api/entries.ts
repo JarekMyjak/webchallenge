@@ -41,6 +41,12 @@ router.get('/user/:id', async (req, res) => {
     res.send(resEntries)
 });
 
+router.get('/:id', async (req, res) => {
+    const entry = await Entry.findById(req.params["id"]);
+    const resEntry = entry.toJSON();
+    res.send(resEntry)
+});
+
 router.post('/:id/like', requireJwtAuth, async (req, res) => {
     const userEntry = req.user as userType;
     const user = await User.findOne({ githubId: userEntry.githubId });
