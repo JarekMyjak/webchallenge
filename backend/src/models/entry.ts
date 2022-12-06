@@ -106,6 +106,7 @@ entrySchema.methods.userJSON = function (userId: string) {
             id: comment.id,
             content: comment.content,
             userName: comment.userName,
+            date: comment.timeAdded,
         }
     })
 
