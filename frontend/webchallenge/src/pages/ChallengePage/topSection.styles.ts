@@ -84,7 +84,7 @@ export const TitleBar = styled.div`
 `;
 
 interface IPremium {
-    isPremium: boolean;
+    isPremium: boolean | undefined;
 }
 
 export const Status = styled.div<IPremium>`
@@ -171,10 +171,10 @@ export const Experience = styled.div`
 
 export const StartButton = styled.a`
     background-color: #f24e1e;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     height: 60px;
-    width: 270px;
+    width: 200px;
     border-radius: 50px;
     cursor: pointer;
     border: none;
@@ -184,14 +184,31 @@ export const StartButton = styled.a`
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     text-decoration: none;
-    transition: 0.1s;
+    transition: 0.2s;
     &:hover,
     &:focus,
     &:focus-visible {
         outline: none;
         background-color: #f26e1e;
     }
+`;
+
+export const UploadButton = styled(StartButton)`
+    background-color: ${colors.iris};
+    &:hover,
+    &:focus,
+    &:focus-visible {
+        outline: none;
+        background-color: ${colors.irisDark};
+    }
+`;
+
+export const PremiumButton = styled(StartButton)<IPremium>`
+    ${props =>
+        !props.isPremium &&
+        'background-color: #757575; color:#a3a3a3;&:hover{cursor: not-allowed;background-color: #757575;}'};
 `;
 
 export const ReactMarkdownCustom = styled(ReactMarkdown)`

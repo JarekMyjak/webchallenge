@@ -18,6 +18,8 @@ import {
     Experience,
     StartButton,
     ReactMarkdownCustom,
+    UploadButton,
+    PremiumButton,
 } from './topSection.styles';
 import fistCardImg from '../../assets/images/landing/First_card.jpg';
 import {
@@ -25,6 +27,7 @@ import {
     getPremiumChallenge,
 } from '../../api/apiChallenges';
 import remarkGfm from 'remark-gfm';
+import {useUser} from '../../api/useAuth';
 
 export const enum techs {
     html = 'HTML',
@@ -49,6 +52,7 @@ interface ITopSection {
 
 const TopSection: React.FC<ITopSection> = props => {
     const [premiumUrl, setPremiumUrl] = useState('');
+    const user = useUser(store => store.user);
 
     useEffect(() => {
         (async () => {
@@ -106,13 +110,27 @@ const TopSection: React.FC<ITopSection> = props => {
                             </Experience>
                         </TechnologiesAndExperience>
                     </Info>
-                    <StartButton href={downloadChallengeUrl(props?.id)}>
-                        Download
-                    </StartButton>
-                    <StartButton href={premiumUrl}>Download Premium File</StartButton>
-                    <StartButton onClick={props.onUploadClick}>
-                        Upload
-                    </StartButton>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            flexWrap: 'wrap',
+                        }}
+                    >
+                        <StartButton href={downloadChallengeUrl(props?.id)}>
+                            Download
+                        </StartButton>
+                        <PremiumButton
+                            href={user?.premium ? premiumUrl : undefined}
+                            isPremium={user?.premium}
+                        >
+                            Download <br />
+                            Premium File
+                        </PremiumButton>
+                        <UploadButton onClick={props.onUploadClick}>
+                            Upload
+                        </UploadButton>
+                    </div>
                 </ChallengeData>
             </Wrapper>
             <ReactMarkdownCustom
