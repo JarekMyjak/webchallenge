@@ -15,6 +15,7 @@ export interface user {
     github: string;
     linkedIn: string;
     website: string;
+    id: string;
 }
 
 interface userState {

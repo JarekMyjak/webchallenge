@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import colors from '../../helpers/colors.helpers';
-import {Challenge, getChallenge} from '../../api/apiChallenges';
+import colors from '../helpers/colors.helpers';
+import {Challenge, getChallenge} from '../api/apiChallenges';
 import {IoIosHeart, IoIosChatbubbles, IoLogoGithub} from 'react-icons/io';
-import Loader from '../../components/Loader';
+import Loader from './Loader';
 
 interface IEntryBox {
     challengeId: string;
