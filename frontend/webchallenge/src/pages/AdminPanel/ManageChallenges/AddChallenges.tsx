@@ -61,10 +61,9 @@ const AddChallenges: React.FC = () => {
                 formData.append('images', pictures.item(i) as Blob);
             }
         }
-        // apiPost('/api/challenges', formData).then(res => {
-        //     navigate(`/challenges/${res.data.challenge.id}`);
-        // });
-        console.log(formData);
+        apiPost('/api/challenges', formData).then(res => {
+            navigate(`/challenges/${res.data.challenge.id}`);
+        });
     };
 
     return (

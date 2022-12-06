@@ -47,6 +47,7 @@ const Challenges: React.FC<IChallanges> = props => {
                         likes={e.likes}
                         liked={e.liked}
                         githubUrl={e.githubUrl}
+                        entryId={e.id}
                     />
                 ))}
             </ChallengeList>

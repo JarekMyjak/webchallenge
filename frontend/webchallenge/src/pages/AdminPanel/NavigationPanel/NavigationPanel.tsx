@@ -20,6 +20,13 @@ const ChallangesMenuOptions: IMenuOptions[] = [
     },
 ];
 
+const UsersMenuOptions: IMenuOptions[] = [
+    {
+        title: 'List of Users',
+        linkTo: 'listofusers',
+    },
+];
+
 const NavigationPanel: React.FC = () => {
     console.log(bookmark);
     return (
@@ -35,7 +42,7 @@ const NavigationPanel: React.FC = () => {
                 <ExpandMenu
                     title='Users'
                     icon={usericon}
-                    menuOptions={ChallangesMenuOptions}
+                    menuOptions={UsersMenuOptions}
                 ></ExpandMenu>
             </NavPanel>
         </Container>

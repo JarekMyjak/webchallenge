@@ -16,6 +16,7 @@ export interface user {
     linkedIn: string;
     website: string;
     id: string;
+    createdAt: string;
 }
 
 interface userState {

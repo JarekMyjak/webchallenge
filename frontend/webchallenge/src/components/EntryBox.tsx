@@ -4,6 +4,9 @@ import colors from '../helpers/colors.helpers';
 import {Challenge, getChallenge} from '../api/apiChallenges';
 import {IoIosHeart, IoIosChatbubbles, IoLogoGithub} from 'react-icons/io';
 import Loader from './Loader';
+import {user} from '../api/useAuth';
+import {getUserById} from '../api/apiUser';
+import {useNavigate} from 'react-router-dom';
 
 interface IEntryBox {
     challengeId: string;
@@ -12,16 +15,24 @@ interface IEntryBox {
     likes: number;
     githubUrl: string;
     liked: boolean;
+    entryId: string;
 }
 
 const EntryBox: React.FC<IEntryBox> = props => {
     const [challenge, setChallenge] = useState<Challenge | undefined>();
+    const [owner, setOwner] = useState<user | undefined>();
     const [liked, setLiked] = useState<boolean | undefined>(props.liked);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (props.challengeId) {
             (async () => {
                 setChallenge(await getChallenge(props.challengeId));
+            })();
+        }
+        if (props.ownerId) {
+            (async () => {
+                setOwner(await getUserById(props.ownerId));
             })();
         }
     }, []);
@@ -38,15 +49,14 @@ const EntryBox: React.FC<IEntryBox> = props => {
             <Loader />
         </LoaderContainer>
     ) : (
-        <Wrapper>
+        <Wrapper onClick={() => navigate(`../entry/${props.entryId}`)}>
             <Top>
                 <ImageBox>
                     <img src={challenge?.imageUrls[0]} />
                 </ImageBox>
                 <Data>
                     <UserData>
-                        <UserAvatar src='https://yt3.ggpht.com/a/AGF-l7_d9SJ8KQtMwqaigeUa8VkZop9s76WeEMXiaQ=s800-c-k-c0xffffffff-no-rj-mo' />
-                        @{props.ownerId}
+                        <UserAvatar src={owner?.avatar} />@{owner?.username}
                         <Panel>
                             <LikeCounter>{props.likes}💘</LikeCounter>
                             <LikeButton

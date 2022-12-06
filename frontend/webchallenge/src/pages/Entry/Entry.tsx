@@ -1,14 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {IoIosHeart, IoIosChatbubbles, IoLogoGithub} from 'react-icons/io';
 import styled from 'styled-components';
 import {useUser} from '../../api/useAuth';
 import TitleBar from '../../components/TitleBar';
 import colors from '../../helpers/colors.helpers';
+import UserComment from './UserComment';
+import {useParams} from 'react-router-dom';
+import {getChallenge} from '../../api/apiChallenges';
 
 type Props = {};
 
 const Entry = (props: Props) => {
     const user = useUser(store => store.user);
+    // const {entryId} = useParams();
+    // const [entries, setEntries] = useState<Entry[]>([]);
+
+    // useEffect(() => {
+    //     if (entryId) {
+    //         (async () => {
+    //             setEntries(await getEntriesByChallengeId(challengeId));
+    //         })();
+
+    //         // (async () => {
+    //         //     setChallenge(await getChallenge(challengeId));
+    //         // })();
+    //     }
+    // }, []);
 
     return (
         <Container>
@@ -38,26 +55,19 @@ const Entry = (props: Props) => {
                     </EntryDesc>
                 </TopWrapper>
                 <Divider />
-                <TitleBar text='Add comment:' />
-                <AddComment>
-                    <textarea />
-                    <CommentPanel>
-                        {/* Send as: */}
-                        {/* <UserAvatar src={user?.avatar} /> */}
-                        <button>Send</button>
-                    </CommentPanel>
-                </AddComment>
-                <CommentsList>
-                    <CommentData>
-                        <span>
-                            <UserAvatar src={user?.avatar} /> @{user?.username}
-                        </span>
-                        at
-                        <span>{new Date().toLocaleString()}</span>
-                    </CommentData>
-                    <Divider />
-                    <CommentValue>What a nice job, zabij sie</CommentValue>
-                </CommentsList>
+                <Comments>
+                    <AddComment>
+                        <UserAvatar src={user?.avatar} />
+                        <textarea placeholder='Add comment' />
+                    </AddComment>
+                    <CommentButtons>
+                        <ButtonCancel>Cancel</ButtonCancel>
+                        <ButtonComment>Comment</ButtonComment>
+                    </CommentButtons>
+                    <CommentsList>
+                        <UserComment />
+                    </CommentsList>
+                </Comments>
             </EntryContainer>
         </Container>
     );
@@ -66,7 +76,7 @@ const Entry = (props: Props) => {
 export default Entry;
 
 const Container = styled.div`
-    padding-top: 50px;
+    padding: 50px 0;
     min-height: 100vh;
     color: white;
 `;
@@ -173,70 +183,82 @@ const Divider = styled.div`
     margin: 10px 0;
     background-color: ${colors.borderPrimary};
 `;
-const CommentPanel = styled.div`
+
+const Comments = styled.div`
+    min-height: 400px;
     width: 100%;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 10px;
+    background-color: transparent;
+    border-radius: 3px;
+    padding: 15px 10px;
+    box-sizing: border-box;
     button {
-        height: 30px;
-        padding: 0 15px;
-        border-radius: 3px;
-        background-color: ${colors.iris};
-        transition: 0.2s;
-        cursor: pointer;
-        border: none;
+        font-size: 16px;
         color: white;
-        font-size: 14px;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+`;
+
+const ButtonCancel = styled.button`
+    background-color: transparent;
+    &:hover {
         box-shadow: 0px 0px 10px black;
-        &:hover {
-            background-color: ${colors.irisDark};
+        background-color: ${colors.orange};
+    }
+`;
+const ButtonComment = styled.button`
+    box-shadow: 0px 0px 10px black;
+    background-color: ${colors.iris};
+    &:hover {
+        background-color: ${colors.irisDark};
+    }
+`;
+
+const AddComment = styled.div`
+    min-height: 50px;
+    width: 100%;
+    background-color: #000000a0;
+    border-radius: 3px;
+    padding: 10px 10px 3px 10px;
+    box-sizing: border-box;
+    display: flex;
+    ${UserAvatar} {
+        width: 50px;
+        height: 50px;
+    }
+    textarea {
+        color: white;
+        flex-grow: 1;
+        min-height: 80px;
+        max-height: 80px;
+        background-color: transparent;
+        border: none;
+        margin-left: 15px;
+        border-bottom: 2px solid transparent;
+        transition: 0.2s;
+        resize: none;
+        &:focus {
+            outline: none;
+            border-bottom: 2px solid ${colors.orange};
         }
     }
 `;
-const AddComment = styled.div`
-    height: 100px;
-    width: 100%;
-    margin: 10px 0;
-    margin-bottom: 80px;
-    textarea {
-        color: white;
-        min-width: 100%;
-        max-width: 100%;
-        min-height: 100px;
-        max-height: 100px;
-        background-color: ${colors.backgroundPrimary};
-        border-radius: 4px;
-        box-shadow: 0px 0px 3px black;
-        border: none;
-        box-sizing: border-box;
-        padding: 8px;
-        &:hover,
-        &:focus,
-        &:focus-visible {
-            outline: none;
-        }
-    }
+
+const CommentButtons = styled.div`
+    padding: 5px 0;
+    gap: 15px;
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
 `;
 
 const CommentsList = styled.div`
-    box-shadow: 0px 0px 3px black;
-    width: 100%;
-    height: 100px;
-    background-color: ${colors.backgroundPrimary};
-    border-radius: 4px;
-    padding: 8px;
-    box-sizing: border-box;
+    flex-grow: 1;
+    min-height: 300px;
 `;
-const CommentData = styled.div`
-    max-height: 35px;
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: flex-end;
-    gap: 8px;
-`;
-
-const CommentValue = styled.div``;
+function setChallenge(arg0: any) {
+    throw new Error('Function not implemented.');
+}

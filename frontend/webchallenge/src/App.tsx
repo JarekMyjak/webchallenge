@@ -14,6 +14,7 @@ import AddChallenges from './pages/AdminPanel/ManageChallenges/AddChallenges';
 import Challenges from './pages/Challenges/Challenges';
 import Premium from './pages/Premium/Premium';
 import ListOfChallenges from './pages/AdminPanel/ManageChallenges/ListOfChallenges';
+import ListOfUsers from './pages/AdminPanel/ManageUsers/ListOfUsers';
 import EditChallenge from './pages/AdminPanel/ManageChallenges/EditChallenge';
 import ChallengePage from './pages/ChallengePage/ChallengePage';
 import ChallengeUpload from './pages/ChallengePage/EntryUploadPage';
@@ -67,6 +68,14 @@ const App: React.FC = () => {
                                     </Guard>
                                 }
                             />
+                            <Route
+                                path='listofusers'
+                                element={
+                                    <Guard>
+                                        <ListOfUsers />
+                                    </Guard>
+                                }
+                            />
                             <Route //TODO
                                 path='editchallenge/:challengeId'
                                 element={
@@ -101,7 +110,7 @@ const App: React.FC = () => {
                             }
                         />
                         <Route
-                            path='/entry/:id'
+                            path='/entry/:entryId'
                             element={
                                 <Guard>
                                     <Entry />
