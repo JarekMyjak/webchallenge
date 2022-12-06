@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import TitleBar from '../../../components/TitleBar';
 //TEMP
 import ChallengeCard, {techs} from '../../../components/ChallengeCard';
@@ -11,9 +11,25 @@ import {
 } from './Challenges.styles';
 import firstCard from '../../../assets/images/landing/First_card.jpg';
 import bookmarkIcon from '../../../assets/icons/bookmark.png';
+import {Entry, getEntriesByUserId} from '../../../api/apiEntries';
+import EntryBox from '../../../components/EntryBox';
 
-const Challenges: React.FC = () => {
-    return (
+interface IChallanges {
+    userId: string;
+}
+
+const Challenges: React.FC<IChallanges> = props => {
+    const [entries, setEntries] = useState<Entry[]>([]);
+
+    useEffect(() => {
+        if (props.userId) {
+            (async () => {
+                setEntries(await getEntriesByUserId(props.userId));
+            })();
+        }
+    }, []);
+
+    return entries.length > 0 ? (
         <Wrapper>
             <TopBar>
                 <TitleBar imageSrc={bookmarkIcon} text='Your challenges' />
@@ -23,69 +39,20 @@ const Challenges: React.FC = () => {
                 </Filters>
             </TopBar>
             <ChallengeList>
-                <ChallengeCard
-                    exp='advanced'
-                    technologies={[techs.html, techs.css, techs.react]}
-                    premium={true}
-                    title='Advice generator app'
-                    description='There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration in
-                        some form, by injected humour, or randomised'
-                    image={firstCard}
-                />
-                <ChallengeCard
-                    exp='advanced'
-                    technologies={[techs.html, techs.css, techs.react]}
-                    premium={true}
-                    title='Advice generator app'
-                    description='There are many variations of passages of Lorem Ipsum
-                    available, but the majority have suffered alteration in
-                    some form, by injected humour, or randomised'
-                    image={firstCard}
-                />
-                <ChallengeCard
-                    exp='advanced'
-                    technologies={[techs.html, techs.css, techs.react]}
-                    premium={true}
-                    title='Advice generator app'
-                    description='There are many variations of passages of Lorem Ipsum
-                available, but the majority have suffered alteration in
-                some form, by injected humour, or randomised'
-                    image={firstCard}
-                />
-                <ChallengeCard
-                    exp='advanced'
-                    technologies={[techs.html, techs.css, techs.react]}
-                    premium={true}
-                    title='Advice generator app'
-                    description='There are many variations of passages of Lorem Ipsum
-            available, but the majority have suffered alteration in
-            some form, by injected humour, or randomised'
-                    image={firstCard}
-                />
-                <ChallengeCard
-                    exp='advanced'
-                    technologies={[techs.html, techs.css, techs.react]}
-                    premium={true}
-                    title='Advice generator app'
-                    description='There are many variations of passages of Lorem Ipsum
-        available, but the majority have suffered alteration in
-        some form, by injected humour, or randomised'
-                    image={firstCard}
-                />
-                <ChallengeCard
-                    exp='advanced'
-                    technologies={[techs.html, techs.css, techs.react]}
-                    premium={true}
-                    title='Advice generator app'
-                    description='There are many variations of passages of Lorem Ipsum
-    available, but the majority have suffered alteration in
-    some form, by injected humour, or randomised'
-                    image={firstCard}
-                />
-                {/* TEMP */}
+                {entries.map(e => (
+                    <EntryBox
+                        challengeId={e.challengeId}
+                        description={e.description}
+                        ownerId={e.userId}
+                        likes={e.likes}
+                        liked={e.liked}
+                        githubUrl={e.githubUrl}
+                    />
+                ))}
             </ChallengeList>
         </Wrapper>
+    ) : (
+        <></>
     );
 };
 

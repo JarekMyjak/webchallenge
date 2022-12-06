@@ -18,7 +18,8 @@ import {
 import {useForm, Controller, SubmitHandler, FieldValues} from 'react-hook-form';
 import {optionsTech, optionsExperience} from './options';
 import TitleBar from '../../../components/TitleBar';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 
 const AddChallenges: React.FC = () => {
     const [file, setFile] = useState<FileList | null>(null);
@@ -38,6 +39,7 @@ const AddChallenges: React.FC = () => {
 
     const onSubmit = async (data: FieldValues) => {
         let formData = new FormData();
+
         formData.append('title', data.title);
         formData.append('description', data.description);
         formData.append('details', data.details);
@@ -59,13 +61,15 @@ const AddChallenges: React.FC = () => {
                 formData.append('images', pictures.item(i) as Blob);
             }
         }
-        apiPost('/api/challenges', formData).then((res) => {
-            navigate(`/challenges/${res.data.challenge.id}`)
-        });
+        // apiPost('/api/challenges', formData).then(res => {
+        //     navigate(`/challenges/${res.data.challenge.id}`);
+        // });
+        console.log(formData);
     };
 
     return (
         <Container>
+            <ReactTooltip />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormContainer>
                     Add new challenge
@@ -181,9 +185,13 @@ const AddChallenges: React.FC = () => {
                         </SelectDiv>
                     </FieldWrapper>
                     <FileButtonsContainer>
-                        <CustomFileLabel htmlFor='challengeImages'>
+                        <CustomFileLabel
+                            data-tip={`Upload images: `}
+                            htmlFor='challengeImages'
+                            error={!!errors.challengeImages}
+                        >
                             {pictures?.item(0)
-                                ? `Images: [${pictures?.length}]`
+                                ? `Challenge Images: [${pictures?.length}]`
                                 : 'Upload images'}
                             <CustomFile
                                 type='file'
@@ -193,7 +201,11 @@ const AddChallenges: React.FC = () => {
                                 onChange={e => setPictures(e.target.files)}
                             />
                         </CustomFileLabel>
-                        <CustomFileLabel htmlFor='challengeFile'>
+                        <CustomFileLabel
+                            data-tip={`Upload challange file: `}
+                            htmlFor='challengeFile'
+                            error={!!errors.challengeFile}
+                        >
                             {file?.item(0)
                                 ? `${file?.item(0)?.name}`
                                 : 'Upload challenge file'}
@@ -203,8 +215,12 @@ const AddChallenges: React.FC = () => {
                                 onChange={e => setFile(e.target.files)}
                             />
                         </CustomFileLabel>
-                        <CustomFileLabel htmlFor='premiumFile'>
-                            {file?.item(0)
+                        <CustomFileLabel
+                            data-tip={`Upload premium file: `}
+                            htmlFor='premiumFile'
+                            error={!!errors.premiumFile}
+                        >
+                            {premiumFile?.item(0)
                                 ? `${premiumFile?.item(0)?.name}`
                                 : 'Upload premium file'}
                             <CustomFile

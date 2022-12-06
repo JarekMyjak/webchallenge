@@ -18,7 +18,7 @@ import {
 import Loader from '../../components/Loader';
 import EntryUploadPage from './EntryUploadPage';
 import ClickAwayListener from 'react-click-away-listener';
-import EntryBox from './EntryBox';
+import EntryBox from '../../components/EntryBox';
 import TitleBar from '../../components/TitleBar';
 
 const ChallengePage: React.FC = () => {
@@ -80,7 +80,6 @@ const ChallengePage: React.FC = () => {
                             <Title>
                                 <TitleBar text='Users entries:' />
                             </Title>
-                            {console.log(entries)}
                             {entries.map(e => (
                                 <EntryBox
                                     challengeId={challenge.id}

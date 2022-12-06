@@ -42,7 +42,7 @@ export const FieldError = styled.div<IFieldError>`
     color: #a10803;
     font-size: 12px;
     height: 16px;
-    z-index: 1;
+    z-index: 0;
     transition: 0.2s;
     transform: ${p => (p.error ? 'translateY(0px)' : 'translateY(-16px)')};
     opacity: ${p => (p.error ? '1' : '0')};
@@ -83,7 +83,7 @@ export const CustomTextArea = styled.textarea<IFieldError>`
     margin-top: 4px;
     box-sizing: border-box;
     min-width: 500px;
-    min-height: ${p => (p.small ? '100px' : '200px')};;
+    min-height: ${p => (p.small ? '100px' : '200px')};
     max-width: 500px;
     max-height: 250px;
     font-size: 12px;
@@ -103,18 +103,42 @@ export const CustomTextArea = styled.textarea<IFieldError>`
 `;
 
 export const CustomFile = styled.input`
-    /* display: none; */
+    display: none;
 `;
 
-export const CustomFileLabel = styled.label`
-    display: block;
-    width: 100%;
+export const CustomFileLabel = styled.label<IFieldError>`
+    box-sizing: border-box;
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+    overflow: hidden;
+    padding: 0;
+    box-shadow: 0px 0px 15px black;
+    color: black;
+    background-color: ${p => (p.error ? '#8a1111' : `${colors.orange}`)};
+    border: 2px solid ${p => (p.error ? `#8a1111` : `${colors.orange}`)};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    padding: 10px 20px;
     cursor: pointer;
+    transition: 0.2s;
+    text-overflow: ellipsis;
+    &:hover,
+    &:focus,
+    &:focus-visible {
+        outline: none;
+        background-color: ${p => (p.error ? '#5e0b0b' : `#c47000`)};
+    }
 `;
 
 export const FileButtonsContainer = styled.div`
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
 `;
 
 export const FileButton = styled.div<IFieldError>`
@@ -144,7 +168,7 @@ export const FileButton = styled.div<IFieldError>`
 `;
 
 export const SubmitButton = styled.button`
-    width: 200px;
+    width: 230px;
     font-size: 20px;
     height: 50px;
     padding: 0;
@@ -174,6 +198,6 @@ export const SelectDiv = styled.div`
 export const CustomSelect = styled(Select)`
     margin-top: 4px;
     .Select-menu-outer {
-        z-index: 999 !important;
+        z-index: 9999 !important;
     }
 `;

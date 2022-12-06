@@ -6,8 +6,11 @@ import Challenges from './Challenges/Challenges';
 import Leaderboard from './Leaderboard/Leaderboard';
 import Premium from './Premium/Premium';
 import UserDetails from './UserDetails/UserDetails';
+import {useUser} from '../../api/useAuth';
 
 const Profile: React.FC = () => {
+    const user = useUser(state => state.user);
+    console.log(user);
     return (
         <Container>
             <FirstSection>
@@ -17,7 +20,7 @@ const Profile: React.FC = () => {
                     <Leaderboard />
                 </RightPanels>
             </FirstSection>
-            <Challenges />
+            {user?.id !== undefined && <Challenges userId={user?.id} />}
             <Activities />
         </Container>
     );
