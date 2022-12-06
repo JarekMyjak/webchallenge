@@ -13,18 +13,16 @@ type extendedFile = Express.Multer.File & { url: string }
 
 router.post('/', requireAdmin, upload.any(), async (req, res) => {
 	const fileArray = req.files as Array<extendedFile>;
-	const urlArr = fileArray.map(file => removeUrlParams(file.url));
-	console.log(fileArray);
 	let fileUrl, premiumFileUrl, imageUrls = [];
 	fileArray.forEach(file => {
 		if (file.fieldname === "file") {
-			fileUrl = file.url
+			fileUrl = removeUrlParams(file.url)
 		}
 		if (file.fieldname === "premiumFile") {
-			premiumFileUrl = file.url
+			premiumFileUrl = removeUrlParams(file.url)
 		}
 		if (file.fieldname === "images") {
-			imageUrls.push(file.url)
+			imageUrls.push(removeUrlParams(file.url))
 		}
 	});
 	const newChallenge = await new Challenge({
