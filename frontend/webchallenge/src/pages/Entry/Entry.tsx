@@ -217,7 +217,6 @@ const AddComment = styled.div`
         &:focus,
         &:focus-visible {
             outline: none;
-            /* background-color: ${p => (p.error ? '#5e0b0b' : `#c47000`)}; */
         }
     }
 `;
