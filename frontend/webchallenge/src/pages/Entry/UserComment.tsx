@@ -1,27 +1,39 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import formatDistance from 'date-fns/formatDistance';
-import {useUser} from '../../api/useAuth';
+import {user, useUser} from '../../api/useAuth';
 import colors from '../../helpers/colors.helpers';
+import {getUserById} from '../../api/apiUser';
 
-type Props = {};
+interface IUserComment {
+    userId: string;
+    comment: string;
+    timeAdded: string;
+}
 
-const UserComment = (props: Props) => {
-    const user = useUser(store => store.user);
+const UserComment: React.FC<IUserComment> = props => {
+    const [owner, setOwner] = useState<user | undefined>();
+
+    useEffect(() => {
+        if (props.userId) {
+            (async () => {
+                setOwner(await getUserById(props.userId));
+            })();
+        }
+    }, []);
 
     return (
         <Container>
-            <UserAvatar src={user?.avatar} />
+            <UserAvatar src={owner?.avatar} />
             <div>
                 <UserCommentData>
-                    @{user?.username}
-                    <span>{formatDistance(new Date(), new Date())} ago</span>
+                    @{owner?.username}
+                    <span>
+                        {formatDistance(new Date(props.timeAdded), new Date())}{' '}
+                        ago
+                    </span>
                 </UserCommentData>
-                <UserCommentValue>
-                    DUPA FUPA DUPA FUPA DUPA FUPA DUPA FUPA DUPA FUPA DUPA FUPA
-                    DUPA FUPA DUPA FUPA DUPA FUPA DUPA FUPA DUPA FUPA DUPA FUPA
-                    DUPA FUPA DUPA FUPA{' '}
-                </UserCommentValue>
+                <UserCommentValue>{props.comment}</UserCommentValue>
             </div>
         </Container>
     );

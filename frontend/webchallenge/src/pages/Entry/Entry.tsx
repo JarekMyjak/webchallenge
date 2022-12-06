@@ -6,66 +6,127 @@ import TitleBar from '../../components/TitleBar';
 import colors from '../../helpers/colors.helpers';
 import UserComment from './UserComment';
 import {useParams} from 'react-router-dom';
-import {getChallenge} from '../../api/apiChallenges';
+import {
+    Entry as IEntry,
+    getEntryById,
+    postCommentToEntry,
+} from '../../api/apiEntries';
+import {Challenge, getChallenge} from '../../api/apiChallenges';
+import {user} from '../../api/useAuth';
+import {getUserById} from '../../api/apiUser';
+import {useForm, Controller, SubmitHandler, FieldValues} from 'react-hook-form';
 
-type Props = {};
-
-const Entry = (props: Props) => {
+const Entry: React.FC = () => {
     const user = useUser(store => store.user);
-    // const {entryId} = useParams();
-    // const [entries, setEntries] = useState<Entry[]>([]);
+    const {entryId} = useParams();
+    const [entry, setEntry] = useState<IEntry>();
+    const [challenge, setChallenge] = useState<Challenge | undefined>();
+    const [owner, setOwner] = useState<user | undefined>();
 
-    // useEffect(() => {
-    //     if (entryId) {
-    //         (async () => {
-    //             setEntries(await getEntriesByChallengeId(challengeId));
-    //         })();
+    const {
+        setFocus,
+        register,
+        handleSubmit,
+        reset,
+        watch,
+        control,
+        formState: {errors},
+        getValues,
+    } = useForm();
 
-    //         // (async () => {
-    //         //     setChallenge(await getChallenge(challengeId));
-    //         // })();
-    //     }
-    // }, []);
+    const onSubmit = async (data: any) => {
+        if (entryId) {
+            await postCommentToEntry(entryId, data.comment);
+            reset();
+            (async () => {
+                setEntry(await getEntryById(entryId));
+            })();
+        }
+    };
+
+    useEffect(() => {
+        if (entryId) {
+            (async () => {
+                setEntry(await getEntryById(entryId));
+            })();
+        }
+    }, []);
+
+    useEffect(() => {
+        if (entry?.challengeId) {
+            (async () => {
+                setChallenge(await getChallenge(entry.challengeId));
+            })();
+            (async () => {
+                setOwner(await getUserById(entry?.userId));
+            })();
+        }
+    }, [entry]);
+
+    const openUrlBlank = () => {
+        window.open(entry?.githubUrl, '_blank', 'noopener,noreferrer');
+    };
 
     return (
         <Container>
             <EntryContainer>
                 <TopWrapper>
-                    <ChallengeImage />
+                    <ChallengeImage src={challenge?.imageUrls[0]} />
                     <EntryDesc>
                         <TitleBy>
-                            <TitleChallenge>Calculator</TitleChallenge> created
-                            by <UserAvatar /> @twojstary
+                            <TitleChallenge>{challenge?.title}</TitleChallenge>{' '}
+                            created by <UserAvatar src={owner?.avatar} /> @
+                            {owner?.username}
                         </TitleBy>
-                        <Description>
-                            blahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblah
-                        </Description>
+                        <Description>{entry?.description}</Description>
                         <ButtonPanel>
-                            <button>0 💘</button>
-                            <button>
-                                0 <IoIosChatbubbles />
-                            </button>
+                            <button>{entry?.likes} 💘</button>
                             <button>
                                 <IoIosHeart />
                             </button>
                             <button>
-                                <IoLogoGithub />
+                                {entry?.comments.length} <IoIosChatbubbles />
+                            </button>
+                            <button onClick={openUrlBlank}>
+                                Git <IoLogoGithub />
+                            </button>
+                            <button>
+                                Pages <IoLogoGithub />
                             </button>
                         </ButtonPanel>
                     </EntryDesc>
                 </TopWrapper>
                 <Divider />
                 <Comments>
-                    <AddComment>
-                        <UserAvatar src={user?.avatar} />
-                        <textarea placeholder='Add comment' />
-                    </AddComment>
-                    <CommentButtons>
-                        <ButtonCancel>Cancel</ButtonCancel>
-                        <ButtonComment>Comment</ButtonComment>
-                    </CommentButtons>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <AddComment>
+                            <UserAvatar src={user?.avatar} />
+                            <textarea
+                                {...register('comment', {
+                                    required: 'Required',
+                                })}
+                                placeholder='Add comment'
+                            />
+                        </AddComment>
+                        <CommentButtons>
+                            <ButtonCancel
+                                onClick={() => {
+                                    reset();
+                                }}
+                            >
+                                Cancel
+                            </ButtonCancel>
+                            <ButtonComment type='submit'>Comment</ButtonComment>
+                        </CommentButtons>
+                    </form>
                     <CommentsList>
-                        <UserComment />
+                        {entry?.comments.map(c => (
+                            <UserComment
+                                userId={c.userId}
+                                comment={c.content}
+                                timeAdded={c.timeAdded}
+                            />
+                        ))}
                     </CommentsList>
                 </Comments>
             </EntryContainer>
@@ -102,6 +163,8 @@ const ChallengeImage = styled.img`
     min-width: 250px;
     max-width: 250px;
     margin-right: 10px;
+    object-fit: cover;
+    box-shadow: 0px 0px 10px black;
 `;
 
 const EntryDesc = styled.div`

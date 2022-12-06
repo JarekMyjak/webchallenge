@@ -14,8 +14,10 @@ export interface Entry {
 
 export interface Comment {
     id: string;
-    userName: String;
-    content: String;
+    userName: string;
+    content: string;
+    timeAdded: string;
+    userId: string;
 }
 
 export const getEntriesByChallengeId = async (challengeId: string) => {
@@ -30,6 +32,14 @@ export const getEntriesByChallengeId = async (challengeId: string) => {
 export const getEntriesByUserId = async (userId: string) => {
     const entriesArr = await apiGet(`/api/entries/user/${userId}`).then(res => {
         return res.data as Entry[];
+    });
+    return entriesArr;
+};
+
+export const getEntryById = async (entryId: string) => {
+    const entriesArr = await apiGet(`/api/entries/${entryId}`).then(res => {
+        console.log(res.data);
+        return res.data as Entry;
     });
     return entriesArr;
 };
