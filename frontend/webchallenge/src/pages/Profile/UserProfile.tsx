@@ -74,6 +74,7 @@ const RightPanels = styled.div`
     margin-left: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 750px;
+    gap: 30px;
 `;
