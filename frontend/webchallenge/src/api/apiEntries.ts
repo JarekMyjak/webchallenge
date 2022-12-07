@@ -45,7 +45,6 @@ export const getEntriesByUserId = async (userId: string) => {
 
 export const getEntryById = async (entryId: string) => {
     const entriesArr = await apiGet(`/api/entries/${entryId}`).then(res => {
-        console.log(res.data);
         return res.data as Entry;
     });
     return entriesArr;
@@ -65,6 +64,12 @@ export const postCommentToEntry = async (entryId: string, comment: string) => {
 
 export const postDislikeToEntry = async (entryId: string) => {
     const res = await apiPost(`/api/entries/${entryId}/dislike`, {}).then(
+        res => {}
+    );
+};
+
+export const deleteEntryById = async (entryId: string) => {
+    const res = await apiPost(`/api/entries/${entryId}/delete`, {}).then(
         res => {}
     );
 };

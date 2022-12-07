@@ -115,7 +115,15 @@ const EntryBox: React.FC<IEntryBox> = props => {
                                 {props.commentsCount}
                                 <IoIosChatbubbles />
                             </LikeCounter>
-                            <button onClick={openGithub}>
+
+                            <button
+                                onClick={(e: any) => {
+                                    e.stopPropagation();
+                                    window.location.replace(
+                                        `${props.githubUrl}`
+                                    );
+                                }}
+                            >
                                 <IoLogoGithub />
                             </button>
                         </Panel>

@@ -45,7 +45,7 @@ const ListOfChallenges: React.FC = () => {
                         <Header>ID</Header>
                         <Header>Premium</Header>
                         <Header>Joined</Header>
-                        <Header>Controls</Header>
+                        {/* <Header>Controls</Header> */}
                     </Row>
                     {users?.map(u => (
                         <Row key={u.id}>
@@ -61,11 +61,11 @@ const ListOfChallenges: React.FC = () => {
                             <Column>
                                 {format(new Date(u.createdAt), 'MM/dd/yyyy')}
                             </Column>
-                            <Column>
-                                {/* <Link to={`../editchallenge/${challenge.id}`}> */}
-                                <Button>Edit</Button>
-                                {/* </Link> */}
-                            </Column>
+                            {/* <Column> */}
+                            {/* <Link to={`../editchallenge/${challenge.id}`}> */}
+                            {/* <Button>Edit</Button> */}
+                            {/* </Link> */}
+                            {/* </Column> */}
                         </Row>
                     ))}
                 </Table>

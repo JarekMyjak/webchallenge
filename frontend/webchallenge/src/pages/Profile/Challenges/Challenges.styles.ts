@@ -19,7 +19,7 @@ export const TopBar = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
 `;
 
 export const Filters = styled.div`
@@ -37,5 +37,5 @@ export const ChallengeList = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    row-gap: 60px;
+    row-gap: 10px;
 `;

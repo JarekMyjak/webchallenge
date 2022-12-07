@@ -20,6 +20,7 @@ import EntryUploadPage from './EntryUploadPage';
 import ClickAwayListener from 'react-click-away-listener';
 import EntryBox from '../../components/EntryBox';
 import TitleBar from '../../components/TitleBar';
+import {FaFlagCheckered} from 'react-icons/fa';
 
 const ChallengePage: React.FC = () => {
     const {challengeId} = useParams();
@@ -76,9 +77,12 @@ const ChallengePage: React.FC = () => {
                         />
                     </Wrapper>
                     {entries?.length > 0 && (
-                        <Wrapper>
+                        <EntriesWrapper>
                             <Title>
-                                <TitleBar text='Users entries:' />
+                                <TitleBar
+                                    text='Recent entries'
+                                    icon={FaFlagCheckered}
+                                />
                             </Title>
                             {entries.map(e => (
                                 <EntryBox
@@ -92,7 +96,7 @@ const ChallengePage: React.FC = () => {
                                     commentsCount={e.comments.length}
                                 />
                             ))}
-                        </Wrapper>
+                        </EntriesWrapper>
                     )}
                     {addDialogOpen && challenge && (
                         <Dialog>
@@ -131,13 +135,17 @@ const Dialog = styled.div`
 `;
 const Wrapper = styled.div`
     width: 1250px;
-    min-height: 500px;
+    /* min-height: 500px; */
     background-color: ${colors.backgroundSecondary};
     box-sizing: border-box;
     padding: 45px 60px;
     margin: 2rem 0;
     border-radius: 3px;
     box-shadow: 1px 1px 7px black;
+`;
+
+const EntriesWrapper = styled(Wrapper)`
+    padding: 15px 60px;
 `;
 
 const WrapperLoader = styled.div`

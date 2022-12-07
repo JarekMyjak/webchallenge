@@ -5,13 +5,14 @@ import {useUser} from '../../api/useAuth';
 import TitleBar from '../../components/TitleBar';
 import colors from '../../helpers/colors.helpers';
 import UserComment from './UserComment';
-import {Link, useParams} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import {
     Entry as IEntry,
     getEntryById,
     postCommentToEntry,
     postLikeToEntry,
     postDislikeToEntry,
+    deleteEntryById,
 } from '../../api/apiEntries';
 import {Challenge, getChallenge} from '../../api/apiChallenges';
 import {user} from '../../api/useAuth';
@@ -27,7 +28,7 @@ const Entry: React.FC = () => {
     const [owner, setOwner] = useState<user | undefined>();
     const [isLiked, setIsLiked] = useState<boolean>(false);
     const [likes, setLikes] = useState<number>(0);
-
+    const navigate = useNavigate();
     const {
         setFocus,
         register,
@@ -84,6 +85,13 @@ const Entry: React.FC = () => {
         }
     };
 
+    const onDelete = async () => {
+        if (entryId) {
+            await deleteEntryById(entryId);
+            navigate(`/challenges/${challenge?.id}`);
+        }
+    };
+
     return !!!entry ? (
         <LoaderContainer text='Loading entry...' />
     ) : (
@@ -126,6 +134,11 @@ const Entry: React.FC = () => {
                             <button>
                                 Pages <IoLogoGithub />
                             </button>
+                            {entry.userId === user?.id && (
+                                <button onClick={() => onDelete()}>
+                                    DELETE
+                                </button>
+                            )}
                         </ButtonPanel>
                     </EntryDesc>
                 </TopWrapper>
@@ -284,7 +297,7 @@ const Divider = styled.div`
 `;
 
 const Comments = styled.div`
-    min-height: 400px;
+    /* min-height: 400px; */
     width: 100%;
     background-color: transparent;
     border-radius: 3px;
@@ -356,8 +369,5 @@ const CommentButtons = styled.div`
 
 const CommentsList = styled.div`
     flex-grow: 1;
-    min-height: 300px;
+    /* min-height: 300px; */
 `;
-function setChallenge(arg0: any) {
-    throw new Error('Function not implemented.');
-}

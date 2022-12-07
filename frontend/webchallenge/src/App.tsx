@@ -23,6 +23,7 @@ import {useUser} from './api/useAuth';
 import Entry from './pages/Entry/Entry';
 import UserProfile from './pages/Profile/UserProfile';
 import Community from './pages/Community/Community';
+import ScrollToTop from './hooks/useScrollTop';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -31,6 +32,7 @@ const App: React.FC = () => {
     return (
         <Container>
             <NavBar />
+            <ScrollToTop />
             <ContentWrapper>
                 {!location.pathname.includes('adminpanel') &&
                     location.pathname === ' ' && <Leftbar />}

@@ -11,7 +11,11 @@ import {
 } from './listOfChallenges.styles';
 import {Link} from 'react-router-dom';
 import {apiGet} from '../../../api/apiMethods';
-import {Challenge, getChallenges} from '../../../api/apiChallenges';
+import {
+    Challenge,
+    deleteChallengeById,
+    getChallenges,
+} from '../../../api/apiChallenges';
 import Loader from '../../../components/Loader';
 import styled from 'styled-components';
 import colors from '../../../helpers/colors.helpers';
@@ -30,7 +34,6 @@ const ListOfChallenges: React.FC = () => {
         setLoading(true);
         const fetchData = async () => {
             const response = await getChallenges();
-            // console.log(response)
             setChallenges(response);
             setLoading(false);
             console.log(response);
@@ -38,6 +41,20 @@ const ListOfChallenges: React.FC = () => {
         fetchData();
         return () => {};
     }, []);
+
+    const onDelete = async (id: string) => {
+        await deleteChallengeById(id);
+
+        setLoading(true);
+        const fetchData = async () => {
+            const response = await getChallenges();
+            setChallenges(response);
+            setLoading(false);
+            console.log(response);
+        };
+        fetchData();
+    };
+
     return (
         <Container>
             {!loading ? (
@@ -53,9 +70,11 @@ const ListOfChallenges: React.FC = () => {
                     </Row>
                     {challenges.map(challenge => (
                         <Row key={challenge.id}>
-                            <Column>
-                                <UserAvatar src={challenge.imageUrls[0]} />
-                            </Column>
+                            <Link to={`/challenges/${challenge.id}`}>
+                                <Column>
+                                    <UserAvatar src={challenge.imageUrls[0]} />
+                                </Column>
+                            </Link>
                             <Column>{challenge.id}</Column>
                             <Column>{challenge.title}</Column>
                             <Column>{challenge.experience}</Column>
@@ -65,6 +84,9 @@ const ListOfChallenges: React.FC = () => {
                                 <Link to={`../editchallenge/${challenge.id}`}>
                                     <Button>Edit</Button>
                                 </Link>
+                                <Button onClick={() => onDelete(challenge.id)}>
+                                    Delete
+                                </Button>
                             </Column>
                         </Row>
                     ))}
