@@ -62,6 +62,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     padding: 25px 0;
+    min-height: 95vh;
 `;
 
 const FirstSection = styled.div`
