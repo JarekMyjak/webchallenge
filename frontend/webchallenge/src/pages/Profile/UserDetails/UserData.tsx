@@ -22,9 +22,14 @@ import githubIcon from '../../../assets/icons/github.png';
 import twitterIcon from '../../../assets/icons/twitter.png';
 import websiteIcon from '../../../assets/icons/website.png';
 
-const UserData: React.FC = () => {
-    const user = useUser(state => state.user);
-    console.log(user);
+import {user} from '../../../api/useAuth';
+interface IUserDate {
+    user: user;
+}
+
+const UserData: React.FC<IUserDate> = props => {
+    const user = props.user;
+
     const openSocial = (url: any) => {
         window.open(url, '_blank', 'noopener,noreferrer');
     };

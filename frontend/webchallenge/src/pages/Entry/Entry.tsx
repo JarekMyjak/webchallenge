@@ -5,16 +5,19 @@ import {useUser} from '../../api/useAuth';
 import TitleBar from '../../components/TitleBar';
 import colors from '../../helpers/colors.helpers';
 import UserComment from './UserComment';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {
     Entry as IEntry,
     getEntryById,
     postCommentToEntry,
+    postLikeToEntry,
+    postDislikeToEntry,
 } from '../../api/apiEntries';
 import {Challenge, getChallenge} from '../../api/apiChallenges';
 import {user} from '../../api/useAuth';
 import {getUserById} from '../../api/apiUser';
-import {useForm, Controller, SubmitHandler, FieldValues} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
+import LoaderContainer from '../../components/LoaderContainer';
 
 const Entry: React.FC = () => {
     const user = useUser(store => store.user);
@@ -22,6 +25,8 @@ const Entry: React.FC = () => {
     const [entry, setEntry] = useState<IEntry>();
     const [challenge, setChallenge] = useState<Challenge | undefined>();
     const [owner, setOwner] = useState<user | undefined>();
+    const [isLiked, setIsLiked] = useState<boolean>(false);
+    const [likes, setLikes] = useState<number>(0);
 
     const {
         setFocus,
@@ -60,6 +65,8 @@ const Entry: React.FC = () => {
             (async () => {
                 setOwner(await getUserById(entry?.userId));
             })();
+            setIsLiked(entry?.liked);
+            setLikes(entry?.likes);
         }
     }, [entry]);
 
@@ -67,23 +74,49 @@ const Entry: React.FC = () => {
         window.open(entry?.githubUrl, '_blank', 'noopener,noreferrer');
     };
 
-    return (
+    const onLike = async () => {
+        if (entryId) {
+            isLiked
+                ? await postDislikeToEntry(entryId)
+                : await postLikeToEntry(entryId);
+            setLikes(p => (isLiked ? p - 1 : p + 1));
+            setIsLiked(p => !p);
+        }
+    };
+
+    return !!!entry ? (
+        <LoaderContainer text='Loading entry...' />
+    ) : (
         <Container>
             <EntryContainer>
                 <TopWrapper>
                     <ChallengeImage src={challenge?.imageUrls[0]} />
                     <EntryDesc>
-                        <TitleBy>
-                            <TitleChallenge>{challenge?.title}</TitleChallenge>{' '}
-                            created by <UserAvatar src={owner?.avatar} /> @
-                            {owner?.username}
-                        </TitleBy>
+                        <Link
+                            style={{
+                                display: 'flex',
+                                alignItems: 'flex-end',
+                                fontSize: '16px',
+                                color: '#d3d3d3',
+                                textDecoration: 'none',
+                            }}
+                            onClick={(e: any) => e.stopPropagation()}
+                            to={`/profile/${owner?.id}`}
+                        >
+                            <TitleBy>
+                                <TitleChallenge>
+                                    {challenge?.title}
+                                </TitleChallenge>{' '}
+                                created by <UserAvatar src={owner?.avatar} /> @
+                                {owner?.username}
+                            </TitleBy>
+                        </Link>
                         <Description>{entry?.description}</Description>
                         <ButtonPanel>
-                            <button>{entry?.likes} 💘</button>
-                            <button>
+                            <button>{likes} 💘</button>
+                            <LikeButton liked={isLiked} onClick={onLike}>
                                 <IoIosHeart />
-                            </button>
+                            </LikeButton>
                             <button>
                                 {entry?.comments.length} <IoIosChatbubbles />
                             </button>
@@ -124,7 +157,7 @@ const Entry: React.FC = () => {
                             <UserComment
                                 userId={c.userId}
                                 comment={c.content}
-                                timeAdded={c.timeAdded}
+                                date={c.timeAdded}
                             />
                         ))}
                     </CommentsList>
@@ -224,8 +257,11 @@ interface ILikedButton {
 }
 
 const LikeButton = styled.button<ILikedButton>`
-    color: ${props => (props.liked === true ? colors.orange : 'black')};
-    width: 100px;
+    color: ${props =>
+        props.liked === true
+            ? colors.orange + ' !important'
+            : 'black !important'};
+    /* width: 100px; */
 `;
 const LikeCounter = styled.div`
     min-width: 35px;
@@ -244,7 +280,7 @@ const Divider = styled.div`
     height: 1px;
     width: 100%;
     margin: 10px 0;
-    background-color: ${colors.borderPrimary};
+    /* background-color: ${colors.borderPrimary}; */
 `;
 
 const Comments = styled.div`

@@ -50,6 +50,7 @@ export const ButtonView = styled.div<IButtonView>`
     justify-content: center;
     font-size: 13px;
     font-weight: 400;
+    transition: 0.2s;
     cursor: pointer;
     ${props =>
         props.active &&

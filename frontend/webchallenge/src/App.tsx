@@ -21,6 +21,7 @@ import ChallengeUpload from './pages/ChallengePage/EntryUploadPage';
 import Guard from './components/utils/Guard';
 import {useUser} from './api/useAuth';
 import Entry from './pages/Entry/Entry';
+import UserProfile from './pages/Profile/UserProfile';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -90,6 +91,14 @@ const App: React.FC = () => {
                             element={
                                 <Guard>
                                     <Profile />
+                                </Guard>
+                            }
+                        />
+                        <Route
+                            path='/profile/:userId'
+                            element={
+                                <Guard>
+                                    <UserProfile />
                                 </Guard>
                             }
                         />
