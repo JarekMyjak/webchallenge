@@ -1,4 +1,4 @@
-import {ApiBaseUrl, apiGet} from './apiMethods';
+import {ApiBaseUrl, apiGet, apiPost} from './apiMethods';
 import {redirect} from 'react-router-dom';
 
 export interface Challenge {
@@ -40,4 +40,10 @@ export const getPremiumChallenge = async (challengeId: string) => {
         res => res.data
     );
     return fileUrl as string;
+};
+
+export const deleteChallengeById = async (challengeId: string) => {
+    const res = await apiPost(`/api/challenges/${challengeId}/delete`, {}).then(
+        res => {}
+    );
 };

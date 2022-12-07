@@ -42,7 +42,7 @@ const Challenges: React.FC<IChallanges> = props => {
     return entries.length > 0 ? (
         <Wrapper>
             <TopBar>
-                <TitleBar imageSrc={bookmarkIcon} text='Your challenges' />
+                <TitleBar imageSrc={bookmarkIcon} text='Entries' />
                 <Filters>
                     <Filter>Sort By</Filter>
                     <Filter>Filter By</Filter>
