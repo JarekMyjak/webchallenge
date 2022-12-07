@@ -51,7 +51,7 @@ const EntryBox: React.FC<IEntryBox> = props => {
     // const likeClickHandler = () =>
     //     setLiked(prev => (prev === true ? false : true));
 
-    const openGithub = e => {
+    const openGithub = (e: any) => {
         e.stopPropagation();
         window.open(props.githubUrl, '_blank', 'noopener,noreferrer');
     };
