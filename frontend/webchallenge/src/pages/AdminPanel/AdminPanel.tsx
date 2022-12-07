@@ -19,7 +19,7 @@ const AdminPanel: React.FC = () => {
 export default AdminPanel;
 
 const Container = styled.div`
-    background-color: ${colors.backgroundPrimary};
+    background-color: ${colors.backgroundSecondary};
     min-height: 100vh;
     width: 100vw;
     display: flex;

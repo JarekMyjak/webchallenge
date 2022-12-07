@@ -20,6 +20,13 @@ export interface Comment {
     userId: string;
 }
 
+export const getEntries = async () => {
+    const entriesArr = await apiGet(`/api/entries`).then(res => {
+        return res.data as Entry[];
+    });
+    return entriesArr;
+};
+
 export const getEntriesByChallengeId = async (challengeId: string) => {
     const entriesArr = await apiGet(
         `/api/entries/challenge/${challengeId}`

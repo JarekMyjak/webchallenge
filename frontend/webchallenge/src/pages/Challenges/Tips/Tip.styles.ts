@@ -6,6 +6,7 @@ export interface IWrapper {
 }
 
 export const Wrapper = styled.div<IWrapper>`
+    box-shadow: 0px 0px 10px black;
     width: 620px;
     height: 100px;
     background-color: ${colors.backgroundSecondary};

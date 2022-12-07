@@ -22,6 +22,7 @@ import Guard from './components/utils/Guard';
 import {useUser} from './api/useAuth';
 import Entry from './pages/Entry/Entry';
 import UserProfile from './pages/Profile/UserProfile';
+import Community from './pages/Community/Community';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -115,6 +116,14 @@ const App: React.FC = () => {
                             element={
                                 <Guard>
                                     <Premium />
+                                </Guard>
+                            }
+                        />
+                        <Route
+                            path='/community'
+                            element={
+                                <Guard>
+                                    <Community />
                                 </Guard>
                             }
                         />

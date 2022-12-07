@@ -1,9 +1,11 @@
 import React from 'react';
+import {IconType} from 'react-icons';
 import styled from 'styled-components';
 import colors from '../helpers/colors.helpers';
 
 interface ITitleBar {
     imageSrc?: string;
+    icon?: IconType;
     text: string;
 }
 
@@ -13,6 +15,7 @@ const TitleBar: React.FC<ITitleBar> = props => {
             {props?.imageSrc !== undefined && (
                 <ProfileImg src={props.imageSrc} />
             )}
+            {props?.icon !== undefined && <props.icon />}
             <div>
                 <ProfileTextWrapper>{props.text}</ProfileTextWrapper>
                 <Bar />
@@ -25,12 +28,18 @@ export default TitleBar;
 
 const ProfileBar = styled.div`
     display: flex;
+    svg {
+        width: 25px;
+        height: 25px;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
 `;
 
 const ProfileImg = styled.img`
     width: 35px;
     height: 32px;
-    margin-right: 10px;
+    c
 `;
 
 const ProfileTextWrapper = styled.div`

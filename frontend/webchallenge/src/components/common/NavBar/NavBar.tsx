@@ -43,19 +43,17 @@ const NavBar: React.FC = () => {
                         isAdminPanel={location.pathname.includes('adminpanel')}
                     ></LoggedLogo>
                     <SmallLogoText>WebChallenge</SmallLogoText>
-                    {/* &nbsp; &gt; &nbsp;
-                    <Localization>
-                        {location.pathname.replace('/', '')}
-                    </Localization> */}
                 </LogoAndLocalization>
                 <Nav>
-                    <NavButton>Contact</NavButton>
-                    <NavButton>Resources</NavButton>
-                    <NavButton>Community</NavButton>
+                    {/* <NavButton>Contact</NavButton> */}
+                    {/* <NavButton>Resources</NavButton> */}
+                    <CustomLink to='/community'>
+                        <NavButton>Community</NavButton>
+                    </CustomLink>
                     <CustomLink to='/challenges'>
                         <NavButton>Challenges</NavButton>
                     </CustomLink>
-                    <NavButton>Premium</NavButton>
+                    {/* <NavButton>Premium</NavButton> */}
                     <ClickAwayListener onClickAway={closeMenuHandler}>
                         <AnnouncesAndUser>
                             <UserAvatar

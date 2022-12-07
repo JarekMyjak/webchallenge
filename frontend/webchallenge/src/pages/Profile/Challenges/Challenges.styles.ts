@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    box-shadow: 0px 0px 10px black;
     justify-content: space-between;
 `;
 

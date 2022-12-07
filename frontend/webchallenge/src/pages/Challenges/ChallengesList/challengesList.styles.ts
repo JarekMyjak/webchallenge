@@ -8,6 +8,7 @@ export const Container = styled.div`
     margin-top: 50px;
     box-sizing: border-box;
     padding: 45px 55px;
+    box-shadow: 0px 0px 10px black;
 `;
 
 export const TitleAndOptions = styled.div`
