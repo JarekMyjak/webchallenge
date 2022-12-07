@@ -56,6 +56,15 @@ router.get('/:id', async (req, res) => {
 	}
 });
 
+router.post('/:id/delete', async (req, res) => {
+	try {
+		await Challenge.findByIdAndDelete(req.params["id"]);
+		res.status(200).json({ message: 'Challenge deleted' })
+	} catch (err) {
+		res.status(500).json({ message: 'Something went wrong.' });
+	}
+});
+
 router.get('/:id/download', async (req, res) => {
 	const challenge = await Challenge.findOne({ _id: req.params["id"] });
 	const blobUrl = challenge.blobUrl as string;

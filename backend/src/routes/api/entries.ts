@@ -91,6 +91,15 @@ router.post('/:id/like', requireJwtAuth, async (req, res) => {
 	}
 });
 
+router.post('/:id/delete', requireAdmin, async (req, res) => {
+	try {
+		await Entry.findByIdAndDelete(req.params.id)
+		res.status(200).json({ message: 'Challenge deleted' })
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+});
+
 router.post('/:id/dislike', requireJwtAuth, async (req, res) => {
 	try {
 		const userEntry = req.user as userType;
