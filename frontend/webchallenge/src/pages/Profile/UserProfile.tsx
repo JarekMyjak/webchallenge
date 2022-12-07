@@ -26,6 +26,15 @@ const UserProfile: React.FC = () => {
         }
     }, []);
 
+    useEffect(() => {
+        if (userId) {
+            (async () => {
+                setUser(await getUserById(userId));
+            })();
+            setLoading(false);
+        }
+    }, [userId]);
+
     return loading ? (
         <LoaderContainer text='Loading user...' />
     ) : (

@@ -48,6 +48,21 @@ const EntryBox: React.FC<IEntryBox> = props => {
         setIsLiked(props.liked);
     }, []);
 
+    useEffect(() => {
+        if (props.challengeId) {
+            (async () => {
+                setChallenge(await getChallenge(props.challengeId));
+            })();
+        }
+        if (props.ownerId) {
+            (async () => {
+                setOwner(await getUserById(props.ownerId));
+            })();
+        }
+        setLikes(props.likes);
+        setIsLiked(props.liked);
+    }, [props]);
+
     const openGithub = (e: any) => {
         e.stopPropagation();
         window.open(props.githubUrl, '_blank', 'noopener,noreferrer');

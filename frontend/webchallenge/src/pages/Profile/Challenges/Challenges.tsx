@@ -31,6 +31,14 @@ const Challenges: React.FC<IChallanges> = props => {
         }
     }, []);
 
+    useEffect(() => {
+        if (user?.id) {
+            (async () => {
+                setEntries(await getEntriesByUserId(user.id));
+            })();
+        }
+    }, [user]);
+
     return entries.length > 0 ? (
         <Wrapper>
             <TopBar>

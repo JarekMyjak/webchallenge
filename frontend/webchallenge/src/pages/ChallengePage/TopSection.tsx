@@ -39,7 +39,7 @@ export const enum techs {
 }
 
 interface ITopSection {
-    image: string;
+    image: string[];
     exp: string;
     technologies: techs[];
     premium?: boolean;
@@ -52,6 +52,7 @@ interface ITopSection {
 
 const TopSection: React.FC<ITopSection> = props => {
     const [premiumUrl, setPremiumUrl] = useState('');
+    const [view, setView] = useState('desktop');
     const user = useUser(store => store.user);
 
     useEffect(() => {
@@ -72,18 +73,64 @@ const TopSection: React.FC<ITopSection> = props => {
                 return <span>unspecified</span>;
         }
     };
+    const imageSwitch = () => {
+        switch (view) {
+            case 'desktop':
+                return (
+                    props.image.filter(img =>
+                        img.toLowerCase().includes('desktop')
+                    )[0] || props.image[0]
+                );
+            case 'desktop-active':
+                return (
+                    props.image.filter(img =>
+                        img.toLowerCase().includes('desktop-active')
+                    )[0] || props.image[1]
+                );
+            case 'mobile':
+                return (
+                    props.image.filter(img =>
+                        img.toLowerCase().includes('mobile')
+                    )[0] || props.image[2]
+                );
+            default:
+                return props.image[0];
+        }
+    };
 
     return (
         <div>
             <Wrapper>
                 <ImageAndButtons>
                     <ImageWrapper>
-                        <Image src={props.image} />
+                        <Image src={imageSwitch()} />
                     </ImageWrapper>
                     <ButtonsWrapper>
-                        <ButtonView active={true}>Desktop design</ButtonView>
-                        <ButtonView>Mobile design</ButtonView>
-                        <ButtonView>Active states</ButtonView>
+                        <ButtonView
+                            active={view === 'desktop'}
+                            onClick={() => {
+                                setView('desktop');
+                            }}
+                        >
+                            Desktop design
+                        </ButtonView>
+                        <ButtonView
+                            active={view === 'mobile'}
+                            onClick={() => {
+                                setView('mobile');
+                            }}
+                        >
+                            Mobile design
+                        </ButtonView>
+                        <ButtonView
+                            active={view === 'desktop-active'}
+                            onClick={() => {
+                                setView('desktop-active');
+                            }}
+                        >
+                            {' '}
+                            Active states
+                        </ButtonView>
                     </ButtonsWrapper>
                 </ImageAndButtons>
                 <ChallengeData>

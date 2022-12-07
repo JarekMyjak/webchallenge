@@ -63,7 +63,7 @@ const ChallengePage: React.FC = () => {
                 <Container>
                     <Wrapper>
                         <TopSection
-                            image={challenge.imageUrls[0]}
+                            image={challenge.imageUrls}
                             title={challenge?.title}
                             id={challenge?.id}
                             onUploadClick={openDialogHandler}
