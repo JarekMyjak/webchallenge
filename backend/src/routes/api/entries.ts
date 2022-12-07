@@ -31,6 +31,19 @@ router.post('/challenge/:id', requireJwtAuth, async (req, res) => {
 	}
 });
 
+router.get('/', requireJwtAuth, async (req, res) => {
+	try {
+		const userEntry = req.user as userType;
+		const user = await User.findOne({ githubId: userEntry.githubId });
+		const entries = await Entry.find({});
+		const resEntries = entries.map(entry => entry.userJSON(user.id));
+		res.send(resEntries)
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({ message: error.message });
+	}
+});
+
 router.get('/challenge/:id', requireJwtAuth, async (req, res) => {
 	try {
 		const userEntry = req.user as userType;
