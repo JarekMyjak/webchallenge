@@ -43,10 +43,10 @@ const Challenges: React.FC<IChallanges> = props => {
         <Wrapper>
             <TopBar>
                 <TitleBar imageSrc={bookmarkIcon} text='Entries' />
-                <Filters>
+                {/* <Filters>
                     <Filter>Sort By</Filter>
                     <Filter>Filter By</Filter>
-                </Filters>
+                </Filters> */}
             </TopBar>
             <ChallengeList>
                 {entries.map(e => (
