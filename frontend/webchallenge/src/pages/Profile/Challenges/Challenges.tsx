@@ -13,22 +13,24 @@ import firstCard from '../../../assets/images/landing/First_card.jpg';
 import bookmarkIcon from '../../../assets/icons/bookmark.png';
 import {Entry, getEntriesByUserId} from '../../../api/apiEntries';
 import EntryBox from '../../../components/EntryBox';
+import {useUser} from '../../../api/useAuth';
 
 interface IChallanges {
-    userId: string;
+    // userId: string;
 }
 
 const Challenges: React.FC<IChallanges> = props => {
     const [entries, setEntries] = useState<Entry[]>([]);
+    const user = useUser(state => state.user);
 
     useEffect(() => {
-        if (props.userId) {
+        if (user?.id) {
             (async () => {
-                setEntries(await getEntriesByUserId(props.userId));
+                setEntries(await getEntriesByUserId(user.id));
             })();
         }
     }, []);
-
+    console.log('dupa');
     return entries.length > 0 ? (
         <Wrapper>
             <TopBar>
@@ -48,6 +50,7 @@ const Challenges: React.FC<IChallanges> = props => {
                         liked={e.liked}
                         githubUrl={e.githubUrl}
                         entryId={e.id}
+                        commentsCount={e.comments.length}
                     />
                 ))}
             </ChallengeList>

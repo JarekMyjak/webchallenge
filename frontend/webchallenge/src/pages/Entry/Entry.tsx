@@ -10,11 +10,13 @@ import {
     Entry as IEntry,
     getEntryById,
     postCommentToEntry,
+    postLikeToEntry,
+    postDislikeToEntry,
 } from '../../api/apiEntries';
 import {Challenge, getChallenge} from '../../api/apiChallenges';
 import {user} from '../../api/useAuth';
 import {getUserById} from '../../api/apiUser';
-import {useForm, Controller, SubmitHandler, FieldValues} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 
 const Entry: React.FC = () => {
     const user = useUser(store => store.user);
@@ -22,6 +24,8 @@ const Entry: React.FC = () => {
     const [entry, setEntry] = useState<IEntry>();
     const [challenge, setChallenge] = useState<Challenge | undefined>();
     const [owner, setOwner] = useState<user | undefined>();
+    const [isLiked, setIsLiked] = useState<boolean>(false);
+    const [likes, setLikes] = useState<number>(0);
 
     const {
         setFocus,
@@ -60,11 +64,23 @@ const Entry: React.FC = () => {
             (async () => {
                 setOwner(await getUserById(entry?.userId));
             })();
+            setIsLiked(entry?.liked);
+            setLikes(entry?.likes);
         }
     }, [entry]);
 
     const openUrlBlank = () => {
         window.open(entry?.githubUrl, '_blank', 'noopener,noreferrer');
+    };
+
+    const onLike = async () => {
+        if (entryId) {
+            isLiked
+                ? await postDislikeToEntry(entryId)
+                : await postLikeToEntry(entryId);
+            setLikes(p => (isLiked ? p - 1 : p + 1));
+            setIsLiked(p => !p);
+        }
     };
 
     return (
@@ -80,10 +96,10 @@ const Entry: React.FC = () => {
                         </TitleBy>
                         <Description>{entry?.description}</Description>
                         <ButtonPanel>
-                            <button>{entry?.likes} 💘</button>
-                            <button>
+                            <button>{likes} 💘</button>
+                            <LikeButton liked={isLiked} onClick={onLike}>
                                 <IoIosHeart />
-                            </button>
+                            </LikeButton>
                             <button>
                                 {entry?.comments.length} <IoIosChatbubbles />
                             </button>
@@ -124,7 +140,7 @@ const Entry: React.FC = () => {
                             <UserComment
                                 userId={c.userId}
                                 comment={c.content}
-                                timeAdded={c.timeAdded}
+                                date={c.timeAdded}
                             />
                         ))}
                     </CommentsList>
@@ -224,8 +240,11 @@ interface ILikedButton {
 }
 
 const LikeButton = styled.button<ILikedButton>`
-    color: ${props => (props.liked === true ? colors.orange : 'black')};
-    width: 100px;
+    color: ${props =>
+        props.liked === true
+            ? colors.orange + ' !important'
+            : 'black !important'};
+    /* width: 100px; */
 `;
 const LikeCounter = styled.div`
     min-width: 35px;

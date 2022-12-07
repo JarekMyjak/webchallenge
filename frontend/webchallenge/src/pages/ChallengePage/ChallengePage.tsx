@@ -89,6 +89,7 @@ const ChallengePage: React.FC = () => {
                                     liked={e.liked}
                                     githubUrl={e.githubUrl}
                                     entryId={e.id}
+                                    commentsCount={e.comments.length}
                                 />
                             ))}
                         </Wrapper>

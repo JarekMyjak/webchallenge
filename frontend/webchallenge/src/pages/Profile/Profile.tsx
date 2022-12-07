@@ -10,7 +10,6 @@ import {useUser} from '../../api/useAuth';
 
 const Profile: React.FC = () => {
     const user = useUser(state => state.user);
-    console.log(user);
     return (
         <Container>
             <FirstSection>
@@ -20,7 +19,7 @@ const Profile: React.FC = () => {
                     <Leaderboard />
                 </RightPanels>
             </FirstSection>
-            {user?.id !== undefined && <Challenges userId={user?.id} />}
+            <Challenges />
             <Activities />
         </Container>
     );

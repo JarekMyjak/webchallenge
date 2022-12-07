@@ -8,7 +8,7 @@ import {getUserById} from '../../api/apiUser';
 interface IUserComment {
     userId: string;
     comment: string;
-    timeAdded: string;
+    date: string;
 }
 
 const UserComment: React.FC<IUserComment> = props => {
@@ -29,8 +29,7 @@ const UserComment: React.FC<IUserComment> = props => {
                 <UserCommentData>
                     @{owner?.username}
                     <span>
-                        {formatDistance(new Date(props.timeAdded), new Date())}{' '}
-                        ago
+                        {formatDistance(new Date(props.date), new Date())} ago
                     </span>
                 </UserCommentData>
                 <UserCommentValue>{props.comment}</UserCommentValue>
