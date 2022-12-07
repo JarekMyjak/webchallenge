@@ -101,14 +101,14 @@ entrySchema.methods.toJSON = function () {
 
 entrySchema.methods.userJSON = function (userId: string) {
     const userLiked = this.likedUserIds.includes(userId)
-    const comments = this.comments.map((comment) => {
-        return {
-            id: comment.id,
-            content: comment.content,
-            userName: comment.userName,
-            date: comment.timeAdded,
-        }
-    })
+    // const comments = this.comments.map((comment) => {
+    //     return {
+    //         id: comment.id,
+    //         content: comment.content,
+    //         userName: comment.userName,
+    //         date: comment.timeAdded,
+    //     }
+    // })
 
     return {
         id: this._id,
@@ -119,7 +119,7 @@ entrySchema.methods.userJSON = function (userId: string) {
         description: this.description,
         likes: this.likedUserIds.length,
         liked: userLiked,
-        comments: comments
+        comments: this.comments,
     };
 };
 
