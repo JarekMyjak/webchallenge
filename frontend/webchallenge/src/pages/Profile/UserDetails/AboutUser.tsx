@@ -1,9 +1,13 @@
 import React from 'react';
 import {useUser} from '../../../api/useAuth';
 import {Wrapper, Description, DescTitle, DescText} from './aboutUser.styles';
+import {user} from '../../../api/useAuth';
+interface IAboutUser {
+    user: user;
+}
 
-const AboutUser: React.FC = () => {
-    const user = useUser(store => store.user);
+const AboutUser: React.FC<IAboutUser> = props => {
+    const user = props.user;
 
     return (
         <Wrapper>

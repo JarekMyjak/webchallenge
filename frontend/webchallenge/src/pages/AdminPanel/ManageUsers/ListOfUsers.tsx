@@ -50,7 +50,9 @@ const ListOfChallenges: React.FC = () => {
                     {users?.map(u => (
                         <Row key={u.id}>
                             <Column>
-                                <UserAvatar src={u.avatar} />
+                                <Link to={`/profile/${u.id}`}>
+                                    <UserAvatar src={u.avatar} />
+                                </Link>
                             </Column>
                             <Column>{u.username}</Column>
                             <Column>{u.role}</Column>

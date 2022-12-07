@@ -9,11 +9,14 @@ import {
 } from './userContact.styles';
 import mailIcon from '../../../assets/icons/mail.png';
 import pinIcon from '../../../assets/icons/pin.png';
+import {user} from '../../../api/useAuth';
+interface IUserContact {
+    user: user;
+}
 
-const UserContact: React.FC = () => {
-    const user = useUser(state => state.user);
+const UserContact: React.FC<IUserContact> = props => {
+    const user = props.user;
 
-    console.log(user);
     return (
         <Wrapper>
             <Title>Contact</Title>

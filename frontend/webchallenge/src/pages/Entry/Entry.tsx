@@ -5,7 +5,7 @@ import {useUser} from '../../api/useAuth';
 import TitleBar from '../../components/TitleBar';
 import colors from '../../helpers/colors.helpers';
 import UserComment from './UserComment';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {
     Entry as IEntry,
     getEntryById,
@@ -17,6 +17,7 @@ import {Challenge, getChallenge} from '../../api/apiChallenges';
 import {user} from '../../api/useAuth';
 import {getUserById} from '../../api/apiUser';
 import {useForm} from 'react-hook-form';
+import LoaderContainer from '../../components/LoaderContainer';
 
 const Entry: React.FC = () => {
     const user = useUser(store => store.user);
@@ -83,17 +84,33 @@ const Entry: React.FC = () => {
         }
     };
 
-    return (
+    return !!!entry ? (
+        <LoaderContainer text='Loading entry...' />
+    ) : (
         <Container>
             <EntryContainer>
                 <TopWrapper>
                     <ChallengeImage src={challenge?.imageUrls[0]} />
                     <EntryDesc>
-                        <TitleBy>
-                            <TitleChallenge>{challenge?.title}</TitleChallenge>{' '}
-                            created by <UserAvatar src={owner?.avatar} /> @
-                            {owner?.username}
-                        </TitleBy>
+                        <Link
+                            style={{
+                                display: 'flex',
+                                alignItems: 'flex-end',
+                                fontSize: '16px',
+                                color: '#d3d3d3',
+                                textDecoration: 'none',
+                            }}
+                            onClick={(e: any) => e.stopPropagation()}
+                            to={`/profile/${owner?.id}`}
+                        >
+                            <TitleBy>
+                                <TitleChallenge>
+                                    {challenge?.title}
+                                </TitleChallenge>{' '}
+                                created by <UserAvatar src={owner?.avatar} /> @
+                                {owner?.username}
+                            </TitleBy>
+                        </Link>
                         <Description>{entry?.description}</Description>
                         <ButtonPanel>
                             <button>{likes} 💘</button>
@@ -263,7 +280,7 @@ const Divider = styled.div`
     height: 1px;
     width: 100%;
     margin: 10px 0;
-    background-color: ${colors.borderPrimary};
+    /* background-color: ${colors.borderPrimary}; */
 `;
 
 const Comments = styled.div`

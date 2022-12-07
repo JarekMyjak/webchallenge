@@ -4,6 +4,7 @@ import formatDistance from 'date-fns/formatDistance';
 import {user, useUser} from '../../api/useAuth';
 import colors from '../../helpers/colors.helpers';
 import {getUserById} from '../../api/apiUser';
+import {Link} from 'react-router-dom';
 
 interface IUserComment {
     userId: string;
@@ -24,14 +25,32 @@ const UserComment: React.FC<IUserComment> = props => {
 
     return (
         <Container>
-            <UserAvatar src={owner?.avatar} />
+            <Link
+                onClick={(e: any) => e.stopPropagation()}
+                to={`/profile/${owner?.id}`}
+            >
+                <UserAvatar src={owner?.avatar} />
+            </Link>
             <div>
-                <UserCommentData>
-                    @{owner?.username}
-                    <span>
-                        {formatDistance(new Date(props.date), new Date())} ago
-                    </span>
-                </UserCommentData>
+                <Link
+                    style={{
+                        display: 'flex',
+                        alignItems: 'flex-end',
+                        fontSize: '16px',
+                        color: '#d3d3d3',
+                        textDecoration: 'none',
+                    }}
+                    onClick={(e: any) => e.stopPropagation()}
+                    to={`/profile/${owner?.id}`}
+                >
+                    <UserCommentData>
+                        @{owner?.username}
+                        <span>
+                            {formatDistance(new Date(props.date), new Date())}{' '}
+                            ago
+                        </span>
+                    </UserCommentData>
+                </Link>
                 <UserCommentValue>{props.comment}</UserCommentValue>
             </div>
         </Container>

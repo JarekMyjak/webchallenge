@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import colors from '../../helpers/colors.helpers';
 import Activities from './Activities/Activities';
@@ -6,11 +6,29 @@ import Challenges from './Challenges/Challenges';
 import Leaderboard from './Leaderboard/Leaderboard';
 import Premium from './Premium/Premium';
 import UserDetails from './UserDetails/UserDetails';
-import {useUser} from '../../api/useAuth';
+import {user as IUser, useUser} from '../../api/useAuth';
+import {useParams} from 'react-router-dom';
+import {getUserById} from '../../api/apiUser';
+import Loader from '../../components/Loader';
+import LoaderContainer from '../../components/LoaderContainer';
 
-const Profile: React.FC = () => {
-    const user = useUser(state => state.user);
-    return (
+const UserProfile: React.FC = () => {
+    const {userId} = useParams();
+    const [user, setUser] = useState<IUser | undefined>();
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        if (userId) {
+            (async () => {
+                setUser(await getUserById(userId));
+            })();
+            setLoading(false);
+        }
+    }, []);
+
+    return loading ? (
+        <LoaderContainer text='Loading user...' />
+    ) : (
         <Container>
             {user && (
                 <>
@@ -29,7 +47,7 @@ const Profile: React.FC = () => {
     );
 };
 
-export default Profile;
+export default UserProfile;
 
 const Container = styled.div`
     display: flex;

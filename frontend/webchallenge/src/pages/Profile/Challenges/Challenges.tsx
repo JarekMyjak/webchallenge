@@ -13,15 +13,15 @@ import firstCard from '../../../assets/images/landing/First_card.jpg';
 import bookmarkIcon from '../../../assets/icons/bookmark.png';
 import {Entry, getEntriesByUserId} from '../../../api/apiEntries';
 import EntryBox from '../../../components/EntryBox';
-import {useUser} from '../../../api/useAuth';
+import {user} from '../../../api/useAuth';
 
 interface IChallanges {
-    // userId: string;
+    user: user;
 }
 
 const Challenges: React.FC<IChallanges> = props => {
     const [entries, setEntries] = useState<Entry[]>([]);
-    const user = useUser(state => state.user);
+    const user = props.user;
 
     useEffect(() => {
         if (user?.id) {
@@ -30,7 +30,7 @@ const Challenges: React.FC<IChallanges> = props => {
             })();
         }
     }, []);
-    console.log('dupa');
+
     return entries.length > 0 ? (
         <Wrapper>
             <TopBar>

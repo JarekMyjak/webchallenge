@@ -6,7 +6,7 @@ import {IoIosHeart, IoIosChatbubbles, IoLogoGithub} from 'react-icons/io';
 import Loader from './Loader';
 import {user} from '../api/useAuth';
 import {getUserById} from '../api/apiUser';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {
     Entry as IEntry,
     getEntryById,
@@ -48,9 +48,6 @@ const EntryBox: React.FC<IEntryBox> = props => {
         setIsLiked(props.liked);
     }, []);
 
-    // const likeClickHandler = () =>
-    //     setLiked(prev => (prev === true ? false : true));
-
     const openGithub = (e: any) => {
         e.stopPropagation();
         window.open(props.githubUrl, '_blank', 'noopener,noreferrer');
@@ -77,9 +74,22 @@ const EntryBox: React.FC<IEntryBox> = props => {
                 <ImageBox>
                     <img src={challenge?.imageUrls[0]} />
                 </ImageBox>
+
                 <Data>
                     <UserData>
-                        <UserAvatar src={owner?.avatar} />@{owner?.username}
+                        <Link
+                            style={{
+                                display: 'flex',
+                                alignItems: 'flex-end',
+                                fontSize: '16px',
+                                color: '#d3d3d3',
+                                textDecoration: 'none',
+                            }}
+                            onClick={(e: any) => e.stopPropagation()}
+                            to={`/profile/${owner?.id}`}
+                        >
+                            <UserAvatar src={owner?.avatar} />@{owner?.username}
+                        </Link>
                         <Panel>
                             <LikeCounter>{likes}💘</LikeCounter>
                             <LikeButton onClick={onLike} liked={isLiked}>

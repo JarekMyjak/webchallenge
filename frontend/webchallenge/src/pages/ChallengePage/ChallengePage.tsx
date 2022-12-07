@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import colors from '../../helpers/colors.helpers';
 import TopSection from './TopSection';
-import {json, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {
     Challenge,
     downloadChallengeUrl,
