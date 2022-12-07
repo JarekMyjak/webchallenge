@@ -17,8 +17,8 @@ const Profile: React.FC = () => {
                     <FirstSection>
                         <UserDetails user={user} />
                         <RightPanels>
-                            <Premium />
                             <Leaderboard />
+                            <Premium />
                         </RightPanels>
                     </FirstSection>
                     <Challenges user={user} />
@@ -48,6 +48,7 @@ const RightPanels = styled.div`
     margin-left: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 750px;
+    gap: 20px;
 `;

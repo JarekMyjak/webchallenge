@@ -71,11 +71,11 @@ const NavBar: React.FC = () => {
             <Wrapper>
                 <Logo>WebChallenge</Logo>
                 <Nav>
-                    <NavButton>Contact</NavButton>
+                    {/* <NavButton>Contact</NavButton>
                     <NavButton>Resources</NavButton>
                     <NavButton>Community</NavButton>
                     <NavButton>Challenges</NavButton>
-                    <NavButton>Premium</NavButton>
+                    <NavButton>Premium</NavButton> */}
                     <LoginAndRegister>
                         <LoginLink href={authUrl}>
                             Login with Github

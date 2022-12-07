@@ -3,7 +3,7 @@ import colors from '../../../helpers/colors.helpers';
 
 export const Wrapper = styled.div`
     width: 400px;
-    height: 350px;
+    height: 200px;
     background-color: ${colors.backgroundSecondary};
     color: white;
     padding: 25px 35px;
