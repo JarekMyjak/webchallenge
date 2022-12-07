@@ -16,7 +16,7 @@ const Premium: React.FC = () => {
     return (
         <Wrapper>
             <TitleBar imageSrc={keyIcon} text='Subscription' />
-            <Info></Info>
+            {/* <Info></Info> */}
             <Bar>
                 <ProgressBar />
             </Bar>

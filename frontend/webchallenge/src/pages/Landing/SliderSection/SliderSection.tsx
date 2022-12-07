@@ -19,14 +19,13 @@ const SliderSection: React.FC = () => {
                 <Content>
                     <TextContent>
                         <Title>
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.
+                            WebChallenge
                         </Title>
                         <DownText>
-                            Lorem Ipsum has been the industry's standard dummy
-                            text ever since the 1500s, when an unknown printer
-                            took a galley of type and scrambled it to make a
-                            type specimen book
+                            WebChallenge is a repository of front end challenges
+                            that will elevate your coding skills.
+                            With the help of a comunity of likeminded coders.<br/>
+                            Take part in a challenge, submit it and see how others tackled it differently.
                         </DownText>
                     </TextContent>
                     <CreateAccButton>Create account</CreateAccButton>
